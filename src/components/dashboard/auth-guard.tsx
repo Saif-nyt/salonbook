@@ -1,0 +1,81 @@
+"use client";
+
+import { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { ShieldAlert } from "lucide-react";
+import Link from "next/link";
+import { useAuth } from "@/lib/auth-context";
+import { buttonStyles } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import type { Role } from "@/lib/types";
+
+export function AuthGuard({
+  role,
+  children,
+}: {
+  role: Role;
+  children: React.ReactNode;
+}) {
+  const { user, isLoading } = useAuth();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (isLoading || user) return;
+    router.replace(`/sign-in?redirect=${encodeURIComponent(pathname)}`);
+  }, [isLoading, user, pathname, router]);
+
+  if (isLoading) {
+    return (
+      <div className="container-page py-12">
+        <Skeleton className="h-8 w-48" />
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <Skeleton key={index} className="h-32 w-full rounded-lg" />
+          ))}
+        </div>
+        <Skeleton className="mt-8 h-96 w-full rounded-lg" />
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="container-page py-24 text-center">
+        <p className="font-display text-3xl text-ink">Taking you to sign in…</p>
+      </div>
+    );
+  }
+
+  if (user.role !== role) {
+    return (
+      <div className="container-page py-20">
+        <div className="mx-auto max-w-lg rounded-lg border border-line bg-cream p-8 text-center">
+          <span className="mx-auto grid size-12 place-items-center rounded-full bg-[#f4e0dc] text-[#8f3229]">
+            <ShieldAlert className="size-5" />
+          </span>
+          <h1 className="mt-5 font-display text-3xl text-ink">
+            This area isn&apos;t for your account.
+          </h1>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            You&apos;re signed in as a {user.role}. Use the area that matches your
+            account, or return to the salon.
+          </p>
+          <div className="mt-6 flex justify-center gap-3">
+            <Link
+              href={role === "admin" ? "/dashboard" : "/admin"}
+              className={buttonStyles({ variant: "outline", size: "sm" })}
+            >
+              Go to {role === "admin" ? "my dashboard" : "admin"}
+            </Link>
+            <Link href="/services" className={buttonStyles({ size: "sm" })}>
+              Browse services
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return <>{children}</>;
+}
