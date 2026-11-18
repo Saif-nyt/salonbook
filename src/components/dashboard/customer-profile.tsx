@@ -101,33 +101,39 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
       description="Update your name, phone number, and profile photo. Email, role, and account status cannot be changed here."
     >
       <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-        <div className="surface rounded-[20px] p-6">
+        <div className="surface rounded-[20px] p-5 sm:p-6">
           <p className="eyebrow">Account details</p>
           <div className="mt-5 flex items-center gap-4">
-            <Avatar name={user?.name ?? "Guest"} image={imageValue || user?.image} className="size-16" />
-            <div className="min-w-0">
-              <p className="truncate font-display text-2xl text-charcoal">{user?.name}</p>
-              <p className="truncate text-xs text-muted">{user?.email}</p>
+            <Avatar
+              name={user?.name ?? "Guest"}
+              image={imageValue || user?.image}
+              className="size-14 shrink-0 sm:size-16"
+            />
+            <div className="min-w-0 flex-1">
+              <p className="truncate font-display text-xl text-charcoal sm:text-2xl">{user?.name}</p>
+              <p className="truncate text-xs text-muted sm:text-sm">{user?.email}</p>
             </div>
           </div>
 
           <div className="mt-6 space-y-3 border-t border-warm-taupe/35 pt-5 text-sm">
             <div className="flex items-center justify-between gap-3">
-              <span className="flex items-center gap-2 text-muted">
+              <span className="flex shrink-0 items-center gap-2 text-muted">
                 <Mail className="size-4" />
                 Email
               </span>
-              <span className="truncate text-xs text-charcoal">{user?.email}</span>
+              <span className="min-w-0 flex-1 truncate text-right text-xs text-charcoal">
+                {user?.email}
+              </span>
             </div>
             <div className="flex items-center justify-between gap-3">
-              <span className="flex items-center gap-2 text-muted">
+              <span className="flex shrink-0 items-center gap-2 text-muted">
                 <UserRound className="size-4" />
                 Account type
               </span>
               <span className="text-xs capitalize text-charcoal">{user?.role}</span>
             </div>
             <div className="flex items-center justify-between gap-3">
-              <span className="flex items-center gap-2 text-muted">
+              <span className="flex shrink-0 items-center gap-2 text-muted">
                 <ShieldCheck className="size-4" />
                 Status
               </span>
@@ -138,8 +144,8 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
             </div>
             {user?.createdAt ? (
               <div className="flex items-center justify-between gap-3">
-                <span className="text-muted">Member since</span>
-                <span className="text-xs text-charcoal">{formatDate(user.createdAt)}</span>
+                <span className="shrink-0 text-muted">Member since</span>
+                <span className="text-right text-xs text-charcoal">{formatDate(user.createdAt)}</span>
               </div>
             ) : null}
           </div>
@@ -149,7 +155,7 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
           </p>
         </div>
 
-        <div className="surface rounded-[20px] p-6">
+        <div className="surface rounded-[20px] p-5 sm:p-6">
           <p className="eyebrow">Editable information</p>
           <form
             className="mt-5 space-y-4"
@@ -197,6 +203,7 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
                   id="image"
                   placeholder="https://…"
                   invalid={Boolean(form.formState.errors.image)}
+                  className="min-w-0 flex-1"
                   {...form.register("image")}
                 />
                 <input
@@ -211,7 +218,7 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
                   variant="outline"
                   onClick={() => fileInput.current?.click()}
                   isLoading={isUploading}
-                  className="shrink-0"
+                  className="w-full shrink-0 sm:w-auto"
                 >
                   <Camera className="size-4" />
                   Upload
@@ -220,19 +227,21 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
             </Field>
 
             {imageValue ? (
-              <div className="flex items-center gap-3 rounded-[14px] border border-warm-taupe/40 bg-warm-cream/35 p-3">
-                <span className="size-12 overflow-hidden rounded-full bg-sand ring-1 ring-warm-taupe/30">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={imageValue} alt="Profile preview" className="size-full object-cover" />
-                </span>
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold text-charcoal">Photo preview</p>
-                  <p className="truncate text-[11px] text-muted">{imageValue}</p>
+              <div className="flex flex-col gap-3 rounded-[14px] border border-warm-taupe/40 bg-warm-cream/35 p-3 sm:flex-row sm:items-center">
+                <div className="flex min-w-0 flex-1 items-center gap-3">
+                  <span className="size-12 shrink-0 overflow-hidden rounded-full bg-sand ring-1 ring-warm-taupe/30">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={imageValue} alt="Profile preview" className="size-full object-cover" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-semibold text-charcoal">Photo preview</p>
+                    <p className="truncate text-[11px] text-muted">{imageValue}</p>
+                  </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => form.setValue("image", "", { shouldValidate: true })}
-                  className="ml-auto text-[11px] font-semibold text-error underline-offset-4 hover:underline"
+                  className="self-start text-[11px] font-semibold text-error underline-offset-4 hover:underline sm:ml-auto sm:self-auto"
                 >
                   Remove
                 </button>

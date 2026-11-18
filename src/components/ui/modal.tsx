@@ -67,9 +67,9 @@ export function Modal({
           sizes[size],
         )}
       >
-        <div className="flex items-start justify-between gap-6 border-b border-warm-taupe/35 px-6 py-5">
-          <div>
-            <h2 id="modal-title" className="font-display text-3xl leading-tight text-charcoal">
+        <div className="flex items-start justify-between gap-4 border-b border-warm-taupe/35 px-4 py-4 sm:gap-6 sm:px-6 sm:py-5">
+          <div className="min-w-0 flex-1">
+            <h2 id="modal-title" className="font-display text-2xl leading-tight text-charcoal sm:text-3xl">
               {title}
             </h2>
             {description ? (
@@ -85,9 +85,9 @@ export function Modal({
             <X className="size-4" />
           </button>
         </div>
-        <div className="overflow-y-auto px-6 py-5">{children}</div>
+        <div className="overflow-y-auto px-4 py-4 sm:px-6 sm:py-5">{children}</div>
         {footer ? (
-          <div className="flex flex-wrap justify-end gap-3 border-t border-warm-taupe/35 bg-warm-cream/35 px-6 py-4">
+          <div className="flex flex-wrap justify-end gap-3 border-t border-warm-taupe/35 bg-warm-cream/35 px-4 py-4 sm:px-6">
             {footer}
           </div>
         ) : null}
