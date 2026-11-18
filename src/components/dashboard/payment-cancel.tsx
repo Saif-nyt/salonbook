@@ -19,8 +19,8 @@ function PaymentCancelContent() {
       description="No payment was taken. Your appointment remains confirmed and unpaid."
     >
       <div className="mx-auto max-w-2xl">
-        <div className="surface rounded-lg p-8 text-center">
-          <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f3e6cf] text-[#7b5a1f]">
+        <div className="surface rounded-[22px] p-8 text-center shadow-card sm:p-10">
+          <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f8efe2] text-warning">
             <XCircle className="size-6" />
           </span>
           <h2 className="mt-5 font-display text-3xl text-charcoal">
@@ -65,7 +65,7 @@ export function PaymentCancel() {
     <Suspense
       fallback={
         <div className="container-page py-16">
-          <Skeleton className="mx-auto h-64 max-w-2xl rounded-lg" />
+          <Skeleton className="mx-auto h-64 max-w-2xl rounded-[22px]" />
         </div>
       }
     >

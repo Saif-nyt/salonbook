@@ -52,7 +52,7 @@ export function CustomerAppointments() {
         </Link>
       }
     >
-      <div className="surface flex flex-col gap-3 rounded-lg p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="surface flex flex-col gap-3 rounded-[20px] p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <div className="flex flex-wrap gap-3">
           <select
             value={status}
@@ -60,7 +60,7 @@ export function CustomerAppointments() {
               setStatus(event.target.value);
               setPage(1);
             }}
-            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
+            className="h-10 rounded-[11px] border border-warm-taupe/55 bg-warm-cream/35 px-3 text-xs font-medium text-charcoal transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10"
             aria-label="Filter by appointment status"
           >
             {statuses.map((option) => (
@@ -75,7 +75,7 @@ export function CustomerAppointments() {
               setPaymentStatus(event.target.value);
               setPage(1);
             }}
-            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
+            className="h-10 rounded-[11px] border border-warm-taupe/55 bg-warm-cream/35 px-3 text-xs font-medium text-charcoal transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10"
             aria-label="Filter by payment status"
           >
             {paymentStatuses.map((option) => (
@@ -92,13 +92,13 @@ export function CustomerAppointments() {
                 setPaymentStatus("");
                 setPage(1);
               }}
-              className="text-xs font-medium text-deep-red underline-offset-4 hover:underline"
+              className="text-xs font-semibold text-deep-red underline-offset-4 hover:underline"
             >
               Clear filters
             </button>
           ) : null}
         </div>
-        <p className="text-xs text-muted">
+        <p className="text-xs font-medium text-muted">
           {meta ? `${meta.total} appointment${meta.total === 1 ? "" : "s"}` : "Loading"}
         </p>
       </div>
@@ -106,10 +106,10 @@ export function CustomerAppointments() {
       <div className={`mt-5 space-y-3 transition-opacity ${isFetching && !isLoading ? "opacity-60" : ""}`}>
         {isLoading ? (
           Array.from({ length: 4 }).map((_, index) => (
-            <Skeleton key={index} className="h-36 w-full rounded-lg" />
+            <Skeleton key={index} className="h-36 w-full rounded-[20px]" />
           ))
         ) : isError ? (
-          <div className="surface rounded-lg p-10 text-center">
+          <div className="surface rounded-[20px] p-10 text-center">
             <p className="font-display text-2xl text-charcoal">Your appointments didn&apos;t load.</p>
             <p className="mt-2 text-sm text-muted">Check your connection, then try again.</p>
             <button

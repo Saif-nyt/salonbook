@@ -51,11 +51,11 @@ export function CustomerOverview() {
       {stats.isLoading ? (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {Array.from({ length: 4 }).map((_, index) => (
-            <Skeleton key={index} className="h-32 rounded-lg" />
+            <Skeleton key={index} className="h-32 rounded-[18px]" />
           ))}
         </div>
       ) : stats.isError ? (
-        <div className="surface rounded-lg p-8 text-center">
+        <div className="surface rounded-[20px] p-8 text-center">
           <p className="font-display text-2xl text-charcoal">We couldn&apos;t load your summary.</p>
           <p className="mt-2 text-sm text-muted">Please refresh the page and try again.</p>
         </div>
@@ -87,8 +87,8 @@ export function CustomerOverview() {
       )}
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="surface overflow-hidden rounded-lg">
-          <div className="flex items-center justify-between border-b border-line px-5 py-4">
+        <div className="surface overflow-hidden rounded-[20px]">
+          <div className="flex items-center justify-between border-b border-warm-taupe/35 px-5 py-4">
             <div>
               <p className="eyebrow">Your next visit</p>
               <h2 className="mt-1 font-display text-2xl text-charcoal">
@@ -140,12 +140,12 @@ export function CustomerOverview() {
               </div>
 
               {nextVisit.status === "confirmed" && nextVisit.paymentStatus === "unpaid" ? (
-                <div className="mt-5 rounded-md bg-sand/60 px-4 py-3 text-xs leading-relaxed text-muted">
-                  This appointment is confirmed. Complete payment before your visit to
-                  hold the time.
+                <div className="mt-5 rounded-[14px] border border-warm-taupe/30 bg-warm-cream/45 px-4 py-3 text-xs leading-relaxed text-muted">
+                  This appointment is <span className="font-medium text-charcoal">confirmed</span>.
+                  Complete payment before your visit to hold the time.
                 </div>
               ) : nextVisit.status === "pending" ? (
-                <div className="mt-5 rounded-md bg-sand/60 px-4 py-3 text-xs leading-relaxed text-muted">
+                <div className="mt-5 rounded-[14px] border border-warm-taupe/30 bg-warm-cream/45 px-4 py-3 text-xs leading-relaxed text-muted">
                   The salon is reviewing your request. We&apos;ll confirm it shortly.
                 </div>
               ) : null}
@@ -180,7 +180,7 @@ export function CustomerOverview() {
         </div>
 
         <div className="space-y-4">
-          <div className="surface rounded-lg p-5">
+          <div className="surface rounded-[20px] p-5">
             <div className="flex items-center justify-between">
               <p className="eyebrow">Recent requests</p>
               <Link
@@ -200,10 +200,10 @@ export function CustomerOverview() {
                 Your appointment requests will appear here once you book.
               </p>
             ) : (
-              <ul className="mt-4 divide-y divide-line">
+              <ul className="mt-4 divide-y divide-warm-taupe/30">
                 {recent.map((appointment) => (
                   <li key={appointment.id} className="flex items-center gap-3 py-3 first:pt-0">
-                    <div className="size-11 shrink-0 overflow-hidden rounded-md bg-sand">
+                    <div className="size-11 shrink-0 overflow-hidden rounded-[12px] bg-sand ring-1 ring-warm-taupe/25">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={appointment.service.image}
@@ -230,12 +230,12 @@ export function CustomerOverview() {
             )}
           </div>
 
-          <div className="surface rounded-lg p-5">
+          <div className="surface rounded-[20px] p-5">
             <div className="flex items-center justify-between">
               <p className="eyebrow">Payments</p>
               <CreditCard className="size-4 text-deep-red/70" />
             </div>
-            <p className="mt-3 font-display text-3xl text-charcoal">
+            <p className="mt-3 font-display text-3xl leading-none text-charcoal">
               {formatMoney(stats.data?.data?.totalPaid ?? 0)}
             </p>
             <p className="mt-1 text-xs text-muted">

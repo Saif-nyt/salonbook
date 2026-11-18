@@ -13,7 +13,7 @@ export function AppointmentCard({
   mode?: "customer" | "admin";
 }) {
   return (
-    <article className="surface overflow-hidden rounded-lg">
+    <article className="surface overflow-hidden rounded-[20px] transition-all duration-200 hover:shadow-card">
       <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:gap-5 sm:p-5">
         <Link
           href={
@@ -21,13 +21,13 @@ export function AppointmentCard({
               ? "/admin/appointments"
               : `/dashboard/appointments/${appointment.id}`
           }
-          className="relative block h-24 w-full shrink-0 overflow-hidden rounded-md bg-sand sm:size-24"
+          className="relative block h-24 w-full shrink-0 overflow-hidden rounded-[14px] bg-sand ring-1 ring-warm-taupe/25 sm:size-24"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={appointment.service.image}
             alt={appointment.service.name}
-            className="size-full object-cover"
+            className="size-full object-cover transition-transform duration-500 hover:scale-[1.04]"
           />
         </Link>
 
@@ -41,7 +41,7 @@ export function AppointmentCard({
               Requested {formatDate(appointment.createdAt)}
             </p>
           </div>
-          <h3 className="mt-1.5 truncate font-display text-2xl text-charcoal">
+          <h3 className="mt-1.5 truncate font-display text-[1.65rem] leading-tight text-charcoal">
             {appointment.service.name}
           </h3>
           <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-muted">
@@ -67,18 +67,14 @@ export function AppointmentCard({
         </div>
 
         <div className="flex shrink-0 flex-col items-start gap-2 sm:items-end">
-          <AppointmentActions
-            appointment={appointment}
-            mode={mode}
-            showDetails={false}
-          />
+          <AppointmentActions appointment={appointment} mode={mode} showDetails={false} />
           <Link
             href={
               mode === "admin"
                 ? "/admin/appointments"
                 : `/dashboard/appointments/${appointment.id}`
             }
-            className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-deep-red hover:underline"
+            className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-deep-red transition-colors hover:underline"
           >
             View details
             <ArrowUpRight className="size-3" />

@@ -50,16 +50,16 @@ export function AuthGuard({
   if (user.role !== role) {
     return (
       <div className="container-page py-20">
-        <div className="mx-auto max-w-lg rounded-lg border border-warm-taupe/50 bg-soft-ivory p-8 text-center shadow-card">
-          <span className="mx-auto grid size-12 place-items-center rounded-full bg-[#f6e3e1] text-[#8f241d]">
+        <div className="mx-auto max-w-lg rounded-[22px] border border-warm-taupe/40 bg-soft-ivory p-8 text-center shadow-elevated sm:p-10">
+          <span className="mx-auto grid size-12 place-items-center rounded-full bg-[#f7e6e4] text-[#8f241d]">
             <ShieldAlert className="size-5" />
           </span>
-          <h1 className="mt-5 font-display text-4xl text-charcoal">
+          <h1 className="mt-5 font-display text-4xl leading-tight text-charcoal">
             This area isn&apos;t for your account.
           </h1>
-          <p className="mt-3 text-sm leading-relaxed text-muted">
-            You&apos;re signed in as a {user.role}. Use the area that matches your
-            account, or return to the salon.
+          <p className="mt-3 text-[15px] leading-relaxed text-muted">
+            You&apos;re signed in as a {user.role}. Use the area that matches your account, or
+            return to the salon.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link

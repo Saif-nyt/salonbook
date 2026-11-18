@@ -3,38 +3,47 @@
 @theme {
   /* Typography */
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-display-serif), "Iowan Old Style", Georgia, serif;
+  --font-display: var(--font-display), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
 
   /* Brand palette */
   --color-charcoal: #1c1c1c;
   --color-warm-cream: #ede6d8;
   --color-deep-red: #b3261e;
   --color-deep-red-dark: #8f1e17;
+
+  /* Supporting neutrals */
   --color-soft-ivory: #f8f6f1;
   --color-warm-taupe: #c9bdaa;
   --color-muted-gray: #77716a;
+  --color-border: #ddd5c8;
   --color-white: #ffffff;
 
-  /* Semantic aliases (mapped to preserve existing utility usage) */
+  /* Feedback */
+  --color-success: #287a4b;
+  --color-warning: #b7791f;
+  --color-error: #b3261e;
+
+  /* Semantic aliases (preserve existing utility usage) */
   --color-ink: #1c1c1c;
   --color-ink-soft: #4b463f;
   --color-ivory: #ede6d8;
   --color-cream: #f8f6f1;
   --color-muted: #77716a;
-  --color-line: #c9bdaa;
-  --color-sand: #e3dccf;
+  --color-line: #ddd5c8;
+  --color-sand: #e6dfd1;
   --color-terracotta: #b3261e;
   --color-terracotta-dark: #8f1e17;
-  --color-sage: #5f7561;
-  --color-sage-soft: #e6ebe4;
+  --color-sage: #287a4b;
+  --color-sage-soft: #e8f2ec;
 
-  --shadow-soft: 0 28px 80px -48px rgb(28 28 28 / 0.4);
-  --shadow-card: 0 18px 45px -36px rgb(28 28 28 / 0.35);
+  --shadow-soft: 0 30px 80px -48px rgb(28 28 28 / 0.35);
+  --shadow-card: 0 18px 45px -34px rgb(28 28 28 / 0.28);
+  --shadow-elevated: 0 24px 60px -40px rgb(28 28 28 / 0.32);
 }
 
 @layer base {
   * {
-    border-color: color-mix(in srgb, var(--color-line) 70%, transparent);
+    border-color: color-mix(in srgb, var(--color-line) 85%, transparent);
   }
 
   html {
@@ -45,8 +54,10 @@
     background-color: var(--color-ivory);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   h1,
@@ -54,9 +65,17 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.025em;
     color: var(--color-charcoal);
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   ::selection {
@@ -65,8 +84,22 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-deep-red);
+    outline: 2px solid color-mix(in srgb, var(--color-deep-red) 85%, white);
     outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
@@ -100,7 +133,15 @@
 
   .surface {
     background-color: var(--color-soft-ivory);
-    border: 1px solid color-mix(in srgb, var(--color-warm-taupe) 55%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-warm-taupe) 45%, transparent);
+  }
+
+  .section-kicker {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-gray);
   }
 
   .prose-salon p {

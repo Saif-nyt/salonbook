@@ -151,7 +151,7 @@ export function AdminServices() {
         </Button>
       }
     >
-      <div className="surface flex flex-col gap-3 rounded-lg p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="surface flex flex-col gap-3 rounded-[20px] p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <div className="flex flex-col gap-3 sm:flex-row">
           <div className="relative">
             <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted" />
@@ -163,7 +163,7 @@ export function AdminServices() {
               }}
               placeholder="Search services"
               aria-label="Search services"
-              className="h-10 w-full rounded-md border border-line bg-cream pl-9 pr-3 text-xs text-charcoal placeholder:text-muted/70 focus:border-deep-red focus:outline-none sm:w-64"
+              className="h-10 w-full rounded-[11px] border border-warm-taupe/55 bg-warm-cream/35 pl-9 pr-3 text-xs text-charcoal placeholder:text-muted/70 transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10 sm:w-64"
             />
           </div>
           <select
@@ -173,14 +173,14 @@ export function AdminServices() {
               setPage(1);
             }}
             aria-label="Filter services by status"
-            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
+            className="h-10 rounded-[11px] border border-warm-taupe/55 bg-warm-cream/35 px-3 text-xs font-medium text-charcoal transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10"
           >
             <option value="">All statuses</option>
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
           </select>
         </div>
-        <p className="text-xs text-muted">
+        <p className="text-xs font-medium text-muted">
           {meta ? `${meta.total} service${meta.total === 1 ? "" : "s"}` : "Loading"}
         </p>
       </div>
@@ -190,7 +190,7 @@ export function AdminServices() {
           <TableSkeleton rows={5} />
         </div>
       ) : isError ? (
-        <div className="surface mt-5 rounded-lg p-10 text-center">
+        <div className="surface mt-5 rounded-[20px] p-10 text-center">
           <p className="font-display text-2xl text-charcoal">Services didn&apos;t load.</p>
           <button
             type="button"
@@ -210,10 +210,10 @@ export function AdminServices() {
           />
         </div>
       ) : (
-        <div className="mt-5 overflow-hidden rounded-lg border border-line bg-cream">
+        <div className="surface mt-5 overflow-hidden rounded-[20px]">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[54rem] text-left text-sm">
-              <thead className="border-b border-line bg-ivory/70 text-[10px] uppercase tracking-[0.14em] text-muted">
+              <thead className="border-b border-warm-taupe/35 bg-warm-cream/45 text-[10px] uppercase tracking-[0.14em] text-muted">
                 <tr>
                   <th className="px-4 py-3 font-semibold">Service</th>
                   <th className="px-4 py-3 font-semibold">Category</th>
@@ -224,12 +224,12 @@ export function AdminServices() {
                   <th className="px-4 py-3 text-right font-semibold">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-line">
+              <tbody className="divide-y divide-warm-taupe/30">
                 {services.map((service) => (
-                  <tr key={service.id}>
+                  <tr key={service.id} className="transition-colors hover:bg-warm-cream/25">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <span className="size-10 shrink-0 overflow-hidden rounded-md bg-sand">
+                        <span className="size-10 shrink-0 overflow-hidden rounded-[12px] bg-sand ring-1 ring-warm-taupe/25">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={service.image}
@@ -267,7 +267,7 @@ export function AdminServices() {
                         <button
                           type="button"
                           onClick={() => openEdit(service)}
-                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-charcoal"
+                          className="grid size-8 place-items-center rounded-[10px] text-muted transition-colors hover:bg-warm-cream hover:text-charcoal"
                           aria-label={`Edit ${service.serviceName}`}
                         >
                           <Pencil className="size-3.5" />
@@ -276,7 +276,7 @@ export function AdminServices() {
                           type="button"
                           onClick={() => toggleStatus.mutate(service)}
                           disabled={toggleStatus.isPending}
-                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-charcoal disabled:opacity-50"
+                          className="grid size-8 place-items-center rounded-[10px] text-muted transition-colors hover:bg-warm-cream hover:text-charcoal disabled:opacity-50"
                           aria-label={
                             service.status === "active"
                               ? `Pause ${service.serviceName}`
@@ -292,7 +292,7 @@ export function AdminServices() {
                         <button
                           type="button"
                           onClick={() => setDeleting(service)}
-                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-[#f6e3e1] hover:text-[#8f241d]"
+                          className="grid size-8 place-items-center rounded-[10px] text-muted transition-colors hover:bg-[#f7e6e4] hover:text-[#8f241d]"
                           aria-label={`Delete ${service.serviceName}`}
                         >
                           <Trash2 className="size-3.5" />
@@ -578,8 +578,8 @@ function ServiceFormModal({
         </Field>
 
         {imageValue ? (
-          <div className="flex items-center gap-3 rounded-md border border-warm-taupe/50 bg-warm-cream/40 p-3">
-            <span className="h-16 w-24 shrink-0 overflow-hidden rounded bg-sand">
+          <div className="flex items-center gap-3 rounded-[14px] border border-warm-taupe/40 bg-warm-cream/35 p-3">
+            <span className="h-16 w-24 shrink-0 overflow-hidden rounded-[10px] bg-sand ring-1 ring-warm-taupe/25">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={imageValue} alt="Service preview" className="size-full object-cover" />
             </span>

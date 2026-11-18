@@ -64,7 +64,7 @@ export function AdminUsers() {
       title="Customers"
       description="Everyone with a SalonBook account, their visit history and account access."
     >
-      <div className="surface flex flex-col gap-3 rounded-lg p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="surface flex flex-col gap-3 rounded-[20px] p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <div className="relative">
           <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted" />
           <input
@@ -75,10 +75,10 @@ export function AdminUsers() {
             }}
             placeholder="Search name, email or phone"
             aria-label="Search customers"
-            className="h-10 w-full rounded-md border border-line bg-cream pl-9 pr-3 text-xs text-charcoal placeholder:text-muted/70 focus:border-deep-red focus:outline-none sm:w-72"
+            className="h-10 w-full rounded-[11px] border border-warm-taupe/55 bg-warm-cream/35 pl-9 pr-3 text-xs text-charcoal placeholder:text-muted/70 transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10 sm:w-72"
           />
         </div>
-        <p className="text-xs text-muted">
+        <p className="text-xs font-medium text-muted">
           {meta ? `${meta.total} customer${meta.total === 1 ? "" : "s"}` : "Loading"}
         </p>
       </div>
@@ -88,7 +88,7 @@ export function AdminUsers() {
           <TableSkeleton rows={6} />
         </div>
       ) : isError ? (
-        <div className="surface mt-5 rounded-lg p-10 text-center">
+        <div className="surface mt-5 rounded-[20px] p-10 text-center">
           <p className="font-display text-2xl text-charcoal">Customers didn&apos;t load.</p>
           <button
             type="button"
@@ -107,10 +107,10 @@ export function AdminUsers() {
           />
         </div>
       ) : (
-        <div className="mt-5 overflow-hidden rounded-lg border border-line bg-cream">
+        <div className="surface mt-5 overflow-hidden rounded-[20px]">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[48rem] text-left text-sm">
-              <thead className="border-b border-line bg-ivory/70 text-[10px] uppercase tracking-[0.14em] text-muted">
+              <thead className="border-b border-warm-taupe/35 bg-warm-cream/45 text-[10px] uppercase tracking-[0.14em] text-muted">
                 <tr>
                   <th className="px-4 py-3 font-semibold">Customer</th>
                   <th className="px-4 py-3 font-semibold">Phone</th>
@@ -119,9 +119,9 @@ export function AdminUsers() {
                   <th className="px-4 py-3 text-right font-semibold">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-line">
+              <tbody className="divide-y divide-warm-taupe/30">
                 {customers.map((customer) => (
-                  <tr key={customer.id}>
+                  <tr key={customer.id} className="transition-colors hover:bg-warm-cream/25">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         <Avatar name={customer.name} image={customer.image} className="size-9" />
@@ -153,7 +153,7 @@ export function AdminUsers() {
                         <button
                           type="button"
                           onClick={() => setSelectedId(customer.id)}
-                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-charcoal"
+                          className="grid size-8 place-items-center rounded-[10px] text-muted transition-colors hover:bg-warm-cream hover:text-charcoal"
                           aria-label={`View ${customer.name}`}
                         >
                           <Eye className="size-3.5" />
@@ -162,7 +162,7 @@ export function AdminUsers() {
                           variant="outline"
                           size="sm"
                           onClick={() => setBlocking(customer)}
-                          className={customer.isBlocked ? "" : "text-[#8f241d]"}
+                          className={customer.isBlocked ? "" : "border-error/30 text-[#8f241d] hover:bg-error/5"}
                         >
                           {customer.isBlocked ? (
                             <>
@@ -241,7 +241,7 @@ export function AdminUsers() {
                 { label: "Confirmed", value: details.data.data.appointmentCounts.confirmed },
                 { label: "Cancelled", value: details.data.data.appointmentCounts.cancelled },
               ].map((item) => (
-                <div key={item.label} className="rounded-md border border-line bg-ivory/60 p-3">
+                <div key={item.label} className="rounded-[14px] border border-warm-taupe/35 bg-warm-cream/35 p-3">
                   <p className="text-[10px] uppercase tracking-[0.14em] text-muted">
                     {item.label}
                   </p>
@@ -250,7 +250,7 @@ export function AdminUsers() {
               ))}
             </div>
 
-            <div className="grid gap-3 rounded-md border border-line p-4 sm:grid-cols-2">
+            <div className="grid gap-3 rounded-[16px] border border-warm-taupe/35 p-4 sm:grid-cols-2">
               <InfoRow icon={UserRound} label="Phone" value={details.data.data.customer.phone || "Not provided"} />
               <InfoRow icon={ShieldCheck} label="Role" value={details.data.data.customer.role} />
             </div>
@@ -262,7 +262,7 @@ export function AdminUsers() {
               {details.data.data.recentAppointments.length === 0 ? (
                 <p className="mt-3 text-sm text-muted">No appointments yet.</p>
               ) : (
-                <ul className="mt-3 divide-y divide-line rounded-md border border-line">
+                <ul className="mt-3 divide-y divide-warm-taupe/30 rounded-[16px] border border-warm-taupe/35">
                   {details.data.data.recentAppointments.map((appointment) => (
                     <li key={appointment.id} className="flex flex-wrap items-center gap-3 p-3">
                       <div className="min-w-0 flex-1">
@@ -283,7 +283,7 @@ export function AdminUsers() {
               )}
             </div>
 
-            <div className="flex justify-end border-t border-line pt-4">
+            <div className="flex justify-end border-t border-warm-taupe/35 pt-4">
               <Button
                 variant={details.data.data.customer.isBlocked ? "primary" : "danger"}
                 size="sm"

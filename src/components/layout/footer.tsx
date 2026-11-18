@@ -29,15 +29,19 @@ async function CopyrightYear() {
 
 export function Footer() {
   return (
-    <footer id="visit" className="border-t border-white/10 bg-charcoal text-white">
-      <div className="container-page grid gap-12 py-16 lg:grid-cols-[1.2fr_1fr_1fr_1.2fr]">
+    <footer id="visit" className="relative overflow-hidden border-t border-white/10 bg-charcoal text-white">
+      <div
+        className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-deep-red/20 blur-3xl"
+        aria-hidden
+      />
+      <div className="container-page relative grid gap-12 py-16 lg:grid-cols-[1.25fr_1fr_1fr_1.2fr] lg:py-20">
         <div>
           <Logo light />
-          <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/65">
-            SalonBook is a salon appointment booking platform where customers can explore
-            salon services, view service information, and request appointments online.
+          <p className="mt-6 max-w-xs text-[15px] leading-relaxed text-white/70">
+            SalonBook is a modern salon appointment platform for discovering services, requesting
+            visits, and managing bookings with ease.
           </p>
-          <div className="mt-6">
+          <div className="mt-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/45">
               Social
             </p>
@@ -109,13 +113,16 @@ export function Footer() {
             </li>
             <li className="flex gap-3">
               <Phone className="mt-0.5 size-4 shrink-0 text-white/40" />
-              <a href={`tel:${SALON_DETAILS.phone.replace(/[^\d+]/g, "")}`} className="hover:text-white">
+              <a
+                href={`tel:${SALON_DETAILS.phone.replace(/[^\d+]/g, "")}`}
+                className="transition-colors hover:text-white"
+              >
                 {SALON_DETAILS.phone}
               </a>
             </li>
             <li className="flex gap-3">
               <Mail className="mt-0.5 size-4 shrink-0 text-white/40" />
-              <a href={`mailto:${SALON_DETAILS.email}`} className="hover:text-white">
+              <a href={`mailto:${SALON_DETAILS.email}`} className="transition-colors hover:text-white">
                 {SALON_DETAILS.email}
               </a>
             </li>
@@ -134,9 +141,11 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-page flex flex-col gap-3 py-6 text-[11px] uppercase tracking-[0.16em] text-white/40 sm:flex-row sm:items-center sm:justify-between">
-          <p>© <CopyrightYear /> SalonBook. All rights reserved.</p>
-          <p>Premium salon booking, made simple.</p>
+        <div className="container-page flex flex-col gap-3 py-6 text-[11px] uppercase tracking-[0.16em] text-white/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © <CopyrightYear /> SalonBook. All rights reserved.
+          </p>
+          <p>Beauty, considered — booked with confidence.</p>
         </div>
       </div>
     </footer>

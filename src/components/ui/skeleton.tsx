@@ -4,7 +4,7 @@ export function Skeleton({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "animate-pulse rounded-md bg-warm-taupe/25",
+        "animate-pulse rounded-[10px] bg-warm-taupe/25",
         className,
       )}
       aria-hidden
@@ -14,7 +14,7 @@ export function Skeleton({ className }: { className?: string }) {
 
 export function CardSkeleton() {
   return (
-    <div className="surface overflow-hidden rounded-lg">
+    <div className="surface overflow-hidden rounded-[18px]">
       <Skeleton className="aspect-[4/3] w-full rounded-none" />
       <div className="space-y-3 p-5">
         <Skeleton className="h-3 w-20" />
@@ -32,7 +32,7 @@ export function CardSkeleton() {
 
 export function TableSkeleton({ rows = 5 }: { rows?: number }) {
   return (
-    <div className="surface divide-y divide-line/60 rounded-lg">
+    <div className="surface divide-y divide-line/60 rounded-[18px]">
       {Array.from({ length: rows }).map((_, index) => (
         <div key={index} className="flex items-center gap-4 p-4">
           <Skeleton className="size-10 rounded-full" />

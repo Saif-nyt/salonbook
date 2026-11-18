@@ -59,30 +59,37 @@ export function ServicesBrowse() {
 
   return (
     <div className="bg-warm-cream">
-      <section className="border-b border-warm-taupe/40 bg-soft-ivory">
-        <div className="container-page py-14 lg:py-18">
+      <section className="relative overflow-hidden border-b border-warm-taupe/35 bg-soft-ivory">
+        <div
+          className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-deep-red/10 blur-3xl"
+          aria-hidden
+        />
+        <div className="container-page relative py-14 lg:py-20">
           <p className="eyebrow">Browse services</p>
-          <div className="mt-4 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <h1 className="font-display text-5xl leading-[1.02] text-balance text-charcoal sm:text-6xl">
-                Find the right treatment for your next visit.
+          <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
+              <h1 className="font-display text-[clamp(2.4rem,6vw,4rem)] leading-[0.98] text-balance text-charcoal">
+                Find the right treatment for your next <span className="italic">visit</span>.
               </h1>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
-                Explore our active services across hair, nails, skin, massage, makeup and
-                barbering. Filter by category, search by name and compare at a glance.
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">
+                Explore active services across hair, nails, skin, massage, makeup and
+                barbering. Filter by category, search by name, and compare details at a glance.
               </p>
             </div>
-            <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">
-              {meta
-                ? `${meta.total} ${meta.total === 1 ? "service" : "services"}`
-                : "Loading services"}
-            </p>
+            <div className="rounded-[16px] border border-warm-taupe/35 bg-warm-cream/50 px-4 py-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
+                Available now
+              </p>
+              <p className="mt-1 font-display text-2xl text-charcoal">
+                {meta ? `${meta.total} ${meta.total === 1 ? "service" : "services"}` : "Loading…"}
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="container-page py-10 lg:py-12">
-        <div className="rounded-lg border border-warm-taupe/50 bg-soft-ivory p-4 shadow-card sm:p-5">
+        <div className="rounded-[20px] border border-warm-taupe/40 bg-soft-ivory p-4 shadow-card sm:p-5">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="relative w-full xl:max-w-sm">
               <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted" />
@@ -94,7 +101,7 @@ export function ServicesBrowse() {
                   setPage(1);
                 }}
                 placeholder="Search by service name"
-                className="h-11 w-full rounded-md border border-warm-taupe/60 bg-warm-cream/40 pl-10 pr-9 text-sm text-charcoal placeholder:text-muted/70 focus:border-deep-red/50 focus:outline-none focus:ring-2 focus:ring-deep-red/15"
+                className="h-11 w-full rounded-[12px] border border-warm-taupe/55 bg-warm-cream/35 pl-10 pr-10 text-[15px] text-charcoal placeholder:text-muted/70 transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10"
                 aria-label="Search services by name"
               />
               {search ? (
@@ -104,7 +111,7 @@ export function ServicesBrowse() {
                     setSearch("");
                     setPage(1);
                   }}
-                  className="absolute right-2.5 top-1/2 grid size-6 -translate-y-1/2 place-items-center rounded-md text-muted hover:bg-warm-cream hover:text-charcoal"
+                  className="absolute right-2.5 top-1/2 grid size-7 -translate-y-1/2 place-items-center rounded-[8px] text-muted transition-colors hover:bg-warm-cream hover:text-charcoal"
                   aria-label="Clear search"
                 >
                   <X className="size-3.5" />
@@ -112,7 +119,11 @@ export function ServicesBrowse() {
               ) : null}
             </div>
 
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar xl:pb-0" role="tablist" aria-label="Service categories">
+            <div
+              className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar xl:pb-0"
+              role="tablist"
+              aria-label="Service categories"
+            >
               {CATEGORIES.map((name) => {
                 const active = (name === "All" && !category) || category === name;
                 return (
@@ -123,10 +134,10 @@ export function ServicesBrowse() {
                     aria-selected={active}
                     onClick={() => chooseCategory(name)}
                     className={cn(
-                      "shrink-0 rounded-full border px-4 py-2 text-xs font-semibold tracking-wide transition-colors",
+                      "shrink-0 rounded-full border px-4 py-2 text-[13px] font-semibold tracking-[0.01em] transition-all duration-200",
                       active
-                        ? "border-charcoal bg-charcoal text-white"
-                        : "border-warm-taupe/70 bg-transparent text-charcoal hover:border-deep-red/40 hover:text-deep-red",
+                        ? "border-charcoal bg-charcoal text-white shadow-[0_10px_24px_-18px_rgba(28,28,28,0.7)]"
+                        : "border-warm-taupe/50 bg-warm-cream/30 text-charcoal hover:border-deep-red/30 hover:text-deep-red",
                     )}
                   >
                     {name}
@@ -135,8 +146,11 @@ export function ServicesBrowse() {
               })}
             </div>
 
-            <div className="flex items-center gap-3">
-              <label className="flex items-center gap-2 text-xs font-medium text-muted" htmlFor="service-sort">
+            <div className="flex flex-wrap items-center gap-3">
+              <label
+                className="flex items-center gap-2 text-xs font-medium text-muted"
+                htmlFor="service-sort"
+              >
                 <SlidersHorizontal className="size-4" />
                 Sort
               </label>
@@ -147,7 +161,7 @@ export function ServicesBrowse() {
                   setSort(event.target.value);
                   setPage(1);
                 }}
-                className="h-10 rounded-md border border-warm-taupe/60 bg-warm-cream/40 px-3 text-xs text-charcoal focus:border-deep-red/50 focus:outline-none"
+                className="h-10 rounded-[11px] border border-warm-taupe/55 bg-warm-cream/35 px-3 text-[13px] text-charcoal transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10"
                 aria-label="Sort services"
               >
                 {SERVICE_SORTS.map((option) => (
@@ -160,9 +174,9 @@ export function ServicesBrowse() {
                 <button
                   type="button"
                   onClick={clearFilters}
-                  className="text-xs font-semibold text-deep-red underline-offset-4 hover:underline"
+                  className="text-xs font-semibold text-deep-red underline-offset-4 transition-colors hover:underline"
                 >
-                  Clear
+                  Clear filters
                 </button>
               ) : null}
             </div>
@@ -182,11 +196,11 @@ export function ServicesBrowse() {
               ))}
             </div>
           ) : isError ? (
-            <div className="surface rounded-lg px-6 py-16 text-center">
+            <div className="surface rounded-[20px] px-6 py-16 text-center">
               <p className="font-display text-3xl text-charcoal">We couldn&apos;t load services.</p>
               <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted">
-                Check your connection and try again. If the issue continues, the menu will
-                be back shortly.
+                Check your connection and try again. If the issue continues, the menu will be
+                back shortly.
               </p>
               <button
                 type="button"

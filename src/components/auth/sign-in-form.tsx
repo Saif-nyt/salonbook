@@ -127,7 +127,7 @@ export function SignInForm() {
 
         {form.formState.errors.root?.message ? (
           <p
-            className="rounded-md border border-[#e7c2be] bg-[#f6e3e1] px-3 py-2.5 text-xs leading-relaxed text-[#8f241d]"
+            className="rounded-[12px] border border-error/20 bg-[#f7e6e4] px-3 py-2.5 text-xs font-medium leading-relaxed text-[#8f241d]"
             role="alert"
           >
             {form.formState.errors.root.message}

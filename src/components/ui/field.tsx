@@ -24,14 +24,14 @@ export function Field({
     <div className={cn("space-y-1.5", className)}>
       <label
         htmlFor={htmlFor}
-        className="flex items-center gap-1 text-xs font-semibold tracking-wide text-charcoal"
+        className="flex items-center gap-1 text-[13px] font-medium tracking-[0.01em] text-charcoal"
       >
         {label}
         {required ? <span className="text-deep-red">*</span> : null}
       </label>
       {children}
       {error ? (
-        <p className="text-xs text-[#9b241d]" role="alert">
+        <p className="text-xs font-medium text-error" role="alert">
           {error}
         </p>
       ) : hint ? (
@@ -53,8 +53,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     <input
       ref={ref}
       className={cn(
-        "h-11 w-full rounded-md border border-warm-taupe/70 bg-soft-ivory px-3.5 text-sm text-charcoal placeholder:text-muted/70 transition-colors focus:border-deep-red/60 focus:outline-none focus:ring-2 focus:ring-deep-red/15 disabled:cursor-not-allowed disabled:opacity-60",
-        invalid && "border-[#b3261e]/60 focus:border-[#b3261e] focus:ring-[#b3261e]/15",
+        "h-11 w-full rounded-[11px] border border-warm-taupe/60 bg-soft-ivory/90 px-3.5 text-[15px] text-charcoal placeholder:text-muted/65 transition-all duration-200 focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10 disabled:cursor-not-allowed disabled:opacity-60",
+        invalid && "border-error/45 focus:border-error focus:ring-error/10",
         className,
       )}
       aria-invalid={invalid || undefined}
@@ -73,8 +73,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       <textarea
         ref={ref}
         className={cn(
-          "min-h-28 w-full resize-y rounded-md border border-warm-taupe/70 bg-soft-ivory px-3.5 py-3 text-sm leading-relaxed text-charcoal placeholder:text-muted/70 transition-colors focus:border-deep-red/60 focus:outline-none focus:ring-2 focus:ring-deep-red/15 disabled:cursor-not-allowed disabled:opacity-60",
-          invalid && "border-[#b3261e]/60 focus:border-[#b3261e] focus:ring-[#b3261e]/15",
+          "min-h-28 w-full resize-y rounded-[11px] border border-warm-taupe/60 bg-soft-ivory/90 px-3.5 py-3 text-[15px] leading-relaxed text-charcoal placeholder:text-muted/65 transition-all duration-200 focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10 disabled:cursor-not-allowed disabled:opacity-60",
+          invalid && "border-error/45 focus:border-error focus:ring-error/10",
           className,
         )}
         aria-invalid={invalid || undefined}
@@ -97,8 +97,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
       <select
         ref={ref}
         className={cn(
-          "h-11 w-full appearance-none rounded-md border border-warm-taupe/70 bg-soft-ivory pl-3.5 pr-9 text-sm text-charcoal transition-colors focus:border-deep-red/60 focus:outline-none focus:ring-2 focus:ring-deep-red/15 disabled:cursor-not-allowed disabled:opacity-60",
-          invalid && "border-[#b3261e]/60 focus:border-[#b3261e] focus:ring-[#b3261e]/15",
+          "h-11 w-full appearance-none rounded-[11px] border border-warm-taupe/60 bg-soft-ivory/90 pl-3.5 pr-10 text-[15px] text-charcoal transition-all duration-200 focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10 disabled:cursor-not-allowed disabled:opacity-60",
+          invalid && "border-error/45 focus:border-error focus:ring-error/10",
           className,
         )}
         aria-invalid={invalid || undefined}
@@ -107,7 +107,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
         {children}
       </select>
       <svg
-        className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted"
+        className="pointer-events-none absolute right-3.5 top-1/2 size-4 -translate-y-1/2 text-muted"
         viewBox="0 0 20 20"
         fill="none"
         aria-hidden

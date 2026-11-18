@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, CalendarDays, CheckCircle2, CreditCard, Search } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { buttonStyles } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 
@@ -49,7 +50,7 @@ const testimonials = [
 
 export function BookingProcess() {
   return (
-    <section className="border-t border-warm-taupe/40 bg-soft-ivory">
+    <section className="border-t border-warm-taupe/35 bg-soft-ivory">
       <div className="container-page py-20 lg:py-24">
         <SectionHeading
           eyebrow="Booking process"
@@ -62,18 +63,17 @@ export function BookingProcess() {
           {steps.map((step, index) => (
             <div
               key={step.title}
-              className="relative rounded-lg border border-warm-taupe/50 bg-warm-cream/35 p-6"
+              className="relative overflow-hidden rounded-[20px] border border-warm-taupe/40 bg-warm-cream/35 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card"
             >
+              <div className="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full bg-deep-red/5" aria-hidden />
               <div className="flex items-center justify-between">
-                <span className="grid size-11 place-items-center rounded-md border border-warm-taupe/50 bg-soft-ivory text-charcoal">
+                <span className="grid size-11 place-items-center rounded-[12px] border border-warm-taupe/40 bg-soft-ivory text-charcoal">
                   <step.icon className="size-5" />
                 </span>
-                <span className="font-display text-2xl text-warm-taupe">
-                  0{index + 1}
-                </span>
+                <span className="font-display text-2xl text-warm-taupe">0{index + 1}</span>
               </div>
-              <h3 className="mt-5 font-display text-2xl text-charcoal">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{step.description}</p>
+              <h3 className="mt-5 font-display text-[1.7rem] leading-tight text-charcoal">{step.title}</h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-muted">{step.description}</p>
             </div>
           ))}
         </div>
@@ -84,7 +84,7 @@ export function BookingProcess() {
 
 export function TestimonialSection() {
   return (
-    <section className="border-t border-warm-taupe/40 bg-warm-cream">
+    <section className="border-t border-warm-taupe/35 bg-warm-cream">
       <div className="container-page py-20 lg:py-24">
         <SectionHeading
           eyebrow="Customer testimonials"
@@ -94,15 +94,21 @@ export function TestimonialSection() {
         />
 
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {testimonials.map((item) => (
+          {testimonials.map((item, index) => (
             <figure
               key={item.name}
-              className="flex h-full flex-col rounded-lg border border-warm-taupe/50 bg-soft-ivory p-6 sm:p-7"
+              className={cn(
+                "flex h-full flex-col rounded-[22px] border border-warm-taupe/40 bg-soft-ivory p-6 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-elevated sm:p-7",
+                index === 1 ? "lg:-translate-y-2" : "",
+              )}
             >
-              <blockquote className="flex-1 font-display text-[1.7rem] leading-snug text-charcoal">
-                “{item.quote}”
+              <div className="text-deep-red/25" aria-hidden>
+                <span className="font-display text-5xl leading-none">“</span>
+              </div>
+              <blockquote className="-mt-2 flex-1 font-display text-[1.6rem] leading-[1.25] text-charcoal sm:text-[1.7rem]">
+                {item.quote}
               </blockquote>
-              <figcaption className="mt-6 border-t border-warm-taupe/40 pt-4">
+              <figcaption className="mt-6 border-t border-warm-taupe/35 pt-4">
                 <p className="text-sm font-semibold text-charcoal">{item.name}</p>
                 <p className="mt-0.5 text-xs uppercase tracking-[0.14em] text-muted">
                   {item.detail}
@@ -118,18 +124,22 @@ export function TestimonialSection() {
 
 export function FinalCta() {
   return (
-    <section className="bg-charcoal">
-      <div className="container-page grid gap-8 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:py-20">
+    <section className="relative overflow-hidden bg-charcoal">
+      <div
+        className="pointer-events-none absolute -right-20 -top-16 h-72 w-72 rounded-full bg-deep-red/25 blur-3xl"
+        aria-hidden
+      />
+      <div className="container-page relative grid gap-8 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:py-20">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/45">
             Ready when you are
           </p>
-          <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[1.05] text-balance text-white sm:text-5xl">
-            Book an appointment that feels considered from start to finish.
+          <h2 className="mt-4 max-w-2xl font-display text-[clamp(2rem,4.5vw,3rem)] leading-[1.02] text-balance text-white">
+            Book an appointment that feels <span className="italic text-white/90">considered</span> from start to finish.
           </h2>
-          <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/65 sm:text-base">
-            Explore our services, choose a time that works for you, and let SalonBook
-            take care of the rest.
+          <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-white/70 sm:text-base">
+            Explore our services, choose a time that works for you, and let SalonBook take
+            care of the rest.
           </p>
         </div>
         <div className="flex flex-wrap gap-3 lg:justify-end">
@@ -142,7 +152,8 @@ export function FinalCta() {
             className={buttonStyles({
               variant: "outline",
               size: "lg",
-              className: "border-white/30 text-white hover:border-white hover:bg-white/10",
+              className:
+                "border-white/30 bg-white/0 text-white hover:border-white hover:bg-white/10",
             })}
           >
             Discover Our Salon

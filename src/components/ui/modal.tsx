@@ -55,7 +55,7 @@ export function Modal({
       <button
         type="button"
         aria-label="Close dialog"
-        className="absolute inset-0 bg-charcoal/45 backdrop-blur-[2px]"
+        className="absolute inset-0 bg-charcoal/45 backdrop-blur-[3px]"
         onClick={onClose}
       />
       <div
@@ -63,13 +63,13 @@ export function Modal({
         aria-modal="true"
         aria-labelledby="modal-title"
         className={cn(
-          "relative flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-lg border border-warm-taupe/60 bg-soft-ivory shadow-soft sm:rounded-lg",
+          "relative flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-[20px] border border-warm-taupe/45 bg-soft-ivory shadow-elevated sm:rounded-[20px]",
           sizes[size],
         )}
       >
-        <div className="flex items-start justify-between gap-6 border-b border-warm-taupe/40 px-6 py-5">
+        <div className="flex items-start justify-between gap-6 border-b border-warm-taupe/35 px-6 py-5">
           <div>
-            <h2 id="modal-title" className="font-display text-3xl text-charcoal">
+            <h2 id="modal-title" className="font-display text-3xl leading-tight text-charcoal">
               {title}
             </h2>
             {description ? (
@@ -79,7 +79,7 @@ export function Modal({
           <button
             type="button"
             onClick={onClose}
-            className="grid size-9 shrink-0 place-items-center rounded-md text-muted transition-colors hover:bg-warm-cream hover:text-charcoal"
+            className="grid size-9 shrink-0 place-items-center rounded-[10px] text-muted transition-colors hover:bg-warm-cream hover:text-charcoal"
             aria-label="Close dialog"
           >
             <X className="size-4" />
@@ -87,7 +87,7 @@ export function Modal({
         </div>
         <div className="overflow-y-auto px-6 py-5">{children}</div>
         {footer ? (
-          <div className="flex flex-wrap justify-end gap-3 border-t border-warm-taupe/40 bg-warm-cream/40 px-6 py-4">
+          <div className="flex flex-wrap justify-end gap-3 border-t border-warm-taupe/35 bg-warm-cream/35 px-6 py-4">
             {footer}
           </div>
         ) : null}

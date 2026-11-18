@@ -46,15 +46,15 @@ export function ServiceDetail() {
 
   if (isAuthLoading || !user) {
     return (
-      <div className="container-page py-12">
+      <div className="container-page py-10 lg:py-14">
         <Skeleton className="h-4 w-48" />
-        <div className="mt-8 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mt-8 grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-14">
           <div className="space-y-6">
-            <Skeleton className="aspect-[4/3] w-full rounded-lg" />
+            <Skeleton className="aspect-[4/3] w-full rounded-[24px]" />
             <Skeleton className="h-12 w-2/3" />
             <Skeleton className="h-32 w-full" />
           </div>
-          <Skeleton className="h-[34rem] w-full rounded-lg" />
+          <Skeleton className="h-[34rem] w-full rounded-[20px]" />
         </div>
       </div>
     );
@@ -62,15 +62,15 @@ export function ServiceDetail() {
 
   if (isLoading) {
     return (
-      <div className="container-page py-12">
+      <div className="container-page py-10 lg:py-14">
         <Skeleton className="h-4 w-48" />
-        <div className="mt-8 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mt-8 grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-14">
           <div className="space-y-6">
-            <Skeleton className="aspect-[4/3] w-full rounded-lg" />
+            <Skeleton className="aspect-[4/3] w-full rounded-[24px]" />
             <Skeleton className="h-12 w-2/3" />
             <Skeleton className="h-32 w-full" />
           </div>
-          <Skeleton className="h-[34rem] w-full rounded-lg" />
+          <Skeleton className="h-[34rem] w-full rounded-[20px]" />
         </div>
       </div>
     );
@@ -80,14 +80,14 @@ export function ServiceDetail() {
     const message =
       error instanceof Error ? error.message : "This service could not be found.";
     return (
-      <div className="container-page py-24">
-        <div className="mx-auto max-w-lg text-center">
+      <div className="container-page py-20 lg:py-28">
+        <div className="mx-auto max-w-xl rounded-[24px] border border-warm-taupe/40 bg-soft-ivory p-8 text-center shadow-card sm:p-12">
           <p className="eyebrow">Service unavailable</p>
-          <h1 className="mt-3 font-display text-5xl text-charcoal">
+          <h1 className="mt-3 font-display text-[clamp(2rem,5vw,3rem)] leading-[1.02] text-charcoal">
             We couldn&apos;t find that service.
           </h1>
-          <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">{message}</p>
-          <div className="mt-8 flex justify-center gap-3">
+          <p className="mt-4 text-[15px] leading-relaxed text-muted sm:text-base">{message}</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link href="/services" className={buttonStyles()}>
               Browse services
               <ArrowRight className="size-4" />
@@ -108,8 +108,11 @@ export function ServiceDetail() {
 
   return (
     <div className="bg-warm-cream">
-      <div className="container-page pt-8 pb-16 lg:pb-24">
-        <nav className="flex items-center gap-2 text-xs text-muted" aria-label="Breadcrumb">
+      <div className="container-page pb-16 pt-8 lg:pb-24 lg:pt-10">
+        <nav
+          className="flex flex-wrap items-center gap-2 text-xs font-medium text-muted"
+          aria-label="Breadcrumb"
+        >
           <Link href="/" className="transition-colors hover:text-charcoal">
             Home
           </Link>
@@ -121,9 +124,9 @@ export function ServiceDetail() {
           <span className="truncate text-charcoal">{service.serviceName}</span>
         </nav>
 
-        <div className="mt-8 grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-14">
+        <div className="mt-8 grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-14 xl:gap-16">
           <div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-sand">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-sand shadow-elevated ring-1 ring-warm-taupe/25">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={heroImage}
@@ -133,10 +136,11 @@ export function ServiceDetail() {
                 }}
                 className="size-full object-cover"
               />
-              <div className="absolute left-4 top-4 flex gap-2">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal/15 via-transparent to-transparent" />
+              <div className="absolute left-4 top-4 flex flex-wrap gap-2">
                 <Badge
                   tone="neutral"
-                  className="border-white/40 bg-soft-ivory/95 text-charcoal backdrop-blur-sm"
+                  className="border-white/50 bg-soft-ivory/95 text-charcoal shadow-sm backdrop-blur-sm"
                 >
                   {service.category}
                 </Badge>
@@ -148,37 +152,35 @@ export function ServiceDetail() {
               </div>
             </div>
 
-            <div className="mt-9">
+            <div className="mt-8 sm:mt-10">
               <p className="eyebrow">{service.category}</p>
-              <h1 className="mt-3 font-display text-5xl leading-[1.02] text-balance text-charcoal sm:text-6xl">
+              <h1 className="mt-3 font-display text-[clamp(2.4rem,5.5vw,3.8rem)] leading-[0.98] text-balance text-charcoal">
                 {service.serviceName}
               </h1>
 
-              <div className="mt-6 flex flex-wrap items-center gap-6 border-y border-warm-taupe/50 py-5">
-                <div>
+              <div className="mt-7 grid gap-4 rounded-[20px] border border-warm-taupe/40 bg-soft-ivory/80 p-4 shadow-card sm:grid-cols-3 sm:gap-0 sm:p-5">
+                <div className="sm:px-4 sm:py-1">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
                     Price
                   </p>
-                  <p className="mt-1 font-display text-3xl text-charcoal">
+                  <p className="mt-1 font-display text-3xl leading-none text-charcoal">
                     {formatMoney(service.price)}
                   </p>
                 </div>
-                <div className="h-10 w-px bg-warm-taupe/50" aria-hidden />
-                <div>
+                <div className="border-t border-warm-taupe/35 pt-4 sm:border-l sm:border-t-0 sm:px-4 sm:pt-1">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
                     Duration
                   </p>
-                  <p className="mt-1 flex items-center gap-1.5 font-display text-3xl text-charcoal">
+                  <p className="mt-1 flex items-center gap-1.5 font-display text-3xl leading-none text-charcoal">
                     <Clock className="size-4 text-muted" />
                     {service.duration} min
                   </p>
                 </div>
-                <div className="h-10 w-px bg-warm-taupe/50" aria-hidden />
-                <div>
+                <div className="border-t border-warm-taupe/35 pt-4 sm:border-l sm:border-t-0 sm:px-4 sm:pt-1">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
                     Booking
                   </p>
-                  <p className="mt-1 flex items-center gap-1.5 font-display text-3xl text-charcoal">
+                  <p className="mt-1 flex items-center gap-1.5 font-display text-3xl leading-none text-charcoal">
                     <CalendarDays className="size-4 text-muted" />
                     Request
                   </p>
@@ -186,25 +188,31 @@ export function ServiceDetail() {
               </div>
 
               <div className="prose-salon mt-8 max-w-2xl">
-                <h2 className="font-display text-3xl text-charcoal">About this service</h2>
-                <p className="mt-3 text-[15px] leading-[1.85] text-muted">
+                <h2 className="font-display text-3xl leading-tight text-charcoal">
+                  About this service
+                </h2>
+                <p className="mt-3 text-[15px] leading-[1.9] text-muted sm:text-base">
                   {service.description}
                 </p>
               </div>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-md border border-warm-taupe/50 bg-soft-ivory p-5">
-                  <Tag className="size-4 text-deep-red" />
+                <div className="rounded-[18px] border border-warm-taupe/40 bg-soft-ivory p-5 shadow-card">
+                  <span className="grid size-10 place-items-center rounded-[12px] bg-warm-cream text-deep-red ring-1 ring-warm-taupe/35">
+                    <Tag className="size-4" />
+                  </span>
                   <p className="mt-3 text-sm font-semibold text-charcoal">What to expect</p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-muted">
-                    A consultation-led treatment delivered with care, clarity and attention
-                    to detail.
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
+                    A consultation-led treatment delivered with care, clarity and attention to
+                    detail.
                   </p>
                 </div>
-                <div className="rounded-md border border-warm-taupe/50 bg-soft-ivory p-5">
-                  <Sparkles className="size-4 text-deep-red" />
+                <div className="rounded-[18px] border border-warm-taupe/40 bg-soft-ivory p-5 shadow-card">
+                  <span className="grid size-10 place-items-center rounded-[12px] bg-warm-cream text-deep-red ring-1 ring-warm-taupe/35">
+                    <Sparkles className="size-4" />
+                  </span>
                   <p className="mt-3 text-sm font-semibold text-charcoal">Good to know</p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-muted">
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
                     Arrive a few minutes early. Pending requests can be managed from your
                     dashboard.
                   </p>
@@ -226,12 +234,12 @@ export function ServiceDetail() {
         </div>
 
         {relatedServices.length > 0 ? (
-          <div className="mt-20 border-t border-warm-taupe/40 pt-14">
+          <div className="mt-20 border-t border-warm-taupe/35 pt-14">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="eyebrow">Continue exploring</p>
-                <h2 className="mt-2 font-display text-4xl text-charcoal">
-                  More in {service.category}
+                <h2 className="mt-2 font-display text-[clamp(2rem,4vw,2.6rem)] leading-tight text-charcoal">
+                  More in <span className="italic">{service.category}</span>
                 </h2>
               </div>
               <Link

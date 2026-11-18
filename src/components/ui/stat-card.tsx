@@ -13,7 +13,7 @@ export function StatCard({ label, value, icon: Icon, hint, className }: StatCard
   return (
     <div
       className={cn(
-        "surface rounded-lg p-5 transition-shadow hover:shadow-card",
+        "surface rounded-[18px] p-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card",
         className,
       )}
     >
@@ -21,11 +21,11 @@ export function StatCard({ label, value, icon: Icon, hint, className }: StatCard
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">
           {label}
         </p>
-        <span className="grid size-9 place-items-center rounded-md bg-warm-cream text-charcoal ring-1 ring-warm-taupe/40">
+        <span className="grid size-10 place-items-center rounded-[12px] border border-warm-taupe/35 bg-warm-cream/80 text-charcoal">
           <Icon className="size-4" aria-hidden />
         </span>
       </div>
-      <p className="mt-4 font-display text-4xl leading-none text-charcoal">{value}</p>
+      <p className="mt-4 font-display text-[2.1rem] leading-none text-charcoal">{value}</p>
       {hint ? <p className="mt-2 text-xs leading-relaxed text-muted">{hint}</p> : null}
     </div>
   );

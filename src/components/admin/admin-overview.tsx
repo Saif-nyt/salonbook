@@ -44,11 +44,11 @@ export function AdminOverview() {
       {stats.isLoading ? (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {Array.from({ length: 6 }).map((_, index) => (
-            <Skeleton key={index} className="h-32 rounded-lg" />
+            <Skeleton key={index} className="h-32 rounded-[18px]" />
           ))}
         </div>
       ) : stats.isError ? (
-        <div className="surface rounded-lg p-8 text-center">
+        <div className="surface rounded-[20px] p-8 text-center">
           <p className="font-display text-2xl text-charcoal">The dashboard didn&apos;t load.</p>
           <p className="mt-2 text-sm text-muted">Refresh the page to try again.</p>
         </div>
@@ -92,8 +92,8 @@ export function AdminOverview() {
       )}
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="surface overflow-hidden rounded-lg">
-          <div className="flex items-center justify-between gap-4 border-b border-line px-5 py-4">
+        <div className="surface overflow-hidden rounded-[20px]">
+          <div className="flex items-center justify-between gap-4 border-b border-warm-taupe/35 px-5 py-4">
             <div>
               <p className="eyebrow">Needs attention</p>
               <h2 className="mt-1 font-display text-2xl text-charcoal">Pending requests</h2>
@@ -120,10 +120,10 @@ export function AdminOverview() {
               </p>
             </div>
           ) : (
-            <ul className="divide-y divide-line">
+            <ul className="divide-y divide-warm-taupe/30">
               {pendingList.map((appointment) => (
                 <li key={appointment.id} className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">
-                  <div className="size-11 shrink-0 overflow-hidden rounded-md bg-sand">
+                  <div className="size-11 shrink-0 overflow-hidden rounded-[12px] bg-sand ring-1 ring-warm-taupe/25">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={appointment.service?.image || ""}
@@ -154,15 +154,15 @@ export function AdminOverview() {
         </div>
 
         <div className="space-y-4">
-          <div className="surface rounded-lg p-5">
+          <div className="surface rounded-[20px] p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="eyebrow">Revenue</p>
-                <p className="mt-2 font-display text-4xl text-charcoal">
+                <p className="mt-2 font-display text-4xl leading-none text-charcoal">
                   {formatMoney(stats.data?.data?.totalRevenue ?? 0)}
                 </p>
               </div>
-              <span className="grid size-11 place-items-center rounded-full bg-sage-soft text-sage">
+              <span className="grid size-11 place-items-center rounded-full bg-sage-soft text-success">
                 <DollarSign className="size-5" />
               </span>
             </div>
@@ -178,7 +178,7 @@ export function AdminOverview() {
             </Link>
           </div>
 
-          <div className="surface rounded-lg p-5">
+          <div className="surface rounded-[20px] p-5">
             <div className="flex items-center justify-between">
               <p className="eyebrow">Newest customers</p>
               <Link
@@ -198,7 +198,7 @@ export function AdminOverview() {
             ) : recentCustomers.length === 0 ? (
               <p className="mt-4 text-sm text-muted">No customer accounts yet.</p>
             ) : (
-              <ul className="mt-4 divide-y divide-line">
+              <ul className="mt-4 divide-y divide-warm-taupe/30">
                 {recentCustomers.map((customer) => (
                   <li key={customer.id} className="flex items-center gap-3 py-3 first:pt-0">
                     <Avatar name={customer.name ?? "Customer"} image={customer.image} className="size-8" />
@@ -218,9 +218,11 @@ export function AdminOverview() {
       <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         <Link
           href="/admin/appointments"
-          className="surface group rounded-lg p-5 transition-colors hover:border-deep-red/40"
+          className="surface group rounded-[20px] p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-deep-red/30 hover:shadow-card"
         >
-          <CalendarDays className="size-5 text-deep-red" />
+          <span className="grid size-10 place-items-center rounded-[12px] bg-warm-cream text-deep-red ring-1 ring-warm-taupe/30">
+            <CalendarDays className="size-5" />
+          </span>
           <p className="mt-3 font-display text-2xl text-charcoal">Review the book</p>
           <p className="mt-1 text-xs leading-relaxed text-muted">
             Confirm pending visits and manage cancellations.
@@ -232,9 +234,11 @@ export function AdminOverview() {
         </Link>
         <Link
           href="/admin/services"
-          className="surface group rounded-lg p-5 transition-colors hover:border-deep-red/40"
+          className="surface group rounded-[20px] p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-deep-red/30 hover:shadow-card"
         >
-          <Sparkles className="size-5 text-deep-red" />
+          <span className="grid size-10 place-items-center rounded-[12px] bg-warm-cream text-deep-red ring-1 ring-warm-taupe/30">
+            <Sparkles className="size-5" />
+          </span>
           <p className="mt-3 font-display text-2xl text-charcoal">Shape the menu</p>
           <p className="mt-1 text-xs leading-relaxed text-muted">
             Add treatments, adjust pricing and pause services.
@@ -246,9 +250,11 @@ export function AdminOverview() {
         </Link>
         <Link
           href="/admin/users"
-          className="surface group rounded-lg p-5 transition-colors hover:border-deep-red/40"
+          className="surface group rounded-[20px] p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-deep-red/30 hover:shadow-card"
         >
-          <Users className="size-5 text-deep-red" />
+          <span className="grid size-10 place-items-center rounded-[12px] bg-warm-cream text-deep-red ring-1 ring-warm-taupe/30">
+            <Users className="size-5" />
+          </span>
           <p className="mt-3 font-display text-2xl text-charcoal">Know your guests</p>
           <p className="mt-1 text-xs leading-relaxed text-muted">
             Review customer details and manage account access.

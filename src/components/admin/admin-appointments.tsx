@@ -51,7 +51,7 @@ export function AdminAppointments() {
       title="Manage appointments"
       description="Review requests, confirm pending visits and cancel when plans change. Only pending appointments can be confirmed."
     >
-      <div className="surface flex flex-col gap-3 rounded-lg p-4 xl:flex-row xl:items-center xl:justify-between">
+      <div className="surface flex flex-col gap-3 rounded-[20px] p-4 sm:p-5 xl:flex-row xl:items-center xl:justify-between">
         <div className="flex flex-col gap-3 sm:flex-row">
           <div className="relative">
             <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted" />
@@ -63,7 +63,7 @@ export function AdminAppointments() {
               }}
               placeholder="Search service or customer"
               aria-label="Search appointments"
-              className="h-10 w-full rounded-md border border-line bg-cream pl-9 pr-3 text-xs text-charcoal placeholder:text-muted/70 focus:border-deep-red focus:outline-none sm:w-64"
+              className="h-10 w-full rounded-[11px] border border-warm-taupe/55 bg-warm-cream/35 pl-9 pr-3 text-xs text-charcoal placeholder:text-muted/70 transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10 sm:w-64"
             />
           </div>
           <select
@@ -73,7 +73,7 @@ export function AdminAppointments() {
               setPage(1);
             }}
             aria-label="Filter by appointment status"
-            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
+            className="h-10 rounded-[11px] border border-warm-taupe/55 bg-warm-cream/35 px-3 text-xs font-medium text-charcoal transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10"
           >
             {statuses.map((option) => (
               <option key={option.value} value={option.value}>
@@ -88,7 +88,7 @@ export function AdminAppointments() {
               setPage(1);
             }}
             aria-label="Filter by payment status"
-            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
+            className="h-10 rounded-[11px] border border-warm-taupe/55 bg-warm-cream/35 px-3 text-xs font-medium text-charcoal transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10"
           >
             {paymentStatuses.map((option) => (
               <option key={option.value} value={option.value}>
@@ -97,7 +97,7 @@ export function AdminAppointments() {
             ))}
           </select>
         </div>
-        <p className="text-xs text-muted">
+        <p className="text-xs font-medium text-muted">
           {meta ? `${meta.total} appointment${meta.total === 1 ? "" : "s"}` : "Loading"}
         </p>
       </div>
@@ -107,7 +107,7 @@ export function AdminAppointments() {
           <TableSkeleton rows={6} />
         </div>
       ) : isError ? (
-        <div className="surface mt-5 rounded-lg p-10 text-center">
+        <div className="surface mt-5 rounded-[20px] p-10 text-center">
           <p className="font-display text-2xl text-charcoal">Appointments didn&apos;t load.</p>
           <button
             type="button"
@@ -126,10 +126,10 @@ export function AdminAppointments() {
           />
         </div>
       ) : (
-        <div className="mt-5 overflow-hidden rounded-lg border border-line bg-cream">
+        <div className="surface mt-5 overflow-hidden rounded-[20px]">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[62rem] text-left text-sm">
-              <thead className="border-b border-line bg-ivory/70 text-[10px] uppercase tracking-[0.14em] text-muted">
+              <thead className="border-b border-warm-taupe/35 bg-warm-cream/45 text-[10px] uppercase tracking-[0.14em] text-muted">
                 <tr>
                   <th className="px-4 py-3 font-semibold">Customer</th>
                   <th className="px-4 py-3 font-semibold">Service</th>
@@ -140,9 +140,9 @@ export function AdminAppointments() {
                   <th className="px-4 py-3 text-right font-semibold">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-line">
+              <tbody className="divide-y divide-warm-taupe/30">
                 {appointments.map((appointment) => (
-                  <tr key={appointment.id}>
+                  <tr key={appointment.id} className="transition-colors hover:bg-warm-cream/25">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2.5">
                         <Avatar
@@ -162,7 +162,7 @@ export function AdminAppointments() {
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2.5">
-                        <span className="size-8 shrink-0 overflow-hidden rounded bg-sand">
+                        <span className="size-8 shrink-0 overflow-hidden rounded-[10px] bg-sand ring-1 ring-warm-taupe/25">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={appointment.service.image}
@@ -201,7 +201,7 @@ export function AdminAppointments() {
                         <button
                           type="button"
                           onClick={() => setSelected(appointment)}
-                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-charcoal"
+                          className="grid size-8 place-items-center rounded-[10px] text-muted transition-colors hover:bg-warm-cream hover:text-charcoal"
                           aria-label="View appointment details"
                         >
                           <Eye className="size-3.5" />
@@ -265,7 +265,7 @@ export function AdminAppointments() {
               <Detail label="Account status" value={selected.customer?.isBlocked ? "Blocked" : "Active"} />
             </div>
 
-            <div className="rounded-md border border-line bg-ivory/60 p-4">
+            <div className="rounded-[16px] border border-warm-taupe/35 bg-warm-cream/35 p-4">
               <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
                 <MessageSquare className="size-3.5" />
                 Customer message
@@ -275,7 +275,7 @@ export function AdminAppointments() {
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-end gap-2 border-t border-line pt-4">
+            <div className="flex flex-wrap justify-end gap-2 border-t border-warm-taupe/35 pt-4">
               <AppointmentActions
                 appointment={selected}
                 mode="admin"

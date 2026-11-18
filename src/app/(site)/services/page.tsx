@@ -4,8 +4,8 @@ import { CardSkeleton } from "@/components/ui/skeleton";
 
 function BrowseFallback() {
   return (
-    <div className="bg-ivory">
-      <div className="container-page py-14">
+    <div className="bg-warm-cream">
+      <div className="container-page py-14 lg:py-18">
         <div className="h-4 w-32 rounded bg-sand" />
         <div className="mt-5 h-14 w-full max-w-xl rounded bg-sand" />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

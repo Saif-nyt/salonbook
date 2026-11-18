@@ -93,7 +93,7 @@ export function BookingForm({ service }: { service: Service }) {
 
   if (isLoading) {
     return (
-      <div className="surface space-y-4 rounded-lg p-6">
+      <div className="surface space-y-4 rounded-[20px] p-6 shadow-card">
         <Skeleton className="h-4 w-32" />
         <Skeleton className="h-11 w-full" />
         <Skeleton className="h-11 w-full" />
@@ -106,18 +106,15 @@ export function BookingForm({ service }: { service: Service }) {
   if (!user) {
     const redirect = encodeURIComponent(pathname);
     return (
-      <div className="surface rounded-lg p-6">
+      <div className="surface rounded-[20px] p-6 shadow-card sm:p-7">
         <p className="eyebrow">Book this service</p>
-        <h3 className="mt-2 font-display text-3xl text-charcoal">Sign in to continue.</h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted">
-          Sign in to request an appointment, manage your bookings and keep everything in
-          one place.
+        <h3 className="mt-2 font-display text-3xl leading-tight text-charcoal">Sign in to continue.</h3>
+        <p className="mt-3 text-[15px] leading-relaxed text-muted">
+          Sign in to request an appointment, manage your bookings and keep everything in one
+          place.
         </p>
         <div className="mt-6 space-y-3">
-          <Link
-            href={`/sign-in?redirect=${redirect}`}
-            className={buttonStyles({ className: "w-full" })}
-          >
+          <Link href={`/sign-in?redirect=${redirect}`} className={buttonStyles({ className: "w-full" })}>
             <LogIn className="size-4" />
             Sign in
           </Link>
@@ -138,12 +135,12 @@ export function BookingForm({ service }: { service: Service }) {
 
   if (user.role === "admin") {
     return (
-      <div className="surface rounded-lg p-6">
+      <div className="surface rounded-[20px] p-6 shadow-card sm:p-7">
         <p className="eyebrow">Booking</p>
-        <h3 className="mt-2 font-display text-3xl text-charcoal">Administrator account</h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted">
-          Administrator accounts can&apos;t request customer appointments. Use the admin
-          dashboard to manage services and bookings.
+        <h3 className="mt-2 font-display text-3xl leading-tight text-charcoal">Administrator account</h3>
+        <p className="mt-3 text-[15px] leading-relaxed text-muted">
+          Administrator accounts can&apos;t request customer appointments. Use the admin dashboard
+          to manage services and bookings.
         </p>
         <Link
           href="/admin"
@@ -158,12 +155,12 @@ export function BookingForm({ service }: { service: Service }) {
 
   if (unavailable) {
     return (
-      <div className="surface rounded-lg p-6">
+      <div className="surface rounded-[20px] p-6 shadow-card sm:p-7">
         <p className="eyebrow">Currently unavailable</p>
-        <h3 className="mt-2 font-display text-3xl text-charcoal">This service is paused.</h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted">
-          This treatment isn&apos;t accepting new appointments right now. Explore other
-          services in the meantime.
+        <h3 className="mt-2 font-display text-3xl leading-tight text-charcoal">This service is paused.</h3>
+        <p className="mt-3 text-[15px] leading-relaxed text-muted">
+          This treatment isn&apos;t accepting new appointments right now. Explore other services in
+          the meantime.
         </p>
         <Link
           href="/services"
@@ -176,18 +173,18 @@ export function BookingForm({ service }: { service: Service }) {
   }
 
   return (
-    <div className="surface rounded-lg p-6 shadow-card">
+    <div className="surface rounded-[22px] p-6 shadow-elevated sm:p-7">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="eyebrow">Request an appointment</p>
-          <h3 className="mt-2 font-display text-4xl text-charcoal">
+          <h3 className="mt-2 font-display text-4xl leading-none text-charcoal">
             {formatMoney(service.price)}
           </h3>
-          <p className="mt-1 text-xs text-muted">
-            {service.duration} minutes · pay after confirmation
+          <p className="mt-2 text-xs font-medium text-muted">
+            {service.duration} minutes · pay securely after confirmation
           </p>
         </div>
-        <span className="grid size-11 place-items-center rounded-md bg-warm-cream text-charcoal ring-1 ring-warm-taupe/40">
+        <span className="grid size-12 place-items-center rounded-[14px] border border-warm-taupe/35 bg-warm-cream/70 text-charcoal">
           <CalendarDays className="size-5" />
         </span>
       </div>
@@ -208,7 +205,8 @@ export function BookingForm({ service }: { service: Service }) {
             type="date"
             min={minDate}
             max={maxDate}
-            className="h-11 w-full rounded-md border border-warm-taupe/70 bg-soft-ivory px-3.5 text-sm text-charcoal focus:border-deep-red/60 focus:outline-none focus:ring-2 focus:ring-deep-red/15"
+            aria-invalid={Boolean(form.formState.errors.appointmentDate) || undefined}
+            className="h-11 w-full rounded-[11px] border border-warm-taupe/60 bg-soft-ivory/90 px-3.5 text-[15px] text-charcoal transition-all duration-200 focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10 aria-[invalid=true]:border-error/45 aria-[invalid=true]:focus:border-error aria-[invalid=true]:focus:ring-error/10"
             {...form.register("appointmentDate")}
           />
         </Field>
@@ -242,8 +240,18 @@ export function BookingForm({ service }: { service: Service }) {
           </Select>
         </Field>
 
+        {selectedDate && !availability.isLoading && !availability.isError && slots.length > 0 ? (
+          <p className="text-xs text-muted">
+            {slots.filter((slot) => slot.available).length} of {slots.length} slots available for
+            the selected date.
+          </p>
+        ) : null}
+
         {availability.isError ? (
-          <p className="rounded-md border border-[#e7c2be] bg-[#f6e3e1] px-3 py-2 text-xs text-[#8f241d]">
+          <p
+            className="rounded-[12px] border border-error/20 bg-[#f7e6e4] px-3 py-2.5 text-xs font-medium text-[#8f241d]"
+            role="alert"
+          >
             Availability could not be loaded. Please try another date.
           </p>
         ) : null}
@@ -263,7 +271,7 @@ export function BookingForm({ service }: { service: Service }) {
 
         {form.formState.errors.root?.message ? (
           <p
-            className="rounded-md border border-[#e7c2be] bg-[#f6e3e1] px-3 py-2 text-xs text-[#8f241d]"
+            className="rounded-[12px] border border-error/20 bg-[#f7e6e4] px-3 py-2.5 text-xs font-medium text-[#8f241d]"
             role="alert"
           >
             {form.formState.errors.root.message}
@@ -276,10 +284,11 @@ export function BookingForm({ service }: { service: Service }) {
         </Button>
       </form>
 
-      <div className="mt-5 space-y-2 border-t border-warm-taupe/40 pt-4 text-xs leading-relaxed text-muted">
+      <div className="mt-5 space-y-2.5 border-t border-warm-taupe/35 pt-4 text-xs leading-relaxed text-muted">
         <p className="flex items-start gap-2">
           <Clock className="mt-0.5 size-3.5 shrink-0 text-charcoal" />
-          Your request is pending until the salon confirms it.
+          Your request is <span className="font-medium text-charcoal">pending</span> until the salon
+          confirms it.
         </p>
         <p className="flex items-start gap-2">
           <ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-charcoal" />

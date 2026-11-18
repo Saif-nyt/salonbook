@@ -201,8 +201,8 @@ export function SignUpForm() {
         </Field>
 
         {imageValue ? (
-          <div className="flex items-center gap-3 rounded-md border border-warm-taupe/50 bg-warm-cream/40 p-3">
-            <span className="size-10 overflow-hidden rounded-full bg-sand">
+          <div className="flex items-center gap-3 rounded-[14px] border border-warm-taupe/40 bg-warm-cream/35 p-3">
+            <span className="size-10 overflow-hidden rounded-full bg-sand ring-1 ring-warm-taupe/30">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={imageValue} alt="Profile preview" className="size-full object-cover" />
             </span>
@@ -210,7 +210,7 @@ export function SignUpForm() {
             <button
               type="button"
               onClick={() => form.setValue("image", "", { shouldValidate: true })}
-              className="text-[11px] font-medium text-[#8f241d] hover:underline"
+              className="text-[11px] font-semibold text-error underline-offset-4 hover:underline"
             >
               Remove
             </button>
@@ -248,13 +248,11 @@ export function SignUpForm() {
               return (
                 <span
                   key={rule.label}
-                  className={`flex items-center gap-1 text-[11px] ${
-                    passed ? "text-sage" : "text-muted"
+                  className={`flex items-center gap-1 text-[11px] font-medium ${
+                    passed ? "text-success" : "text-muted"
                   }`}
                 >
-                  <Check
-                    className={`size-3 ${passed ? "opacity-100" : "opacity-30"}`}
-                  />
+                  <Check className={`size-3 ${passed ? "opacity-100" : "opacity-30"}`} />
                   {rule.label}
                 </span>
               );
@@ -280,7 +278,7 @@ export function SignUpForm() {
 
         {form.formState.errors.root?.message ? (
           <p
-            className="rounded-md border border-[#e7c2be] bg-[#f6e3e1] px-3 py-2.5 text-xs leading-relaxed text-[#8f241d]"
+            className="rounded-[12px] border border-error/20 bg-[#f7e6e4] px-3 py-2.5 text-xs font-medium leading-relaxed text-[#8f241d]"
             role="alert"
           >
             {form.formState.errors.root.message}

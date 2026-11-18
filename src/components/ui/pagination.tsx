@@ -17,8 +17,8 @@ export function Pagination({
   if (totalPages <= 1) return null;
 
   return (
-    <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-warm-taupe/40 pt-6 sm:flex-row">
-      <p className="text-xs text-muted">
+    <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-warm-taupe/35 pt-6 sm:flex-row">
+      <p className="text-xs font-medium text-muted">
         {typeof total === "number" ? `${total} records · ` : null}
         Page {page} of {totalPages}
       </p>

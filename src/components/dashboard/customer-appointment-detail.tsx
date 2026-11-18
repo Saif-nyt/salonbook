@@ -43,11 +43,11 @@ export function CustomerAppointmentDetail() {
     >
       {isLoading ? (
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <Skeleton className="h-80 rounded-lg" />
-          <Skeleton className="h-80 rounded-lg" />
+          <Skeleton className="h-80 rounded-[20px]" />
+          <Skeleton className="h-80 rounded-[20px]" />
         </div>
       ) : isError || !appointment ? (
-        <div className="surface rounded-lg p-10 text-center">
+        <div className="surface rounded-[20px] p-10 text-center">
           <p className="eyebrow">Not found</p>
           <h2 className="mt-2 font-display text-3xl text-charcoal">
             We can&apos;t open this appointment.
@@ -63,7 +63,7 @@ export function CustomerAppointmentDetail() {
         </div>
       ) : (
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="surface overflow-hidden rounded-lg">
+          <div className="surface overflow-hidden rounded-[22px]">
             <div className="relative aspect-[16/9] bg-sand">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -71,14 +71,15 @@ export function CustomerAppointmentDetail() {
                 alt={appointment.service.name}
                 className="size-full object-cover"
               />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal/15 to-transparent" />
               <div className="absolute left-4 top-4 flex gap-2">
-                <span className="rounded-full bg-cream/94 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted backdrop-blur-sm">
+                <span className="rounded-full border border-white/45 bg-soft-ivory/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-charcoal shadow-sm backdrop-blur-sm">
                   {appointment.service.category}
                 </span>
               </div>
             </div>
 
-            <div className="p-6">
+            <div className="p-6 sm:p-7">
               <div className="flex flex-wrap items-center gap-2">
                 <AppointmentStatusBadge status={appointment.status} />
                 <PaymentStatusBadge status={appointment.paymentStatus} />
@@ -91,7 +92,7 @@ export function CustomerAppointmentDetail() {
                 Requested {formatDateTime(appointment.createdAt)}
               </p>
 
-              <dl className="mt-6 grid gap-5 border-t border-line pt-6 sm:grid-cols-2">
+              <dl className="mt-6 grid gap-5 border-t border-warm-taupe/35 pt-6 sm:grid-cols-2">
                 <div>
                   <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">
                     Appointment date
@@ -130,7 +131,7 @@ export function CustomerAppointmentDetail() {
               </dl>
 
               {appointment.message ? (
-                <div className="mt-6 rounded-md border border-line bg-ivory/60 p-4">
+                <div className="mt-6 rounded-[16px] border border-warm-taupe/35 bg-warm-cream/35 p-4">
                   <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
                     <MessageSquare className="size-3.5" />
                     Your note
@@ -148,7 +149,7 @@ export function CustomerAppointmentDetail() {
           </div>
 
           <div className="space-y-4">
-            <div className="surface rounded-lg p-6">
+            <div className="surface rounded-[20px] p-6">
               <p className="eyebrow">What happens next</p>
               <ol className="mt-5 space-y-5">
                 <TimelineStep
@@ -180,17 +181,16 @@ export function CustomerAppointmentDetail() {
               </ol>
             </div>
 
-            <div className="rounded-lg border border-line bg-sage-soft/70 p-5">
+            <div className="rounded-[20px] border border-[#cfe3d8] bg-sage-soft/70 p-5">
               <p className="flex items-center gap-2 text-sm font-semibold text-charcoal">
-                <ShieldCheck className="size-4 text-sage" />
+                <ShieldCheck className="size-4 text-success" />
                 Payment is secure
               </p>
               <p className="mt-2 text-xs leading-relaxed text-muted">
-                Checkout is handled by Stripe. SalonBook never sees or stores your card
-                details, and your appointment is marked paid only after Stripe confirms
-                the payment.
+                Checkout is handled by Stripe. SalonBook never sees or stores your card details,
+                and your appointment is marked paid only after Stripe confirms the payment.
               </p>
-              <div className="mt-4 flex items-center gap-4 text-[10px] uppercase tracking-[0.16em] text-muted">
+              <div className="mt-4 flex flex-wrap items-center gap-4 text-[10px] uppercase tracking-[0.16em] text-muted">
                 <span className="flex items-center gap-1">
                   <CreditCard className="size-3.5" /> Stripe checkout
                 </span>
@@ -222,10 +222,10 @@ function TimelineStep({
       <span
         className={`mt-0.5 grid size-6 shrink-0 place-items-center rounded-full ${
           cancelled
-            ? "bg-[#f6e3e1] text-[#8f241d]"
+            ? "bg-[#f7e6e4] text-[#8f241d]"
             : done
-              ? "bg-sage text-cream"
-              : "border border-line bg-cream text-muted"
+              ? "bg-success text-white"
+              : "border border-warm-taupe/45 bg-soft-ivory text-muted"
         }`}
       >
         {cancelled ? <X className="size-3" /> : done ? <Check className="size-3" /> : null}

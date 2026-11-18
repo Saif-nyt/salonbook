@@ -101,7 +101,7 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
       description="Update your name, phone number, and profile photo. Email, role, and account status cannot be changed here."
     >
       <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-        <div className="surface rounded-lg p-6">
+        <div className="surface rounded-[20px] p-6">
           <p className="eyebrow">Account details</p>
           <div className="mt-5 flex items-center gap-4">
             <Avatar name={user?.name ?? "Guest"} image={imageValue || user?.image} className="size-16" />
@@ -111,7 +111,7 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
             </div>
           </div>
 
-          <div className="mt-6 space-y-3 border-t border-warm-taupe/40 pt-5 text-sm">
+          <div className="mt-6 space-y-3 border-t border-warm-taupe/35 pt-5 text-sm">
             <div className="flex items-center justify-between gap-3">
               <span className="flex items-center gap-2 text-muted">
                 <Mail className="size-4" />
@@ -131,7 +131,7 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
                 <ShieldCheck className="size-4" />
                 Status
               </span>
-              <span className="flex items-center gap-1.5 text-xs text-[#5f7561]">
+              <span className="flex items-center gap-1.5 text-xs font-medium text-success">
                 <Check className="size-3.5" />
                 Active
               </span>
@@ -144,12 +144,12 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
             ) : null}
           </div>
 
-          <p className="mt-6 rounded-md bg-warm-cream/50 px-3.5 py-3 text-[11px] leading-relaxed text-muted">
+          <p className="mt-6 rounded-[14px] border border-warm-taupe/30 bg-warm-cream/45 px-3.5 py-3 text-[11px] leading-relaxed text-muted">
             You cannot change your own role or blocked status through profile updates.
           </p>
         </div>
 
-        <div className="surface rounded-lg p-6">
+        <div className="surface rounded-[20px] p-6">
           <p className="eyebrow">Editable information</p>
           <form
             className="mt-5 space-y-4"
@@ -220,8 +220,8 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
             </Field>
 
             {imageValue ? (
-              <div className="flex items-center gap-3 rounded-md border border-warm-taupe/50 bg-warm-cream/40 p-3">
-                <span className="size-12 overflow-hidden rounded-full bg-sand">
+              <div className="flex items-center gap-3 rounded-[14px] border border-warm-taupe/40 bg-warm-cream/35 p-3">
+                <span className="size-12 overflow-hidden rounded-full bg-sand ring-1 ring-warm-taupe/30">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={imageValue} alt="Profile preview" className="size-full object-cover" />
                 </span>
@@ -232,14 +232,14 @@ export function ProfileSettings({ role = "customer" }: { role?: "customer" | "ad
                 <button
                   type="button"
                   onClick={() => form.setValue("image", "", { shouldValidate: true })}
-                  className="ml-auto text-[11px] font-medium text-[#8f241d] hover:underline"
+                  className="ml-auto text-[11px] font-semibold text-error underline-offset-4 hover:underline"
                 >
                   Remove
                 </button>
               </div>
             ) : null}
 
-            <div className="flex items-center justify-between gap-3 border-t border-warm-taupe/40 pt-4">
+            <div className="flex flex-col gap-3 border-t border-warm-taupe/35 pt-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-[11px] text-muted">Changes are saved to your account immediately.</p>
               <Button type="submit" isLoading={mutation.isPending}>
                 Save changes

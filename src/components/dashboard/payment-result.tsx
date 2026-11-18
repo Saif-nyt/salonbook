@@ -24,10 +24,10 @@ function PaymentSuccessContent() {
       description="We verify every payment with Stripe before updating your appointment."
     >
       <div className="mx-auto max-w-2xl">
-        <div className="surface rounded-lg p-8 text-center">
+        <div className="surface rounded-[22px] p-8 text-center shadow-card sm:p-10">
           {isLoading ? (
             <>
-              <span className="mx-auto grid size-14 place-items-center rounded-full bg-sand text-deep-red">
+              <span className="mx-auto grid size-14 place-items-center rounded-full bg-warm-cream text-deep-red ring-1 ring-warm-taupe/35">
                 <Loader2 className="size-6 animate-spin" />
               </span>
               <h2 className="mt-5 font-display text-3xl text-charcoal">
@@ -41,7 +41,7 @@ function PaymentSuccessContent() {
             </>
           ) : isError || !status ? (
             <>
-              <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f6e3e1] text-[#8f241d]">
+              <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f7e6e4] text-[#8f241d]">
                 <XCircle className="size-6" />
               </span>
               <h2 className="mt-5 font-display text-3xl text-charcoal">
@@ -65,7 +65,7 @@ function PaymentSuccessContent() {
             </>
           ) : paid ? (
             <>
-              <span className="mx-auto grid size-14 place-items-center rounded-full bg-sage-soft text-sage">
+              <span className="mx-auto grid size-14 place-items-center rounded-full bg-sage-soft text-success">
                 <CheckCircle2 className="size-6" />
               </span>
               <h2 className="mt-5 font-display text-3xl text-charcoal">Payment received.</h2>
@@ -94,7 +94,7 @@ function PaymentSuccessContent() {
           ) : status.transactionStatus === "failed" ||
             status.transactionStatus === "cancelled" ? (
             <>
-              <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f6e3e1] text-[#8f241d]">
+              <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f7e6e4] text-[#8f241d]">
                 <XCircle className="size-6" />
               </span>
               <h2 className="mt-5 font-display text-3xl text-charcoal">
@@ -113,7 +113,7 @@ function PaymentSuccessContent() {
             </>
           ) : (
             <>
-              <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f3e6cf] text-[#7b5a1f]">
+              <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f8efe2] text-warning">
                 <Clock3 className="size-6" />
               </span>
               <h2 className="mt-5 font-display text-3xl text-charcoal">
@@ -134,9 +134,9 @@ function PaymentSuccessContent() {
         </div>
 
         <p className="mt-5 flex items-start gap-2 text-[11px] leading-relaxed text-muted">
-          <ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-sage" />
-          Reaching this page never marks an appointment as paid. Payment status changes
-          only when the Stripe webhook signature is verified by the SalonBook server.
+          <ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-success" />
+          Reaching this page never marks an appointment as paid. Payment status changes only
+          when the Stripe webhook signature is verified by the SalonBook server.
         </p>
       </div>
     </DashboardShell>
@@ -148,7 +148,7 @@ export function PaymentSuccess() {
     <Suspense
       fallback={
         <div className="container-page py-16">
-          <Skeleton className="mx-auto h-72 max-w-2xl rounded-lg" />
+          <Skeleton className="mx-auto h-72 max-w-2xl rounded-[22px]" />
         </div>
       }
     >

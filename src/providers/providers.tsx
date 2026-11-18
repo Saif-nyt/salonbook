@@ -29,8 +29,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
           closeButton
           toastOptions={{
             style: {
-              fontFamily: "var(--font-manrope)",
-              borderRadius: "0.5rem",
+              fontFamily: "var(--font-body)",
+              borderRadius: "0.75rem",
             },
           }}
         />

@@ -31,13 +31,13 @@ export function FeaturedServices() {
   }, [services, selected]);
 
   return (
-    <section id="featured-services" className="border-t border-warm-taupe/40 bg-soft-ivory">
+    <section id="featured-services" className="border-t border-warm-taupe/35 bg-soft-ivory">
       <div className="container-page py-20 lg:py-24">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Featured services"
             title="Treatments chosen for how they make you feel."
-            description="Explore a selection of active services across hair, skin, nails, massage, makeup and barbering."
+            description="Explore active services across hair, skin, nails, massage, makeup and barbering — each with clear details, pricing and easy booking."
           />
           <Link
             href="/services"
@@ -61,10 +61,10 @@ export function FeaturedServices() {
                 type="button"
                 onClick={() => setSelected(name)}
                 className={cn(
-                  "rounded-full border px-4 py-2 text-xs font-semibold tracking-wide transition-colors",
+                  "rounded-full border px-4 py-2 text-[13px] font-semibold tracking-[0.01em] transition-all duration-200",
                   active
-                    ? "border-charcoal bg-charcoal text-white"
-                    : "border-warm-taupe/70 bg-transparent text-charcoal hover:border-deep-red/40 hover:text-deep-red",
+                    ? "border-charcoal bg-charcoal text-white shadow-[0_10px_24px_-18px_rgba(28,28,28,0.7)]"
+                    : "border-warm-taupe/55 bg-warm-cream/40 text-charcoal hover:border-deep-red/35 hover:text-deep-red",
                 )}
               >
                 {name}
@@ -81,7 +81,7 @@ export function FeaturedServices() {
               ))}
             </div>
           ) : isError ? (
-            <div className="surface rounded-lg px-6 py-14 text-center">
+            <div className="surface rounded-[20px] px-6 py-14 text-center">
               <p className="font-display text-3xl text-charcoal">Services are unavailable right now.</p>
               <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-muted">
                 We couldn&apos;t load featured treatments. Please try again in a moment.

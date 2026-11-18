@@ -43,14 +43,14 @@ export function CustomerPayments() {
         </Link>
       }
     >
-      <div className="surface flex flex-wrap items-center justify-between gap-3 rounded-lg p-4">
+      <div className="surface flex flex-wrap items-center justify-between gap-3 rounded-[20px] p-4 sm:p-5">
         <select
           value={status}
           onChange={(event) => {
             setStatus(event.target.value);
             setPage(1);
           }}
-          className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
+          className="h-10 rounded-[11px] border border-warm-taupe/55 bg-warm-cream/35 px-3 text-xs font-medium text-charcoal transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10"
           aria-label="Filter transactions by status"
         >
           {statuses.map((option) => (
@@ -69,7 +69,7 @@ export function CustomerPayments() {
           <TableSkeleton rows={4} />
         </div>
       ) : isError ? (
-        <div className="surface mt-5 rounded-lg p-10 text-center">
+        <div className="surface mt-5 rounded-[20px] p-10 text-center">
           <p className="font-display text-2xl text-charcoal">Payments didn&apos;t load.</p>
           <button
             type="button"
@@ -89,10 +89,10 @@ export function CustomerPayments() {
           />
         </div>
       ) : (
-        <div className="mt-5 overflow-hidden rounded-lg border border-line bg-cream">
+        <div className="surface mt-5 overflow-hidden rounded-[20px]">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[46rem] text-left text-sm">
-              <thead className="border-b border-line bg-ivory/70 text-[10px] uppercase tracking-[0.14em] text-muted">
+              <thead className="border-b border-warm-taupe/35 bg-warm-cream/45 text-[10px] uppercase tracking-[0.14em] text-muted">
                 <tr>
                   <th className="px-4 py-3 font-semibold">Treatment</th>
                   <th className="px-4 py-3 font-semibold">Appointment</th>
@@ -102,12 +102,12 @@ export function CustomerPayments() {
                   <th className="px-4 py-3 font-semibold">Date</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-line">
+              <tbody className="divide-y divide-warm-taupe/30">
                 {transactions.map((transaction) => (
-                  <tr key={transaction.id} className="align-middle">
+                  <tr key={transaction.id} className="align-middle transition-colors hover:bg-warm-cream/25">
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-3">
-                        <span className="size-9 shrink-0 overflow-hidden rounded-md bg-sand">
+                        <span className="size-9 shrink-0 overflow-hidden rounded-[10px] bg-sand ring-1 ring-warm-taupe/25">
                           {transaction.appointment ? (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
@@ -157,9 +157,9 @@ export function CustomerPayments() {
       ) : null}
 
       <p className="mt-6 flex items-start gap-2 text-[11px] leading-relaxed text-muted">
-        <CreditCard className="mt-0.5 size-3.5 shrink-0 text-sage" />
-        Card details are never stored by SalonBook. Payment confirmation comes directly
-        from Stripe&apos;s verified webhook.
+        <CreditCard className="mt-0.5 size-3.5 shrink-0 text-success" />
+        Card details are never stored by SalonBook. Payment confirmation comes directly from
+        Stripe&apos;s verified webhook.
       </p>
     </DashboardShell>
   );

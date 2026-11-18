@@ -62,8 +62,8 @@ export function DashboardShell({
 
   return (
     <div className="min-h-screen bg-warm-cream">
-      <div className="border-b border-warm-taupe/40 bg-soft-ivory/90 backdrop-blur-sm">
-        <div className="container-page flex h-16 items-center justify-between gap-4">
+      <div className="border-b border-warm-taupe/35 bg-soft-ivory/90 backdrop-blur-md">
+        <div className="container-page flex h-[72px] items-center justify-between gap-4">
           <Logo href="/" />
           <div className="flex items-center gap-3">
             <Link
@@ -73,7 +73,7 @@ export function DashboardShell({
               Browse services
               <ArrowUpRight className="size-3.5" />
             </Link>
-            <div className="hidden h-6 w-px bg-warm-taupe/50 sm:block" />
+            <div className="hidden h-6 w-px bg-warm-taupe/45 sm:block" />
             <div className="flex items-center gap-2.5">
               <Avatar name={user?.name ?? "Guest"} image={user?.image} className="size-8" />
               <div className="hidden leading-tight sm:block">
@@ -98,13 +98,14 @@ export function DashboardShell({
         </div>
       </div>
 
-      <div className="container-page grid gap-8 py-8 lg:grid-cols-[15.5rem_1fr] lg:py-10">
+      <div className="container-page grid gap-8 py-8 lg:grid-cols-[16rem_1fr] lg:py-10">
         <aside className="hidden lg:block">
-          <div className="sticky top-6 rounded-lg bg-charcoal p-3 text-white shadow-soft">
-            <p className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
+          <div className="sticky top-6 overflow-hidden rounded-[20px] border border-white/10 bg-charcoal p-3 text-white shadow-elevated">
+            <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-deep-red/25 blur-2xl" aria-hidden />
+            <p className="relative px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
               {role === "admin" ? "Admin dashboard" : "Customer dashboard"}
             </p>
-            <nav className="space-y-1">
+            <nav className="relative space-y-1">
               {items.map((item) => {
                 const itemPath = item.href.split("?")[0];
                 const active =
@@ -116,9 +117,9 @@ export function DashboardShell({
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-colors",
+                      "flex items-center gap-3 rounded-[12px] px-3 py-2.5 text-sm transition-all duration-200",
                       active
-                        ? "bg-white/12 text-white"
+                        ? "bg-white/12 text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]"
                         : "text-white/70 hover:bg-white/8 hover:text-white",
                     )}
                   >
@@ -131,7 +132,7 @@ export function DashboardShell({
                 );
               })}
             </nav>
-            <div className="mt-4 border-t border-white/10 pt-3">
+            <div className="relative mt-4 border-t border-white/10 pt-3">
               <div className="flex items-center gap-2.5 px-3 py-2">
                 <Avatar name={user?.name ?? "Guest"} image={user?.image} className="size-8 ring-0" />
                 <div className="min-w-0">
@@ -159,10 +160,10 @@ export function DashboardShell({
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-medium transition-colors",
+                      "flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-medium transition-all duration-200",
                       active
-                        ? "border-charcoal bg-charcoal text-white"
-                        : "border-warm-taupe/60 bg-soft-ivory text-charcoal",
+                        ? "border-charcoal bg-charcoal text-white shadow-[0_10px_24px_-18px_rgba(28,28,28,0.7)]"
+                        : "border-warm-taupe/50 bg-soft-ivory text-charcoal hover:border-charcoal/25",
                     )}
                   >
                     <item.icon className="size-3.5" />
@@ -178,11 +179,11 @@ export function DashboardShell({
               <p className="eyebrow">
                 {role === "admin" ? "Salon operations" : "Your account"}
               </p>
-              <h1 className="mt-2 font-display text-4xl leading-tight text-charcoal sm:text-5xl">
+              <h1 className="mt-2 font-display text-[clamp(2.1rem,4.5vw,3.1rem)] leading-[1.02] text-charcoal">
                 {title}
               </h1>
               {description ? (
-                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+                <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-muted sm:text-base">
                   {description}
                 </p>
               ) : null}

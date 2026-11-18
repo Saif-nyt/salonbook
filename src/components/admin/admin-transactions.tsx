@@ -39,7 +39,7 @@ export function AdminTransactions() {
       title="Transactions"
       description="Every checkout session and its verified state. Payment status is controlled exclusively by Stripe webhooks."
     >
-      <div className="surface flex flex-col gap-3 rounded-lg p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="surface flex flex-col gap-3 rounded-[20px] p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <select
           value={status}
           onChange={(event) => {
@@ -47,7 +47,7 @@ export function AdminTransactions() {
             setPage(1);
           }}
           aria-label="Filter transactions by status"
-          className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
+          className="h-10 rounded-[11px] border border-warm-taupe/55 bg-warm-cream/35 px-3 text-xs font-medium text-charcoal transition-colors focus:border-deep-red/45 focus:bg-white focus:outline-none focus:ring-2 focus:ring-deep-red/10"
         >
           {statuses.map((option) => (
             <option key={option.value} value={option.value}>
@@ -71,7 +71,7 @@ export function AdminTransactions() {
           <TableSkeleton rows={6} />
         </div>
       ) : isError ? (
-        <div className="surface mt-5 rounded-lg p-10 text-center">
+        <div className="surface mt-5 rounded-[20px] p-10 text-center">
           <p className="font-display text-2xl text-charcoal">Transactions didn&apos;t load.</p>
           <button
             type="button"
@@ -90,10 +90,10 @@ export function AdminTransactions() {
           />
         </div>
       ) : (
-        <div className="mt-5 overflow-hidden rounded-lg border border-line bg-cream">
+        <div className="surface mt-5 overflow-hidden rounded-[20px]">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[66rem] text-left text-sm">
-              <thead className="border-b border-line bg-ivory/70 text-[10px] uppercase tracking-[0.14em] text-muted">
+              <thead className="border-b border-warm-taupe/35 bg-warm-cream/45 text-[10px] uppercase tracking-[0.14em] text-muted">
                 <tr>
                   <th className="px-4 py-3 font-semibold">Customer</th>
                   <th className="px-4 py-3 font-semibold">Service</th>
@@ -105,9 +105,9 @@ export function AdminTransactions() {
                   <th className="px-4 py-3 font-semibold">Created</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-line">
+              <tbody className="divide-y divide-warm-taupe/30">
                 {transactions.map((transaction) => (
-                  <tr key={transaction.id}>
+                  <tr key={transaction.id} className="transition-colors hover:bg-warm-cream/25">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2.5">
                         <Avatar
@@ -127,7 +127,7 @@ export function AdminTransactions() {
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2.5">
-                        <span className="size-8 shrink-0 overflow-hidden rounded bg-sand">
+                        <span className="size-8 shrink-0 overflow-hidden rounded-[10px] bg-sand ring-1 ring-warm-taupe/25">
                           {transaction.appointment ? (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
@@ -182,8 +182,8 @@ export function AdminTransactions() {
         />
       ) : null}
 
-      <div className="mt-6 flex items-start gap-3 rounded-lg border border-line bg-sage-soft/60 p-4">
-        <ShieldCheck className="mt-0.5 size-4 shrink-0 text-sage" />
+      <div className="mt-6 flex items-start gap-3 rounded-[20px] border border-[#cfe3d8] bg-sage-soft/60 p-4 sm:p-5">
+        <ShieldCheck className="mt-0.5 size-4 shrink-0 text-success" />
         <div>
           <p className="text-sm font-semibold text-charcoal">Payment status is read-only</p>
           <p className="mt-1 text-xs leading-relaxed text-muted">
