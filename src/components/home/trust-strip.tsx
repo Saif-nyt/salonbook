@@ -25,7 +25,7 @@ const items = [
 
 export function TrustStrip() {
   return (
-    <section className="border-y border-warm-taupe/35 bg-soft-ivory/70">
+    <section className="border-y border-warm-taupe/35 bg-soft-neutral/80">
       <div className="container-page py-5 lg:py-6">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {items.map((item, index) => (

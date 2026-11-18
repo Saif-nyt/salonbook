@@ -2,13 +2,12 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Camera, Check, Eye, EyeOff, UserPlus } from "lucide-react";
-import { uploadImage, ApiError } from "@/lib/api";
+import { Check, Eye, EyeOff, UserPlus } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { useAuth } from "@/lib/auth-context";
 import { safeRedirect } from "@/lib/utils";
@@ -50,9 +49,7 @@ export function SignUpForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { completeSignIn } = useAuth();
-  const fileInput = useRef<HTMLInputElement>(null);
   const [showPassword, setShowPassword] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
   const redirectTo = safeRedirect(searchParams.get("redirect"), "/dashboard");
 
   const form = useForm<Values>({
@@ -69,30 +66,6 @@ export function SignUpForm() {
   const password = form.watch("password");
   const imageValue = form.watch("image");
 
-  const handleFile = async (file: File | undefined) => {
-    if (!file) return;
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error("That image is too large", { description: "Choose a file under 5 MB." });
-      return;
-    }
-
-    setIsUploading(true);
-    try {
-      const response = await uploadImage(file);
-      form.setValue("image", response.data.url, { shouldValidate: true });
-      toast.success("Photo uploaded");
-    } catch (error) {
-      toast.error(
-        error instanceof ApiError
-          ? error.message
-          : "The photo could not be uploaded. You can paste an image URL instead.",
-      );
-    } finally {
-      setIsUploading(false);
-      if (fileInput.current) fileInput.current.value = "";
-    }
-  };
-
   const onSubmit = form.handleSubmit(async (values) => {
     const { error } = await authClient.signUp.email({
       name: values.name.trim(),
@@ -105,7 +78,7 @@ export function SignUpForm() {
       const message =
         error.status === 422 || error.status === 400
           ? error.message || "Please check the details you entered."
-          : error.message ?? "We couldn't create your account. Please try again.";
+          : (error.message ?? "We couldn't create your account. Please try again.");
       form.setError("root", { message });
       toast.error(message);
       return;
@@ -167,37 +140,18 @@ export function SignUpForm() {
         </Field>
 
         <Field
-          label="Profile image"
+          label="Profile image URL"
           htmlFor="image"
-          hint="Optional. Upload an image or provide an image URL."
+          hint="Optional. Provide a public image URL — you can add or update your photo after signing in."
           error={form.formState.errors.image?.message}
         >
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <Input
-              id="image"
-              type="url"
-              placeholder="https://…"
-              invalid={Boolean(form.formState.errors.image)}
-              {...form.register("image")}
-            />
-            <input
-              ref={fileInput}
-              type="file"
-              accept="image/jpeg,image/png,image/webp,image/gif"
-              className="sr-only"
-              onChange={(event) => void handleFile(event.target.files?.[0])}
-            />
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => fileInput.current?.click()}
-              isLoading={isUploading}
-              className="shrink-0"
-            >
-              <Camera className="size-4" />
-              Upload
-            </Button>
-          </div>
+          <Input
+            id="image"
+            type="url"
+            placeholder="https://…"
+            invalid={Boolean(form.formState.errors.image)}
+            {...form.register("image")}
+          />
         </Field>
 
         {imageValue ? (

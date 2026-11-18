@@ -1,21 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { BrandSeal } from "@/components/ui/brand-seal";
-import { buttonStyles } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 
 const qualities = [
   {
+    index: "01",
     title: "Consultation-led care",
     description:
       "Every visit begins with clarity — understanding what you want and how you want to feel.",
   },
   {
+    index: "02",
     title: "Considered techniques",
     description:
       "Professional products and attentive craft, delivered with consistency and calm.",
   },
   {
+    index: "03",
     title: "A welcoming space",
     description:
       "An environment designed for comfort, so each appointment feels unhurried and personal.",
@@ -24,64 +25,64 @@ const qualities = [
 
 export function BrandQualitySection() {
   return (
-    <section className="relative overflow-hidden border-t border-warm-taupe/35 bg-warm-cream">
-      <BrandSeal
-        phrase="YOUR MOMENT"
-        className="absolute -right-10 top-10 hidden size-36 text-charcoal/60 opacity-70 lg:block"
-      />
-      <div className="container-page grid gap-12 py-20 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16 lg:py-24">
-        <div className="relative">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-sand shadow-elevated">
-            <Image
-              src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=85"
-              alt="A stylist crafting a polished hair look in a calm salon setting"
-              fill
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="absolute -bottom-5 left-4 max-w-[15rem] rounded-[18px] border border-warm-taupe/40 bg-soft-ivory/95 p-4 shadow-card backdrop-blur-sm sm:left-6">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-deep-red">
-              Service quality
+    <section className="relative overflow-hidden border-t border-warm-taupe/30 bg-soft-neutral/70">
+      <div className="container-page py-20 lg:py-28">
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-10">
+          <div className="lg:col-span-5">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-gray">
+              The standard
             </p>
-            <p className="mt-2 font-display text-xl leading-tight text-charcoal">
-              Beauty, delivered with <span className="italic">care</span>.
+            <h2 className="mt-5 font-display text-[clamp(2.3rem,4.8vw,3.8rem)] leading-[0.95] tracking-[-0.03em] text-charcoal">
+              Premium in feeling.
+              <br />
+              <span className="italic text-muted-burgundy">Thoughtful</span> in detail.
+            </h2>
+            <p className="mt-6 max-w-md text-[15px] leading-relaxed text-muted sm:text-base">
+              SalonBook is designed around the experience you deserve — clear choices, easy
+              booking, and treatments that feel personal from consultation to finish.
             </p>
+
+            <div className="relative mt-10 hidden aspect-[4/3] overflow-hidden rounded-[24px] bg-sand shadow-card lg:block">
+              <Image
+                src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1200&q=85"
+                alt="A calm skincare treatment in a premium salon setting"
+                fill
+                sizes="35vw"
+                className="object-cover"
+              />
+            </div>
           </div>
-        </div>
 
-        <div>
-          <p className="eyebrow">The SalonBook standard</p>
-          <h2 className="mt-3 max-w-xl font-display text-[clamp(2rem,4.5vw,3rem)] leading-[1.02] text-balance text-charcoal">
-            Premium in feeling. <span className="italic">Thoughtful</span> in every detail.
-          </h2>
-          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">
-            SalonBook is designed around the experience you deserve — clear choices, easy
-            booking, and treatments that feel personal from consultation to finish.
-          </p>
-
-          <div className="mt-8 space-y-5">
-            {qualities.map((item, index) => (
-              <div key={item.title} className="flex gap-4">
-                <span className="font-display text-2xl leading-none text-warm-taupe">
-                  0{index + 1}
-                </span>
-                <div className="border-t border-warm-taupe/35 pt-1">
-                  <h3 className="font-display text-[1.45rem] leading-tight text-charcoal">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
-                    {item.description}
-                  </p>
+          <div className="lg:col-span-7 lg:pt-8">
+            <div className="space-y-0 border-t border-warm-taupe/40">
+              {qualities.map((item) => (
+                <div
+                  key={item.title}
+                  className="grid gap-3 border-b border-warm-taupe/40 py-7 sm:grid-cols-[auto_1fr] sm:gap-8 sm:py-9"
+                >
+                  <span className="font-display text-[1.4rem] leading-none tracking-[0.08em] text-muted-burgundy/70">
+                    {item.index}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-[1.8rem] leading-[1.05] tracking-[-0.02em] text-charcoal sm:text-[2rem]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          <Link href="/services" className={buttonStyles({ variant: "outline", className: "mt-9" })}>
-            Explore the menu
-            <ArrowRight className="size-4" />
-          </Link>
+            <Link
+              href="/services"
+              className="mt-8 inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.16em] text-charcoal transition-colors hover:text-deep-red"
+            >
+              Explore the menu
+              <ArrowUpRight className="size-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -57,8 +57,8 @@ Salon administrators can create and manage salon services, review appointment re
 ## Visual identity
 
 The frontend uses a cohesive premium salon brand system:
-- **Palette:** Charcoal `#1C1C1C`, Warm Cream `#EDE6D8`, Deep Red `#B3261E`, Soft Ivory `#F8F6F1`, Warm Taupe `#C9BDAA`, Muted Gray `#77716A`, White `#FFFFFF`
-- **Typography:** Playfair Display (headings) and Inter (body/UI)
+- **Palette:** Charcoal `#1C1C1C`, Warm Cream `#EDE6D8`, Deep Red `#B3261E` (core), with selective Muted Burgundy `#6B4547`, Soft Neutral `#F3F2EE`, and Soft Lavender `#D2B4DC` accents
+- **Typography:** Bricolage Grotesque (expressive headings) and DM Sans (body/UI)
 - **Design direction:** editorial, modern, welcoming, and responsive across public, authentication, and dashboard experiences
 
 ## Getting started

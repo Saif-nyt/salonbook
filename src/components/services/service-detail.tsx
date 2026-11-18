@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useParams, usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,7 +11,6 @@ import {
   Sparkles,
   Tag,
 } from "lucide-react";
-import { useAuth } from "@/lib/auth-context";
 import { useService, useServices } from "@/lib/queries";
 import { formatMoney } from "@/lib/utils";
 import { BookingForm } from "@/components/services/booking-form";
@@ -26,39 +25,15 @@ const FALLBACK_IMAGE =
 export function ServiceDetail() {
   const params = useParams<{ id: string }>();
   const id = typeof params.id === "string" ? params.id : undefined;
-  const { user, isLoading: isAuthLoading } = useAuth();
-  const router = useRouter();
-  const pathname = usePathname();
   const { data, isLoading, isError, error } = useService(id);
   const service = data?.data;
   const [imageSrc, setImageSrc] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (isAuthLoading || user) return;
-    router.replace(`/sign-in?redirect=${encodeURIComponent(pathname)}`);
-  }, [isAuthLoading, user, router, pathname]);
 
   const related = useServices({
     category: service?.category,
     limit: 4,
     sort: "newest",
   });
-
-  if (isAuthLoading || !user) {
-    return (
-      <div className="container-page py-10 lg:py-14">
-        <Skeleton className="h-4 w-48" />
-        <div className="mt-8 grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-14">
-          <div className="space-y-6">
-            <Skeleton className="aspect-[4/3] w-full rounded-[24px]" />
-            <Skeleton className="h-12 w-2/3" />
-            <Skeleton className="h-32 w-full" />
-          </div>
-          <Skeleton className="h-[34rem] w-full rounded-[20px]" />
-        </div>
-      </div>
-    );
-  }
 
   if (isLoading) {
     return (

@@ -35,7 +35,6 @@ const customerNav: NavItem[] = [
 const adminNav: NavItem[] = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard },
   { href: "/admin/services", label: "Manage Services", icon: Sparkles },
-  { href: "/admin/services?new=1", label: "Add/Update Service", icon: Sparkles },
   { href: "/admin/appointments", label: "Manage Appointments", icon: CalendarDays },
   { href: "/admin/users", label: "Manage Users", icon: Users },
   { href: "/admin/transactions", label: "Transactions", icon: CreditCard },

@@ -18,6 +18,11 @@
   --color-border: #ddd5c8;
   --color-white: #ffffff;
 
+  /* Complementary accents (use selectively) */
+  --color-muted-burgundy: #6b4547;
+  --color-soft-neutral: #f3f2ee;
+  --color-soft-lavender: #d2b4dc;
+
   /* Feedback */
   --color-success: #287a4b;
   --color-warning: #b7791f;
