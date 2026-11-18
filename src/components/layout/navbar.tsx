@@ -37,12 +37,14 @@ export function Navbar() {
   const dashboardHref = isAdmin ? "/admin" : "/dashboard";
   const primaryLinks = user
     ? [
+        { href: "/", label: "Home" },
         { href: "/services", label: "Services" },
         { href: "/#story", label: "About" },
         { href: "/#visit", label: "Contact" },
         { href: dashboardHref, label: "Dashboard" },
       ]
     : [
+        { href: "/", label: "Home" },
         { href: "/services", label: "Services" },
         { href: "/#story", label: "About" },
         { href: "/#visit", label: "Contact" },
