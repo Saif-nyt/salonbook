@@ -117,7 +117,7 @@ export function SignInForm() {
             <button
               type="button"
               onClick={() => setShowPassword((value) => !value)}
-              className="absolute right-1.5 top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded text-muted hover:text-ink"
+              className="absolute right-1.5 top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded text-muted hover:text-charcoal"
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
               {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
@@ -127,7 +127,7 @@ export function SignInForm() {
 
         {form.formState.errors.root?.message ? (
           <p
-            className="rounded-md bg-[#f4e0dc] px-3 py-2.5 text-xs leading-relaxed text-[#8f3229]"
+            className="rounded-md border border-[#e7c2be] bg-[#f6e3e1] px-3 py-2.5 text-xs leading-relaxed text-[#8f241d]"
             role="alert"
           >
             {form.formState.errors.root.message}
@@ -148,7 +148,7 @@ export function SignInForm() {
               ? `/sign-up?redirect=${encodeURIComponent(redirectTo)}`
               : "/sign-up"
           }
-          className="font-semibold text-terracotta underline-offset-4 hover:underline"
+          className="font-semibold text-deep-red underline-offset-4 hover:underline"
         >
           Create an account
         </Link>

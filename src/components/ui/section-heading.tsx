@@ -22,7 +22,7 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h2 className="mt-3 font-display text-4xl leading-[1.08] text-balance text-ink sm:text-5xl">
+      <h2 className="mt-3 font-display text-4xl leading-[1.05] text-balance text-charcoal sm:text-5xl">
         {title}
       </h2>
       {description ? (
@@ -49,14 +49,16 @@ export function PageHeader({
     <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
       <div>
         {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-        <h1 className="mt-2 font-display text-4xl leading-tight text-ink">{title}</h1>
+        <h1 className="mt-2 font-display text-4xl leading-tight text-charcoal sm:text-5xl">
+          {title}
+        </h1>
         {description ? (
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
             {description}
           </p>
         ) : null}
       </div>
-      {actions ? <div className="flex shrink-0 gap-3">{actions}</div> : null}
+      {actions ? <div className="flex shrink-0 flex-wrap gap-3">{actions}</div> : null}
     </div>
   );
 }

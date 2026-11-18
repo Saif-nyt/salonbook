@@ -19,7 +19,7 @@ export function Avatar({
   return (
     <span
       className={cn(
-        "relative grid size-10 shrink-0 place-items-center overflow-hidden rounded-full bg-sand text-sm font-semibold text-terracotta-dark",
+        "relative grid size-10 shrink-0 place-items-center overflow-hidden rounded-full bg-warm-cream text-sm font-semibold text-charcoal ring-1 ring-warm-taupe/50",
         className,
       )}
     >

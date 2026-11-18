@@ -1,21 +1,20 @@
 import { Hero } from "@/components/home/hero";
 import { FeaturedServices } from "@/components/home/featured-services";
-import { CategorySection } from "@/components/home/category-section";
-import { ExperienceSection } from "@/components/home/experience-section";
-import {
-  HomeCta,
-  TestimonialSection,
-} from "@/components/home/testimonial-section";
+import { CategoryShowcase } from "@/components/home/category-section";
+import { StorySection, WhyChooseSection } from "@/components/home/experience-section";
+import { BookingProcess, TestimonialSection, FinalCta } from "@/components/home/testimonial-section";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <FeaturedServices />
-      <CategorySection />
-      <ExperienceSection />
+      <CategoryShowcase />
+      <WhyChooseSection />
+      <StorySection />
+      <BookingProcess />
       <TestimonialSection />
-      <HomeCta />
+      <FinalCta />
     </>
   );
 }

@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Check, Eye, EyeOff, UserPlus } from "lucide-react";
+import { Camera, Check, Eye, EyeOff, UserPlus } from "lucide-react";
+import { uploadImage, ApiError } from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
 import { useAuth } from "@/lib/auth-context";
 import { safeRedirect } from "@/lib/utils";
@@ -49,7 +50,9 @@ export function SignUpForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { completeSignIn } = useAuth();
+  const fileInput = useRef<HTMLInputElement>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const redirectTo = safeRedirect(searchParams.get("redirect"), "/dashboard");
 
   const form = useForm<Values>({
@@ -64,6 +67,31 @@ export function SignUpForm() {
   });
 
   const password = form.watch("password");
+  const imageValue = form.watch("image");
+
+  const handleFile = async (file: File | undefined) => {
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("That image is too large", { description: "Choose a file under 5 MB." });
+      return;
+    }
+
+    setIsUploading(true);
+    try {
+      const response = await uploadImage(file);
+      form.setValue("image", response.data.url, { shouldValidate: true });
+      toast.success("Photo uploaded");
+    } catch (error) {
+      toast.error(
+        error instanceof ApiError
+          ? error.message
+          : "The photo could not be uploaded. You can paste an image URL instead.",
+      );
+    } finally {
+      setIsUploading(false);
+      if (fileInput.current) fileInput.current.value = "";
+    }
+  };
 
   const onSubmit = form.handleSubmit(async (values) => {
     const { error } = await authClient.signUp.email({
@@ -139,19 +167,55 @@ export function SignUpForm() {
         </Field>
 
         <Field
-          label="Profile photo"
+          label="Profile image"
           htmlFor="image"
-          hint="Optional. Paste an image URL now, or upload one from your profile later."
+          hint="Optional. Upload an image or provide an image URL."
           error={form.formState.errors.image?.message}
         >
-          <Input
-            id="image"
-            type="url"
-            placeholder="https://…"
-            invalid={Boolean(form.formState.errors.image)}
-            {...form.register("image")}
-          />
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <Input
+              id="image"
+              type="url"
+              placeholder="https://…"
+              invalid={Boolean(form.formState.errors.image)}
+              {...form.register("image")}
+            />
+            <input
+              ref={fileInput}
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              className="sr-only"
+              onChange={(event) => void handleFile(event.target.files?.[0])}
+            />
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => fileInput.current?.click()}
+              isLoading={isUploading}
+              className="shrink-0"
+            >
+              <Camera className="size-4" />
+              Upload
+            </Button>
+          </div>
         </Field>
+
+        {imageValue ? (
+          <div className="flex items-center gap-3 rounded-md border border-warm-taupe/50 bg-warm-cream/40 p-3">
+            <span className="size-10 overflow-hidden rounded-full bg-sand">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={imageValue} alt="Profile preview" className="size-full object-cover" />
+            </span>
+            <p className="min-w-0 flex-1 truncate text-xs text-muted">{imageValue}</p>
+            <button
+              type="button"
+              onClick={() => form.setValue("image", "", { shouldValidate: true })}
+              className="text-[11px] font-medium text-[#8f241d] hover:underline"
+            >
+              Remove
+            </button>
+          </div>
+        ) : null}
 
         <Field
           label="Password"
@@ -172,7 +236,7 @@ export function SignUpForm() {
             <button
               type="button"
               onClick={() => setShowPassword((value) => !value)}
-              className="absolute right-1.5 top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded text-muted hover:text-ink"
+              className="absolute right-1.5 top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded text-muted hover:text-charcoal"
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
               {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
@@ -216,7 +280,7 @@ export function SignUpForm() {
 
         {form.formState.errors.root?.message ? (
           <p
-            className="rounded-md bg-[#f4e0dc] px-3 py-2.5 text-xs leading-relaxed text-[#8f3229]"
+            className="rounded-md border border-[#e7c2be] bg-[#f6e3e1] px-3 py-2.5 text-xs leading-relaxed text-[#8f241d]"
             role="alert"
           >
             {form.formState.errors.root.message}
@@ -237,7 +301,7 @@ export function SignUpForm() {
               ? `/sign-in?redirect=${encodeURIComponent(redirectTo)}`
               : "/sign-in"
           }
-          className="font-semibold text-terracotta underline-offset-4 hover:underline"
+          className="font-semibold text-deep-red underline-offset-4 hover:underline"
         >
           Sign in
         </Link>

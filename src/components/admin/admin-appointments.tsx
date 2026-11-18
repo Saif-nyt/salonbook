@@ -63,7 +63,7 @@ export function AdminAppointments() {
               }}
               placeholder="Search service or customer"
               aria-label="Search appointments"
-              className="h-10 w-full rounded-md border border-line bg-cream pl-9 pr-3 text-xs text-ink placeholder:text-muted/70 focus:border-terracotta focus:outline-none sm:w-64"
+              className="h-10 w-full rounded-md border border-line bg-cream pl-9 pr-3 text-xs text-charcoal placeholder:text-muted/70 focus:border-deep-red focus:outline-none sm:w-64"
             />
           </div>
           <select
@@ -73,7 +73,7 @@ export function AdminAppointments() {
               setPage(1);
             }}
             aria-label="Filter by appointment status"
-            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-ink focus:border-terracotta focus:outline-none"
+            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
           >
             {statuses.map((option) => (
               <option key={option.value} value={option.value}>
@@ -88,7 +88,7 @@ export function AdminAppointments() {
               setPage(1);
             }}
             aria-label="Filter by payment status"
-            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-ink focus:border-terracotta focus:outline-none"
+            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
           >
             {paymentStatuses.map((option) => (
               <option key={option.value} value={option.value}>
@@ -108,11 +108,11 @@ export function AdminAppointments() {
         </div>
       ) : isError ? (
         <div className="surface mt-5 rounded-lg p-10 text-center">
-          <p className="font-display text-2xl text-ink">Appointments didn&apos;t load.</p>
+          <p className="font-display text-2xl text-charcoal">Appointments didn&apos;t load.</p>
           <button
             type="button"
             onClick={() => void refetch()}
-            className="mt-4 text-xs font-semibold text-terracotta hover:underline"
+            className="mt-4 text-xs font-semibold text-deep-red hover:underline"
           >
             Try again
           </button>
@@ -151,7 +151,7 @@ export function AdminAppointments() {
                           className="size-8"
                         />
                         <div className="min-w-0">
-                          <p className="max-w-40 truncate font-medium text-ink">
+                          <p className="max-w-40 truncate font-medium text-charcoal">
                             {appointment.customer?.name ?? "Customer"}
                           </p>
                           <p className="max-w-40 truncate text-[11px] text-muted">
@@ -171,7 +171,7 @@ export function AdminAppointments() {
                           />
                         </span>
                         <div className="min-w-0">
-                          <p className="max-w-44 truncate font-medium text-ink">
+                          <p className="max-w-44 truncate font-medium text-charcoal">
                             {appointment.service.name}
                           </p>
                           <p className="text-[11px] text-muted">
@@ -180,14 +180,14 @@ export function AdminAppointments() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-xs text-ink-soft">
+                    <td className="px-4 py-3 text-xs text-muted">
                       {formatDate(appointment.appointmentDate)}
                       <br />
                       <span className="text-muted">
                         {formatTimeSlot(appointment.timeSlot)}
                       </span>
                     </td>
-                    <td className="px-4 py-3 font-display text-lg text-ink">
+                    <td className="px-4 py-3 font-display text-lg text-charcoal">
                       {formatMoney(appointment.servicePrice)}
                     </td>
                     <td className="px-4 py-3">
@@ -201,7 +201,7 @@ export function AdminAppointments() {
                         <button
                           type="button"
                           onClick={() => setSelected(appointment)}
-                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-ink"
+                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-charcoal"
                           aria-label="View appointment details"
                         >
                           <Eye className="size-3.5" />
@@ -270,7 +270,7 @@ export function AdminAppointments() {
                 <MessageSquare className="size-3.5" />
                 Customer message
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+              <p className="mt-2 text-sm leading-relaxed text-muted">
                 {selected.message || "No message was included with this request."}
               </p>
             </div>
@@ -293,7 +293,7 @@ function Detail({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <p className="text-[10px] uppercase tracking-[0.16em] text-muted">{label}</p>
-      <p className="mt-1 text-sm text-ink">{value}</p>
+      <p className="mt-1 text-sm text-charcoal">{value}</p>
     </div>
   );
 }

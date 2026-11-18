@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -44,7 +45,7 @@ const schema = z.object({
     .int("Duration must be a whole number")
     .min(15, "Duration must be at least 15 minutes")
     .max(600),
-  image: z.string().trim().url("Upload an image or paste a valid image URL"),
+  image: z.string().trim().url("Please upload a service image"),
   status: z.enum(["active", "inactive"]),
 });
 
@@ -52,11 +53,13 @@ type Values = z.infer<typeof schema>;
 
 export function AdminServices() {
   const queryClient = useQueryClient();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [page, setPage] = useState(1);
   const [editing, setEditing] = useState<Service | null>(null);
-  const [formOpen, setFormOpen] = useState(false);
+  const [formOpen, setFormOpen] = useState(() => searchParams.get("new") === "1");
   const [deleting, setDeleting] = useState<Service | null>(null);
 
   const { data, isLoading, isError, refetch } = useServices({
@@ -129,6 +132,13 @@ export function AdminServices() {
     setFormOpen(true);
   };
 
+  const closeForm = () => {
+    setFormOpen(false);
+    if (searchParams.get("new") === "1") {
+      router.replace("/admin/services", { scroll: false });
+    }
+  };
+
   return (
     <DashboardShell
       role="admin"
@@ -153,7 +163,7 @@ export function AdminServices() {
               }}
               placeholder="Search services"
               aria-label="Search services"
-              className="h-10 w-full rounded-md border border-line bg-cream pl-9 pr-3 text-xs text-ink placeholder:text-muted/70 focus:border-terracotta focus:outline-none sm:w-64"
+              className="h-10 w-full rounded-md border border-line bg-cream pl-9 pr-3 text-xs text-charcoal placeholder:text-muted/70 focus:border-deep-red focus:outline-none sm:w-64"
             />
           </div>
           <select
@@ -163,7 +173,7 @@ export function AdminServices() {
               setPage(1);
             }}
             aria-label="Filter services by status"
-            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-ink focus:border-terracotta focus:outline-none"
+            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
           >
             <option value="">All statuses</option>
             <option value="active">Active</option>
@@ -181,11 +191,11 @@ export function AdminServices() {
         </div>
       ) : isError ? (
         <div className="surface mt-5 rounded-lg p-10 text-center">
-          <p className="font-display text-2xl text-ink">Services didn&apos;t load.</p>
+          <p className="font-display text-2xl text-charcoal">Services didn&apos;t load.</p>
           <button
             type="button"
             onClick={() => void refetch()}
-            className="mt-4 text-xs font-semibold text-terracotta hover:underline"
+            className="mt-4 text-xs font-semibold text-deep-red hover:underline"
           >
             Try again
           </button>
@@ -228,7 +238,7 @@ export function AdminServices() {
                           />
                         </span>
                         <div className="min-w-0">
-                          <p className="max-w-56 truncate font-medium text-ink">
+                          <p className="max-w-56 truncate font-medium text-charcoal">
                             {service.serviceName}
                           </p>
                           <p className="line-clamp-1 max-w-56 text-[11px] text-muted">
@@ -240,10 +250,10 @@ export function AdminServices() {
                     <td className="px-4 py-3">
                       <Badge tone="neutral">{service.category}</Badge>
                     </td>
-                    <td className="px-4 py-3 font-display text-lg text-ink">
+                    <td className="px-4 py-3 font-display text-lg text-charcoal">
                       {formatMoney(service.price)}
                     </td>
-                    <td className="px-4 py-3 text-xs text-ink-soft">
+                    <td className="px-4 py-3 text-xs text-muted">
                       {service.duration} min
                     </td>
                     <td className="px-4 py-3">
@@ -257,7 +267,7 @@ export function AdminServices() {
                         <button
                           type="button"
                           onClick={() => openEdit(service)}
-                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-ink"
+                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-charcoal"
                           aria-label={`Edit ${service.serviceName}`}
                         >
                           <Pencil className="size-3.5" />
@@ -266,7 +276,7 @@ export function AdminServices() {
                           type="button"
                           onClick={() => toggleStatus.mutate(service)}
                           disabled={toggleStatus.isPending}
-                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-ink disabled:opacity-50"
+                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-charcoal disabled:opacity-50"
                           aria-label={
                             service.status === "active"
                               ? `Pause ${service.serviceName}`
@@ -282,7 +292,7 @@ export function AdminServices() {
                         <button
                           type="button"
                           onClick={() => setDeleting(service)}
-                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-[#f4e0dc] hover:text-[#8f3229]"
+                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-[#f6e3e1] hover:text-[#8f241d]"
                           aria-label={`Delete ${service.serviceName}`}
                         >
                           <Trash2 className="size-3.5" />
@@ -310,9 +320,9 @@ export function AdminServices() {
         key={editing?.id ?? "new"}
         open={formOpen}
         service={editing}
-        onClose={() => setFormOpen(false)}
+        onClose={closeForm}
         onSaved={() => {
-          setFormOpen(false);
+          closeForm();
           invalidate();
         }}
       />
@@ -535,45 +545,48 @@ function ServiceFormModal({
 
         <Field
           label="Service image"
-          htmlFor="image"
+          htmlFor="service-image-upload"
           required
-          hint="Upload a JPEG, PNG, WebP or GIF under 5 MB, or paste an image URL."
+          hint="Upload a JPEG, PNG, WebP or GIF under 5 MB."
           error={form.formState.errors.image?.message}
         >
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <Input
-              id="image"
-              placeholder="https://…"
-              invalid={Boolean(form.formState.errors.image)}
-              {...form.register("image")}
-            />
+          <div className="flex flex-col gap-3">
+            <input type="hidden" {...form.register("image")} />
             <input
+              id="service-image-upload"
               ref={fileInput}
               type="file"
               accept="image/jpeg,image/png,image/webp,image/gif"
               className="sr-only"
               onChange={(event) => void handleFile(event.target.files?.[0])}
             />
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => fileInput.current?.click()}
-              isLoading={isUploading}
-              className="shrink-0"
-            >
-              <Camera className="size-4" />
-              Upload
-            </Button>
+            <div className="flex flex-wrap items-center gap-3">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => fileInput.current?.click()}
+                isLoading={isUploading}
+              >
+                <Camera className="size-4" />
+                {imageValue ? "Replace image" : "Upload image"}
+              </Button>
+              {!imageValue ? (
+                <span className="text-xs text-muted">No image uploaded yet.</span>
+              ) : null}
+            </div>
           </div>
         </Field>
 
         {imageValue ? (
-          <div className="flex items-center gap-3 rounded-md border border-line bg-ivory/60 p-3">
+          <div className="flex items-center gap-3 rounded-md border border-warm-taupe/50 bg-warm-cream/40 p-3">
             <span className="h-16 w-24 shrink-0 overflow-hidden rounded bg-sand">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={imageValue} alt="Service preview" className="size-full object-cover" />
             </span>
-            <p className="min-w-0 flex-1 truncate text-[11px] text-muted">{imageValue}</p>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-semibold text-charcoal">Uploaded service image</p>
+              <p className="truncate text-[11px] text-muted">{imageValue}</p>
+            </div>
           </div>
         ) : null}
       </form>

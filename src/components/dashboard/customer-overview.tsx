@@ -56,7 +56,7 @@ export function CustomerOverview() {
         </div>
       ) : stats.isError ? (
         <div className="surface rounded-lg p-8 text-center">
-          <p className="font-display text-2xl text-ink">We couldn&apos;t load your summary.</p>
+          <p className="font-display text-2xl text-charcoal">We couldn&apos;t load your summary.</p>
           <p className="mt-2 text-sm text-muted">Please refresh the page and try again.</p>
         </div>
       ) : (
@@ -91,11 +91,11 @@ export function CustomerOverview() {
           <div className="flex items-center justify-between border-b border-line px-5 py-4">
             <div>
               <p className="eyebrow">Your next visit</p>
-              <h2 className="mt-1 font-display text-2xl text-ink">
+              <h2 className="mt-1 font-display text-2xl text-charcoal">
                 {nextVisit ? nextVisit.service.name : "Nothing on the calendar yet"}
               </h2>
             </div>
-            <Sparkles className="size-5 text-terracotta/70" />
+            <Sparkles className="size-5 text-deep-red/70" />
           </div>
 
           {appointments.isLoading ? (
@@ -115,37 +115,37 @@ export function CustomerOverview() {
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.16em] text-muted">Date</p>
-                  <p className="mt-1 font-display text-xl text-ink">
+                  <p className="mt-1 font-display text-xl text-charcoal">
                     {formatDate(nextVisit.appointmentDate)}
                   </p>
                 </div>
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.16em] text-muted">Time</p>
-                  <p className="mt-1 font-display text-xl text-ink">
+                  <p className="mt-1 font-display text-xl text-charcoal">
                     {formatTimeSlot(nextVisit.timeSlot)}
                   </p>
                 </div>
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.16em] text-muted">Price</p>
-                  <p className="mt-1 font-display text-xl text-terracotta">
+                  <p className="mt-1 font-display text-xl text-deep-red">
                     {formatMoney(nextVisit.servicePrice)}
                   </p>
                 </div>
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.16em] text-muted">Duration</p>
-                  <p className="mt-1 font-display text-xl text-ink">
+                  <p className="mt-1 font-display text-xl text-charcoal">
                     {nextVisit.service.duration} min
                   </p>
                 </div>
               </div>
 
               {nextVisit.status === "confirmed" && nextVisit.paymentStatus === "unpaid" ? (
-                <div className="mt-5 rounded-md bg-sand/60 px-4 py-3 text-xs leading-relaxed text-ink-soft">
+                <div className="mt-5 rounded-md bg-sand/60 px-4 py-3 text-xs leading-relaxed text-muted">
                   This appointment is confirmed. Complete payment before your visit to
                   hold the time.
                 </div>
               ) : nextVisit.status === "pending" ? (
-                <div className="mt-5 rounded-md bg-sand/60 px-4 py-3 text-xs leading-relaxed text-ink-soft">
+                <div className="mt-5 rounded-md bg-sand/60 px-4 py-3 text-xs leading-relaxed text-muted">
                   The salon is reviewing your request. We&apos;ll confirm it shortly.
                 </div>
               ) : null}
@@ -185,7 +185,7 @@ export function CustomerOverview() {
               <p className="eyebrow">Recent requests</p>
               <Link
                 href="/dashboard/appointments"
-                className="text-[11px] font-semibold uppercase tracking-[0.12em] text-terracotta hover:underline"
+                className="text-[11px] font-semibold uppercase tracking-[0.12em] text-deep-red hover:underline"
               >
                 See all
               </Link>
@@ -214,7 +214,7 @@ export function CustomerOverview() {
                     <div className="min-w-0 flex-1">
                       <Link
                         href={`/dashboard/appointments/${appointment.id}`}
-                        className="block truncate text-sm font-semibold text-ink hover:text-terracotta"
+                        className="block truncate text-sm font-semibold text-charcoal hover:text-deep-red"
                       >
                         {appointment.service.name}
                       </Link>
@@ -233,9 +233,9 @@ export function CustomerOverview() {
           <div className="surface rounded-lg p-5">
             <div className="flex items-center justify-between">
               <p className="eyebrow">Payments</p>
-              <CreditCard className="size-4 text-terracotta/70" />
+              <CreditCard className="size-4 text-deep-red/70" />
             </div>
-            <p className="mt-3 font-display text-3xl text-ink">
+            <p className="mt-3 font-display text-3xl text-charcoal">
               {formatMoney(stats.data?.data.totalPaid ?? 0)}
             </p>
             <p className="mt-1 text-xs text-muted">
@@ -244,7 +244,7 @@ export function CustomerOverview() {
             </p>
             <Link
               href="/dashboard/payments"
-              className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-terracotta hover:underline"
+              className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-deep-red hover:underline"
             >
               Payment history
               <ArrowRight className="size-3" />
@@ -255,10 +255,10 @@ export function CustomerOverview() {
 
       <div className="mt-8">
         <div className="flex items-end justify-between gap-4">
-          <h2 className="font-display text-2xl text-ink">Recent appointments</h2>
+          <h2 className="font-display text-2xl text-charcoal">Recent appointments</h2>
           <Link
             href="/dashboard/appointments"
-            className="text-xs font-medium text-terracotta hover:underline"
+            className="text-xs font-medium text-deep-red hover:underline"
           >
             All appointments
           </Link>

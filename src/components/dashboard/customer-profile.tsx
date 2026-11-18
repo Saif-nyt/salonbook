@@ -30,7 +30,7 @@ const schema = z.object({
 
 type Values = z.infer<typeof schema>;
 
-export function CustomerProfile() {
+export function ProfileSettings({ role = "customer" }: { role?: "customer" | "admin" }) {
   const { user, refreshUser } = useAuth();
   const fileInput = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -59,7 +59,7 @@ export function CustomerProfile() {
     onSuccess: async () => {
       await refreshUser();
       toast.success("Profile updated", {
-        description: "Your details are saved and will appear across SalonBook.",
+        description: "Your profile information has been saved.",
       });
     },
     onError: (error) => {
@@ -96,42 +96,42 @@ export function CustomerProfile() {
 
   return (
     <DashboardShell
-      role="customer"
-      title="My profile"
-      description="Keep your contact details and photo up to date so your specialist knows who to expect."
+      role={role}
+      title="My Profile"
+      description="Update your name, phone number, and profile photo. Email, role, and account status cannot be changed here."
     >
       <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="surface rounded-lg p-6">
-          <p className="eyebrow">Your account</p>
+          <p className="eyebrow">Account details</p>
           <div className="mt-5 flex items-center gap-4">
             <Avatar name={user?.name ?? "Guest"} image={imageValue || user?.image} className="size-16" />
             <div className="min-w-0">
-              <p className="truncate font-display text-2xl text-ink">{user?.name}</p>
+              <p className="truncate font-display text-2xl text-charcoal">{user?.name}</p>
               <p className="truncate text-xs text-muted">{user?.email}</p>
             </div>
           </div>
 
-          <div className="mt-6 space-y-3 border-t border-line pt-5 text-sm">
+          <div className="mt-6 space-y-3 border-t border-warm-taupe/40 pt-5 text-sm">
             <div className="flex items-center justify-between gap-3">
               <span className="flex items-center gap-2 text-muted">
                 <Mail className="size-4" />
                 Email
               </span>
-              <span className="truncate text-xs text-ink-soft">{user?.email}</span>
+              <span className="truncate text-xs text-charcoal">{user?.email}</span>
             </div>
             <div className="flex items-center justify-between gap-3">
               <span className="flex items-center gap-2 text-muted">
                 <UserRound className="size-4" />
                 Account type
               </span>
-              <span className="text-xs capitalize text-ink-soft">{user?.role}</span>
+              <span className="text-xs capitalize text-charcoal">{user?.role}</span>
             </div>
             <div className="flex items-center justify-between gap-3">
               <span className="flex items-center gap-2 text-muted">
                 <ShieldCheck className="size-4" />
                 Status
               </span>
-              <span className="flex items-center gap-1.5 text-xs text-sage">
+              <span className="flex items-center gap-1.5 text-xs text-[#5f7561]">
                 <Check className="size-3.5" />
                 Active
               </span>
@@ -139,19 +139,18 @@ export function CustomerProfile() {
             {user?.createdAt ? (
               <div className="flex items-center justify-between gap-3">
                 <span className="text-muted">Member since</span>
-                <span className="text-xs text-ink-soft">{formatDate(user.createdAt)}</span>
+                <span className="text-xs text-charcoal">{formatDate(user.createdAt)}</span>
               </div>
             ) : null}
           </div>
 
-          <p className="mt-6 rounded-md bg-ivory px-3.5 py-3 text-[11px] leading-relaxed text-muted">
-            Your email address and account type are managed by SalonBook and cannot be
-            changed here. Contact the salon if something needs updating.
+          <p className="mt-6 rounded-md bg-warm-cream/50 px-3.5 py-3 text-[11px] leading-relaxed text-muted">
+            You cannot change your own role or blocked status through profile updates.
           </p>
         </div>
 
         <div className="surface rounded-lg p-6">
-          <p className="eyebrow">Editable details</p>
+          <p className="eyebrow">Editable information</p>
           <form
             className="mt-5 space-y-4"
             onSubmit={form.handleSubmit((values) => mutation.mutate(values))}
@@ -174,7 +173,7 @@ export function CustomerProfile() {
             <Field
               label="Phone number"
               htmlFor="phone"
-              hint="Used only if the salon needs to reach you about an appointment."
+              hint="Optional. Basic contact information."
               error={form.formState.errors.phone?.message}
             >
               <Input
@@ -188,9 +187,9 @@ export function CustomerProfile() {
             </Field>
 
             <Field
-              label="Profile photo"
+              label="Profile image"
               htmlFor="image"
-              hint="Upload a JPEG, PNG, WebP or GIF under 5 MB, or paste an image URL."
+              hint="Upload an image (JPEG, PNG, WebP or GIF under 5 MB) or provide an image URL."
               error={form.formState.errors.image?.message}
             >
               <div className="flex flex-col gap-2 sm:flex-row">
@@ -221,27 +220,27 @@ export function CustomerProfile() {
             </Field>
 
             {imageValue ? (
-              <div className="flex items-center gap-3 rounded-md border border-line bg-ivory/60 p-3">
+              <div className="flex items-center gap-3 rounded-md border border-warm-taupe/50 bg-warm-cream/40 p-3">
                 <span className="size-12 overflow-hidden rounded-full bg-sand">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={imageValue} alt="Profile preview" className="size-full object-cover" />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-xs font-semibold text-ink">Photo preview</p>
+                  <p className="text-xs font-semibold text-charcoal">Photo preview</p>
                   <p className="truncate text-[11px] text-muted">{imageValue}</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => form.setValue("image", "", { shouldValidate: true })}
-                  className="ml-auto text-[11px] font-medium text-[#8f3229] hover:underline"
+                  className="ml-auto text-[11px] font-medium text-[#8f241d] hover:underline"
                 >
                   Remove
                 </button>
               </div>
             ) : null}
 
-            <div className="flex items-center justify-between gap-3 border-t border-line pt-4">
-              <p className="text-[11px] text-muted">Changes appear immediately after saving.</p>
+            <div className="flex items-center justify-between gap-3 border-t border-warm-taupe/40 pt-4">
+              <p className="text-[11px] text-muted">Changes are saved to your account immediately.</p>
               <Button type="submit" isLoading={mutation.isPending}>
                 Save changes
               </Button>
@@ -251,4 +250,8 @@ export function CustomerProfile() {
       </div>
     </DashboardShell>
   );
+}
+
+export function CustomerProfile() {
+  return <ProfileSettings role="customer" />;
 }

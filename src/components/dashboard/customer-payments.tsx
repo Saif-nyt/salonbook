@@ -37,7 +37,7 @@ export function CustomerPayments() {
       actions={
         <Link
           href="/dashboard/appointments"
-          className="text-xs font-medium text-terracotta hover:underline"
+          className="text-xs font-medium text-deep-red hover:underline"
         >
           Back to appointments
         </Link>
@@ -50,7 +50,7 @@ export function CustomerPayments() {
             setStatus(event.target.value);
             setPage(1);
           }}
-          className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-ink focus:border-terracotta focus:outline-none"
+          className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
           aria-label="Filter transactions by status"
         >
           {statuses.map((option) => (
@@ -70,11 +70,11 @@ export function CustomerPayments() {
         </div>
       ) : isError ? (
         <div className="surface mt-5 rounded-lg p-10 text-center">
-          <p className="font-display text-2xl text-ink">Payments didn&apos;t load.</p>
+          <p className="font-display text-2xl text-charcoal">Payments didn&apos;t load.</p>
           <button
             type="button"
             onClick={() => void refetch()}
-            className="mt-4 text-xs font-semibold text-terracotta hover:underline"
+            className="mt-4 text-xs font-semibold text-deep-red hover:underline"
           >
             Try again
           </button>
@@ -117,17 +117,17 @@ export function CustomerPayments() {
                             />
                           ) : null}
                         </span>
-                        <span className="font-medium text-ink">
+                        <span className="font-medium text-charcoal">
                           {transaction.appointment?.serviceName ?? "Appointment"}
                         </span>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-xs text-ink-soft">
+                    <td className="px-4 py-4 text-xs text-muted">
                       {transaction.appointment
                         ? `${formatDate(transaction.appointment.date)} · ${formatTimeSlot(transaction.appointment.timeSlot)}`
                         : "—"}
                     </td>
-                    <td className="px-4 py-4 font-display text-lg text-ink">
+                    <td className="px-4 py-4 font-display text-lg text-charcoal">
                       {formatMoney(transaction.amount, transaction.currency)}
                     </td>
                     <td className="px-4 py-4 font-mono text-[11px] text-muted" title={transaction.stripeSessionId}>

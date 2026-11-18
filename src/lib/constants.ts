@@ -47,9 +47,7 @@ export const CATEGORY_NAMES = SERVICE_CATEGORIES.map((category) => category.name
 
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/#experience", label: "The salon" },
-  { href: "/#visit", label: "Visit" },
+  { href: "/services", label: "Browse Services" },
 ];
 
 export const SERVICE_SORTS = [

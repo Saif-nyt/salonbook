@@ -60,7 +60,7 @@ export function CustomerAppointments() {
               setStatus(event.target.value);
               setPage(1);
             }}
-            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-ink focus:border-terracotta focus:outline-none"
+            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
             aria-label="Filter by appointment status"
           >
             {statuses.map((option) => (
@@ -75,7 +75,7 @@ export function CustomerAppointments() {
               setPaymentStatus(event.target.value);
               setPage(1);
             }}
-            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-ink focus:border-terracotta focus:outline-none"
+            className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
             aria-label="Filter by payment status"
           >
             {paymentStatuses.map((option) => (
@@ -92,7 +92,7 @@ export function CustomerAppointments() {
                 setPaymentStatus("");
                 setPage(1);
               }}
-              className="text-xs font-medium text-terracotta underline-offset-4 hover:underline"
+              className="text-xs font-medium text-deep-red underline-offset-4 hover:underline"
             >
               Clear filters
             </button>
@@ -110,7 +110,7 @@ export function CustomerAppointments() {
           ))
         ) : isError ? (
           <div className="surface rounded-lg p-10 text-center">
-            <p className="font-display text-2xl text-ink">Your appointments didn&apos;t load.</p>
+            <p className="font-display text-2xl text-charcoal">Your appointments didn&apos;t load.</p>
             <p className="mt-2 text-sm text-muted">Check your connection, then try again.</p>
             <button
               type="button"

@@ -75,7 +75,7 @@ export function AdminUsers() {
             }}
             placeholder="Search name, email or phone"
             aria-label="Search customers"
-            className="h-10 w-full rounded-md border border-line bg-cream pl-9 pr-3 text-xs text-ink placeholder:text-muted/70 focus:border-terracotta focus:outline-none sm:w-72"
+            className="h-10 w-full rounded-md border border-line bg-cream pl-9 pr-3 text-xs text-charcoal placeholder:text-muted/70 focus:border-deep-red focus:outline-none sm:w-72"
           />
         </div>
         <p className="text-xs text-muted">
@@ -89,11 +89,11 @@ export function AdminUsers() {
         </div>
       ) : isError ? (
         <div className="surface mt-5 rounded-lg p-10 text-center">
-          <p className="font-display text-2xl text-ink">Customers didn&apos;t load.</p>
+          <p className="font-display text-2xl text-charcoal">Customers didn&apos;t load.</p>
           <button
             type="button"
             onClick={() => void refetch()}
-            className="mt-4 text-xs font-semibold text-terracotta hover:underline"
+            className="mt-4 text-xs font-semibold text-deep-red hover:underline"
           >
             Try again
           </button>
@@ -126,7 +126,7 @@ export function AdminUsers() {
                       <div className="flex items-center gap-3">
                         <Avatar name={customer.name} image={customer.image} className="size-9" />
                         <div className="min-w-0">
-                          <p className="max-w-52 truncate font-medium text-ink">
+                          <p className="max-w-52 truncate font-medium text-charcoal">
                             {customer.name}
                           </p>
                           <p className="max-w-52 truncate text-[11px] text-muted">
@@ -135,7 +135,7 @@ export function AdminUsers() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-xs text-ink-soft">
+                    <td className="px-4 py-3 text-xs text-muted">
                       {customer.phone || "—"}
                     </td>
                     <td className="px-4 py-3 text-xs text-muted">
@@ -153,7 +153,7 @@ export function AdminUsers() {
                         <button
                           type="button"
                           onClick={() => setSelectedId(customer.id)}
-                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-ink"
+                          className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-sand hover:text-charcoal"
                           aria-label={`View ${customer.name}`}
                         >
                           <Eye className="size-3.5" />
@@ -162,7 +162,7 @@ export function AdminUsers() {
                           variant="outline"
                           size="sm"
                           onClick={() => setBlocking(customer)}
-                          className={customer.isBlocked ? "" : "text-[#8f3229]"}
+                          className={customer.isBlocked ? "" : "text-[#8f241d]"}
                         >
                           {customer.isBlocked ? (
                             <>
@@ -218,7 +218,7 @@ export function AdminUsers() {
                 className="size-12"
               />
               <div>
-                <p className="font-display text-xl text-ink">
+                <p className="font-display text-xl text-charcoal">
                   {details.data.data.customer.name}
                 </p>
                 <p className="text-xs text-muted">
@@ -245,7 +245,7 @@ export function AdminUsers() {
                   <p className="text-[10px] uppercase tracking-[0.14em] text-muted">
                     {item.label}
                   </p>
-                  <p className="mt-1 font-display text-2xl text-ink">{item.value}</p>
+                  <p className="mt-1 font-display text-2xl text-charcoal">{item.value}</p>
                 </div>
               ))}
             </div>
@@ -266,7 +266,7 @@ export function AdminUsers() {
                   {details.data.data.recentAppointments.map((appointment) => (
                     <li key={appointment.id} className="flex flex-wrap items-center gap-3 p-3">
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-medium text-ink">
+                        <p className="truncate text-sm font-medium text-charcoal">
                           {appointment.service.name}
                         </p>
                         <p className="text-[11px] text-muted">
@@ -337,7 +337,7 @@ function InfoRow({
     <div className="flex items-center gap-2.5 text-sm">
       <Icon className="size-4 text-muted" />
       <span className="text-muted">{label}</span>
-      <span className="ml-auto capitalize text-ink">{value}</span>
+      <span className="ml-auto capitalize text-charcoal">{value}</span>
     </div>
   );
 }

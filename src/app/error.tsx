@@ -18,19 +18,19 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-ivory">
+    <div className="flex min-h-screen flex-col bg-warm-cream">
       <div className="container-page flex h-20 items-center">
         <Logo />
       </div>
       <main className="container-page flex flex-1 items-center py-16">
-        <div className="mx-auto max-w-xl text-center">
+        <div className="mx-auto max-w-xl rounded-lg border border-warm-taupe/50 bg-soft-ivory p-8 text-center shadow-card sm:p-10">
           <p className="eyebrow">Something went wrong</p>
-          <h1 className="mt-4 font-display text-5xl leading-tight text-ink">
-            We dropped a pin.
+          <h1 className="mt-4 font-display text-5xl leading-tight text-charcoal">
+            We couldn&apos;t load this page.
           </h1>
-          <p className="mt-4 text-sm leading-relaxed text-muted">
-            An unexpected error interrupted this page. Nothing has been charged and your
-            appointments are safe. Try again, or return to the salon.
+          <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
+            An unexpected error interrupted this page. Your appointments and account are
+            safe. Please try again, or return home.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button onClick={reset}>

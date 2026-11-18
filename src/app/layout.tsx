@@ -1,33 +1,32 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/providers/providers";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const playfair = Playfair_Display({
+  variable: "--font-display-serif",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
   title: {
-    default: "SalonBook — Beauty, considered.",
+    default: "SalonBook — Salon Appointment Booking",
     template: "%s · SalonBook",
   },
   description:
-    "Book hair, skin, nails and massage appointments with SalonBook. A calmer way to care for yourself.",
+    "SalonBook is a salon appointment booking platform where customers can explore salon services, view service information, and request appointments online.",
   openGraph: {
-    title: "SalonBook — Beauty, considered.",
+    title: "SalonBook — Salon Appointment Booking",
     description:
-      "Thoughtful hair, skin, nail and body treatments, booked in a few quiet clicks.",
+      "Explore salon services, view details, and request appointments online with SalonBook.",
     type: "website",
   },
 };
@@ -36,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <Providers>{children}</Providers>

@@ -18,31 +18,31 @@ export function Logo({
     >
       <span
         className={cn(
-          "grid size-9 place-items-center rounded-full border font-display text-xl leading-none",
+          "grid size-9 place-items-center rounded-full border font-display text-lg leading-none",
           light
-            ? "border-cream/40 text-cream"
-            : "border-terracotta/40 text-terracotta",
+            ? "border-white/30 text-white"
+            : "border-charcoal/20 text-charcoal",
         )}
         aria-hidden
       >
-        S
+        SB
       </span>
       <span className="flex flex-col leading-none">
         <span
           className={cn(
-            "font-display text-[1.45rem] tracking-tight",
-            light ? "text-cream" : "text-ink",
+            "font-display text-[1.4rem] tracking-tight",
+            light ? "text-white" : "text-charcoal",
           )}
         >
           SalonBook
         </span>
         <span
           className={cn(
-            "mt-1 text-[8px] font-semibold uppercase tracking-[0.28em]",
-            light ? "text-cream/60" : "text-muted",
+            "mt-1 text-[9px] font-semibold uppercase tracking-[0.24em]",
+            light ? "text-white/55" : "text-muted",
           )}
         >
-          Brooklyn
+          Beauty, considered
         </span>
       </span>
     </Link>

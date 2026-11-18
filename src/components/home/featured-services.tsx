@@ -1,37 +1,79 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useServices } from "@/lib/queries";
+import { CATEGORY_NAMES } from "@/lib/constants";
 import { ServiceCard } from "@/components/services/service-card";
 import { CardSkeleton } from "@/components/ui/skeleton";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { EmptyState } from "@/components/ui/empty-state";
 import { buttonStyles } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+const FILTERS = ["All", ...CATEGORY_NAMES];
 
 export function FeaturedServices() {
-  const { data, isLoading, isError, refetch } = useServices({ limit: 6, sort: "newest" });
-  const services = data?.data ?? [];
+  const [selected, setSelected] = useState("All");
+  const { data, isLoading, isError, refetch } = useServices({
+    limit: 12,
+    sort: "newest",
+  });
+
+  const services = useMemo(() => data?.data ?? [], [data?.data]);
+  const filtered = useMemo(() => {
+    const base =
+      selected === "All"
+        ? services
+        : services.filter((service) => service.category === selected);
+    return base.slice(0, 6);
+  }, [services, selected]);
 
   return (
-    <section className="border-t border-line/70 bg-ivory">
+    <section id="featured-services" className="border-t border-warm-taupe/40 bg-soft-ivory">
       <div className="container-page py-20 lg:py-24">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
-            eyebrow="The treatment menu"
-            title="A short list of favourites."
-            description="Six of the appointments our guests return to, chosen across hair, skin, nails and body."
+            eyebrow="Featured services"
+            title="Treatments chosen for how they make you feel."
+            description="Explore a selection of active services across hair, skin, nails, massage, makeup and barbering."
           />
           <Link
             href="/services"
-            className={buttonStyles({ variant: "outline", size: "sm", className: "self-start sm:self-auto" })}
+            className={buttonStyles({
+              variant: "outline",
+              size: "sm",
+              className: "self-start lg:self-auto",
+            })}
           >
-            All services
+            Browse all services
             <ArrowRight className="size-3.5" />
           </Link>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-8 flex flex-wrap gap-2">
+          {FILTERS.map((name) => {
+            const active = selected === name;
+            return (
+              <button
+                key={name}
+                type="button"
+                onClick={() => setSelected(name)}
+                className={cn(
+                  "rounded-full border px-4 py-2 text-xs font-semibold tracking-wide transition-colors",
+                  active
+                    ? "border-charcoal bg-charcoal text-white"
+                    : "border-warm-taupe/70 bg-transparent text-charcoal hover:border-deep-red/40 hover:text-deep-red",
+                )}
+              >
+                {name}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-10">
           {isLoading ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {Array.from({ length: 6 }).map((_, index) => (
@@ -39,10 +81,10 @@ export function FeaturedServices() {
               ))}
             </div>
           ) : isError ? (
-            <div className="surface rounded-lg px-6 py-12 text-center">
-              <p className="font-display text-2xl text-ink">The menu is resting.</p>
-              <p className="mx-auto mt-2 max-w-sm text-sm text-muted">
-                We couldn&apos;t load services right now. Please try again in a moment.
+            <div className="surface rounded-lg px-6 py-14 text-center">
+              <p className="font-display text-3xl text-charcoal">Services are unavailable right now.</p>
+              <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-muted">
+                We couldn&apos;t load featured treatments. Please try again in a moment.
               </p>
               <button
                 type="button"
@@ -52,16 +94,20 @@ export function FeaturedServices() {
                 Try again
               </button>
             </div>
-          ) : services.length === 0 ? (
+          ) : filtered.length === 0 ? (
             <EmptyState
               icon={Sparkles}
-              title="The menu is being prepared"
-              description="New treatments will appear here shortly. In the meantime, create an account to be ready to book."
-              action={{ label: "Create an account", href: "/sign-up" }}
+              title="No featured services yet"
+              description={
+                selected === "All"
+                  ? "Active treatments will appear here as soon as they are added to the menu."
+                  : `There are no active ${selected.toLowerCase()} services at the moment. Try another category or browse the full menu.`
+              }
+              action={{ label: "Explore services", href: "/services" }}
             />
           ) : (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((service) => (
+              {filtered.map((service) => (
                 <ServiceCard key={service.id} service={service} />
               ))}
             </div>

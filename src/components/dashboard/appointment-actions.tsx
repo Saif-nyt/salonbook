@@ -139,7 +139,7 @@ export function AppointmentActions({
           variant="outline"
           size="sm"
           onClick={() => setConfirmOpen(true)}
-          className="text-[#8f3229]"
+          className="text-[#8f241d]"
         >
           <Ban className="size-3.5" />
           Cancel

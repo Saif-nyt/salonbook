@@ -42,7 +42,7 @@ export function AuthGuard({
   if (!user) {
     return (
       <div className="container-page py-24 text-center">
-        <p className="font-display text-3xl text-ink">Taking you to sign in…</p>
+        <p className="font-display text-3xl text-charcoal">Taking you to sign in…</p>
       </div>
     );
   }
@@ -50,23 +50,23 @@ export function AuthGuard({
   if (user.role !== role) {
     return (
       <div className="container-page py-20">
-        <div className="mx-auto max-w-lg rounded-lg border border-line bg-cream p-8 text-center">
-          <span className="mx-auto grid size-12 place-items-center rounded-full bg-[#f4e0dc] text-[#8f3229]">
+        <div className="mx-auto max-w-lg rounded-lg border border-warm-taupe/50 bg-soft-ivory p-8 text-center shadow-card">
+          <span className="mx-auto grid size-12 place-items-center rounded-full bg-[#f6e3e1] text-[#8f241d]">
             <ShieldAlert className="size-5" />
           </span>
-          <h1 className="mt-5 font-display text-3xl text-ink">
+          <h1 className="mt-5 font-display text-4xl text-charcoal">
             This area isn&apos;t for your account.
           </h1>
           <p className="mt-3 text-sm leading-relaxed text-muted">
             You&apos;re signed in as a {user.role}. Use the area that matches your
             account, or return to the salon.
           </p>
-          <div className="mt-6 flex justify-center gap-3">
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link
-              href={role === "admin" ? "/dashboard" : "/admin"}
-              className={buttonStyles({ variant: "outline", size: "sm" })}
+              href={user.role === "admin" ? "/admin" : "/dashboard"}
+              className={buttonStyles({ variant: "secondary", size: "sm" })}
             >
-              Go to {role === "admin" ? "my dashboard" : "admin"}
+              Go to my dashboard
             </Link>
             <Link href="/services" className={buttonStyles({ size: "sm" })}>
               Browse services

@@ -27,10 +27,10 @@ function PaymentSuccessContent() {
         <div className="surface rounded-lg p-8 text-center">
           {isLoading ? (
             <>
-              <span className="mx-auto grid size-14 place-items-center rounded-full bg-sand text-terracotta">
+              <span className="mx-auto grid size-14 place-items-center rounded-full bg-sand text-deep-red">
                 <Loader2 className="size-6 animate-spin" />
               </span>
-              <h2 className="mt-5 font-display text-3xl text-ink">
+              <h2 className="mt-5 font-display text-3xl text-charcoal">
                 Confirming with Stripe…
               </h2>
               <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
@@ -41,10 +41,10 @@ function PaymentSuccessContent() {
             </>
           ) : isError || !status ? (
             <>
-              <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f4e0dc] text-[#8f3229]">
+              <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f6e3e1] text-[#8f241d]">
                 <XCircle className="size-6" />
               </span>
-              <h2 className="mt-5 font-display text-3xl text-ink">
+              <h2 className="mt-5 font-display text-3xl text-charcoal">
                 We couldn&apos;t find that payment.
               </h2>
               <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
@@ -68,12 +68,12 @@ function PaymentSuccessContent() {
               <span className="mx-auto grid size-14 place-items-center rounded-full bg-sage-soft text-sage">
                 <CheckCircle2 className="size-6" />
               </span>
-              <h2 className="mt-5 font-display text-3xl text-ink">Payment received.</h2>
+              <h2 className="mt-5 font-display text-3xl text-charcoal">Payment received.</h2>
               <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
                 Stripe has confirmed your payment and your appointment is now paid. A
                 receipt is available in your payment history.
               </p>
-              <p className="mt-5 font-display text-4xl text-terracotta">
+              <p className="mt-5 font-display text-4xl text-deep-red">
                 {formatMoney(status.amount, status.currency)}
               </p>
               <div className="mt-6 flex justify-center gap-3">
@@ -94,10 +94,10 @@ function PaymentSuccessContent() {
           ) : status.transactionStatus === "failed" ||
             status.transactionStatus === "cancelled" ? (
             <>
-              <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f4e0dc] text-[#8f3229]">
+              <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f6e3e1] text-[#8f241d]">
                 <XCircle className="size-6" />
               </span>
-              <h2 className="mt-5 font-display text-3xl text-ink">
+              <h2 className="mt-5 font-display text-3xl text-charcoal">
                 That payment didn&apos;t complete.
               </h2>
               <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
@@ -116,7 +116,7 @@ function PaymentSuccessContent() {
               <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f3e6cf] text-[#7b5a1f]">
                 <Clock3 className="size-6" />
               </span>
-              <h2 className="mt-5 font-display text-3xl text-ink">
+              <h2 className="mt-5 font-display text-3xl text-charcoal">
                 Waiting for confirmation.
               </h2>
               <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">

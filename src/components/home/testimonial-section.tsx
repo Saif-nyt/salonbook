@@ -1,80 +1,151 @@
 import Link from "next/link";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight, CalendarDays, CheckCircle2, CreditCard, Search } from "lucide-react";
 import { buttonStyles } from "@/components/ui/button";
+import { SectionHeading } from "@/components/ui/section-heading";
 
-export function TestimonialSection() {
+const steps = [
+  {
+    icon: Search,
+    title: "Explore services",
+    description: "Browse salon services by category and view the details that matter to you.",
+  },
+  {
+    icon: CalendarDays,
+    title: "Request an appointment",
+    description: "Choose an available date and time slot and send your booking request online.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Track confirmation",
+    description: "Manage your appointment requests and follow updates as they are reviewed and confirmed.",
+  },
+  {
+    icon: CreditCard,
+    title: "Pay when confirmed",
+    description: "Pay securely for confirmed appointments through Stripe checkout.",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "Booking felt effortless, and the experience in the salon was even better. Everything was calm, professional and beautifully done.",
+    name: "Amara J.",
+    detail: "Hair & skin guest",
+  },
+  {
+    quote:
+      "I loved how easy it was to find the right service and manage my appointment. It feels like a genuinely premium experience.",
+    name: "Daniel R.",
+    detail: "Barber & grooming guest",
+  },
+  {
+    quote:
+      "Clear pricing, thoughtful service and a space that instantly puts you at ease. I’ve already rebooked my next visit.",
+    name: "Maya C.",
+    detail: "Nails & massage guest",
+  },
+];
+
+export function BookingProcess() {
   return (
-    <section className="border-t border-line/70 bg-sand/55">
+    <section className="border-t border-warm-taupe/40 bg-soft-ivory">
       <div className="container-page py-20 lg:py-24">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div>
-            <p className="eyebrow">In their words</p>
-            <Quote className="mt-6 size-7 text-terracotta/50" />
-            <blockquote className="mt-4 font-display text-3xl leading-[1.2] text-balance text-ink sm:text-4xl">
-              “The kind of place you leave feeling more like yourself. I have never had
-              to explain what I wanted twice.”
-            </blockquote>
-            <div className="mt-6">
-              <p className="text-sm font-semibold text-ink">Amara J.</p>
-              <p className="text-xs text-muted">Guest since 2021 · Hair & skin</p>
-            </div>
-          </div>
+        <SectionHeading
+          eyebrow="Booking process"
+          title="From discovery to appointment, made simple."
+          description="A clear flow designed to help you book with confidence at every step."
+          align="center"
+        />
 
-          <div className="grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2">
-            {[
-              { value: "4.9 / 5", label: "Average guest rating", detail: "Across 320+ verified reviews" },
-              { value: "92%", label: "Return within 8 weeks", detail: "Guests who rebook with us" },
-              { value: "12", label: "Specialist practitioners", detail: "Hair, skin, nails, body" },
-              { value: "7 days", label: "A week of availability", detail: "Tuesday through Saturday" },
-            ].map((item) => (
-              <div key={item.label} className="bg-cream p-6">
-                <p className="font-display text-3xl text-terracotta">{item.value}</p>
-                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-ink-soft">
-                  {item.label}
-                </p>
-                <p className="mt-1.5 text-xs leading-relaxed text-muted">{item.detail}</p>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((step, index) => (
+            <div
+              key={step.title}
+              className="relative rounded-lg border border-warm-taupe/50 bg-warm-cream/35 p-6"
+            >
+              <div className="flex items-center justify-between">
+                <span className="grid size-11 place-items-center rounded-md border border-warm-taupe/50 bg-soft-ivory text-charcoal">
+                  <step.icon className="size-5" />
+                </span>
+                <span className="font-display text-2xl text-warm-taupe">
+                  0{index + 1}
+                </span>
               </div>
-            ))}
-          </div>
+              <h3 className="mt-5 font-display text-2xl text-charcoal">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{step.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-export function HomeCta() {
+export function TestimonialSection() {
   return (
-    <section className="bg-ink">
+    <section className="border-t border-warm-taupe/40 bg-warm-cream">
+      <div className="container-page py-20 lg:py-24">
+        <SectionHeading
+          eyebrow="Customer testimonials"
+          title="Trusted by guests who value the details."
+          description="A salon experience should feel welcoming, reliable and worth returning to."
+          align="center"
+        />
+
+        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          {testimonials.map((item) => (
+            <figure
+              key={item.name}
+              className="flex h-full flex-col rounded-lg border border-warm-taupe/50 bg-soft-ivory p-6 sm:p-7"
+            >
+              <blockquote className="flex-1 font-display text-[1.7rem] leading-snug text-charcoal">
+                “{item.quote}”
+              </blockquote>
+              <figcaption className="mt-6 border-t border-warm-taupe/40 pt-4">
+                <p className="text-sm font-semibold text-charcoal">{item.name}</p>
+                <p className="mt-0.5 text-xs uppercase tracking-[0.14em] text-muted">
+                  {item.detail}
+                </p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function FinalCta() {
+  return (
+    <section className="bg-charcoal">
       <div className="container-page grid gap-8 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:py-20">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cream/45">
-            Your next appointment
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/45">
+            Ready when you are
           </p>
-          <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[1.05] text-balance text-cream sm:text-5xl">
-            Make a little room for yourself.
+          <h2 className="mt-4 max-w-2xl font-display text-4xl leading-[1.05] text-balance text-white sm:text-5xl">
+            Book an appointment that feels considered from start to finish.
           </h2>
-          <p className="mt-4 max-w-lg text-sm leading-relaxed text-cream/60">
-            Browse the menu, choose a time, and let us take care of the rest. New guests
-            are always welcome.
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/65 sm:text-base">
+            Explore our services, choose a time that works for you, and let SalonBook
+            take care of the rest.
           </p>
         </div>
         <div className="flex flex-wrap gap-3 lg:justify-end">
-          <Link
-            href="/services"
-            className={buttonStyles({ size: "lg", className: "bg-cream text-ink hover:bg-sand" })}
-          >
-            Browse services
+          <Link href="/services" className={buttonStyles({ size: "lg" })}>
+            Book Appointment
             <ArrowRight className="size-4" />
           </Link>
           <Link
-            href="/sign-up"
+            href="/#story"
             className={buttonStyles({
               variant: "outline",
               size: "lg",
-              className: "border-cream/30 text-cream hover:bg-cream/10",
+              className: "border-white/30 text-white hover:border-white hover:bg-white/10",
             })}
           >
-            Create an account
+            Discover Our Salon
           </Link>
         </div>
       </div>

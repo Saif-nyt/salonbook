@@ -69,7 +69,7 @@ export function GoogleButton({
       type="button"
       onClick={() => void handleClick()}
       disabled={isPending}
-      className="flex h-11 w-full items-center justify-center gap-3 rounded-md border border-line bg-cream text-sm font-medium text-ink transition-colors hover:border-terracotta/40 hover:bg-sand/40 disabled:opacity-60"
+      className="flex h-11 w-full items-center justify-center gap-3 rounded-md border border-warm-taupe/70 bg-soft-ivory text-sm font-medium text-charcoal transition-colors hover:border-charcoal/30 hover:bg-warm-cream/40 disabled:opacity-60"
     >
       {isPending ? <Loader2 className="size-4 animate-spin" /> : <GoogleGlyph />}
       {label}

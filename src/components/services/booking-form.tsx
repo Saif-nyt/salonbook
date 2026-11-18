@@ -107,11 +107,11 @@ export function BookingForm({ service }: { service: Service }) {
     const redirect = encodeURIComponent(pathname);
     return (
       <div className="surface rounded-lg p-6">
-        <p className="eyebrow">Request this appointment</p>
-        <h3 className="mt-2 font-display text-3xl text-ink">Sign in to book.</h3>
+        <p className="eyebrow">Book this service</p>
+        <h3 className="mt-2 font-display text-3xl text-charcoal">Sign in to continue.</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          Appointments are tied to your SalonBook account so you can manage, cancel or
-          pay for them in one place.
+          Sign in to request an appointment, manage your bookings and keep everything in
+          one place.
         </p>
         <div className="mt-6 space-y-3">
           <Link
@@ -129,7 +129,7 @@ export function BookingForm({ service }: { service: Service }) {
           </Link>
         </div>
         <p className="mt-5 flex items-start gap-2 text-xs leading-relaxed text-muted">
-          <ShieldCheck className="mt-0.5 size-4 shrink-0 text-sage" />
+          <ShieldCheck className="mt-0.5 size-4 shrink-0 text-charcoal" />
           No payment is taken when you request an appointment.
         </p>
       </div>
@@ -140,14 +140,14 @@ export function BookingForm({ service }: { service: Service }) {
     return (
       <div className="surface rounded-lg p-6">
         <p className="eyebrow">Booking</p>
-        <h3 className="mt-2 font-display text-3xl text-ink">Administrator account</h3>
+        <h3 className="mt-2 font-display text-3xl text-charcoal">Administrator account</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          Administrator accounts cannot request customer appointments. Use the admin
-          dashboard to manage the service menu and guest appointments.
+          Administrator accounts can&apos;t request customer appointments. Use the admin
+          dashboard to manage services and bookings.
         </p>
         <Link
           href="/admin"
-          className={buttonStyles({ variant: "outline", className: "mt-6 w-full" })}
+          className={buttonStyles({ variant: "secondary", className: "mt-6 w-full" })}
         >
           Go to admin dashboard
           <ArrowRight className="size-4" />
@@ -160,10 +160,10 @@ export function BookingForm({ service }: { service: Service }) {
     return (
       <div className="surface rounded-lg p-6">
         <p className="eyebrow">Currently unavailable</p>
-        <h3 className="mt-2 font-display text-3xl text-ink">This service is paused.</h3>
+        <h3 className="mt-2 font-display text-3xl text-charcoal">This service is paused.</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          This treatment is not accepting new appointments right now. Explore the rest
-          of the menu to find something similar.
+          This treatment isn&apos;t accepting new appointments right now. Explore other
+          services in the meantime.
         </p>
         <Link
           href="/services"
@@ -176,18 +176,18 @@ export function BookingForm({ service }: { service: Service }) {
   }
 
   return (
-    <div className="surface rounded-lg p-6">
+    <div className="surface rounded-lg p-6 shadow-card">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="eyebrow">Request an appointment</p>
-          <h3 className="mt-2 font-display text-3xl text-ink">
+          <h3 className="mt-2 font-display text-4xl text-charcoal">
             {formatMoney(service.price)}
           </h3>
           <p className="mt-1 text-xs text-muted">
-            {service.duration} minutes · payment after confirmation
+            {service.duration} minutes · pay after confirmation
           </p>
         </div>
-        <span className="grid size-11 place-items-center rounded-full bg-sand text-terracotta">
+        <span className="grid size-11 place-items-center rounded-md bg-warm-cream text-charcoal ring-1 ring-warm-taupe/40">
           <CalendarDays className="size-5" />
         </span>
       </div>
@@ -208,7 +208,7 @@ export function BookingForm({ service }: { service: Service }) {
             type="date"
             min={minDate}
             max={maxDate}
-            className="h-11 w-full rounded-md border border-line bg-cream px-3.5 text-sm text-ink focus:border-terracotta focus:outline-none focus:ring-2 focus:ring-terracotta/15"
+            className="h-11 w-full rounded-md border border-warm-taupe/70 bg-soft-ivory px-3.5 text-sm text-charcoal focus:border-deep-red/60 focus:outline-none focus:ring-2 focus:ring-deep-red/15"
             {...form.register("appointmentDate")}
           />
         </Field>
@@ -222,7 +222,7 @@ export function BookingForm({ service }: { service: Service }) {
               ? "Choose a date to see available times"
               : availability.isLoading
                 ? "Checking availability…"
-                : "Salon time · 9:00 am to 6:00 pm"
+                : "Salon hours · 9:00 am to 6:00 pm"
           }
           error={form.formState.errors.timeSlot?.message}
         >
@@ -236,33 +236,36 @@ export function BookingForm({ service }: { service: Service }) {
             {slots.map((slot) => (
               <option key={slot.slot} value={slot.slot} disabled={!slot.available}>
                 {formatTimeSlot(slot.slot)}
-                {slot.available ? "" : " — reserved"}
+                {slot.available ? "" : " — unavailable"}
               </option>
             ))}
           </Select>
         </Field>
 
         {availability.isError ? (
-          <p className="rounded-md bg-[#f4e0dc] px-3 py-2 text-xs text-[#8f3229]">
+          <p className="rounded-md border border-[#e7c2be] bg-[#f6e3e1] px-3 py-2 text-xs text-[#8f241d]">
             Availability could not be loaded. Please try another date.
           </p>
         ) : null}
 
         <Field
-          label="A note for your specialist"
+          label="Note for your specialist"
           htmlFor="message"
-          hint="Optional — allergies, inspiration, or anything we should know."
+          hint="Optional — preferences, allergies or anything we should know."
           error={form.formState.errors.message?.message}
         >
           <Textarea
             id="message"
-            placeholder="I'd love a soft, natural finish…"
+            placeholder="Share any details that will help us prepare…"
             {...form.register("message")}
           />
         </Field>
 
         {form.formState.errors.root?.message ? (
-          <p className="rounded-md bg-[#f4e0dc] px-3 py-2 text-xs text-[#8f3229]" role="alert">
+          <p
+            className="rounded-md border border-[#e7c2be] bg-[#f6e3e1] px-3 py-2 text-xs text-[#8f241d]"
+            role="alert"
+          >
             {form.formState.errors.root.message}
           </p>
         ) : null}
@@ -273,14 +276,14 @@ export function BookingForm({ service }: { service: Service }) {
         </Button>
       </form>
 
-      <div className="mt-5 space-y-2 border-t border-line pt-4 text-xs leading-relaxed text-muted">
+      <div className="mt-5 space-y-2 border-t border-warm-taupe/40 pt-4 text-xs leading-relaxed text-muted">
         <p className="flex items-start gap-2">
-          <Clock className="mt-0.5 size-3.5 shrink-0 text-sage" />
-          Your slot is held as pending until the salon confirms it.
+          <Clock className="mt-0.5 size-3.5 shrink-0 text-charcoal" />
+          Your request is pending until the salon confirms it.
         </p>
         <p className="flex items-start gap-2">
-          <ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-sage" />
-          You&apos;ll only be asked to pay after confirmation.
+          <ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-charcoal" />
+          You&apos;ll be asked to pay only after confirmation.
         </p>
       </div>
     </div>

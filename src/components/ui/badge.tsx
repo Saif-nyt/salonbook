@@ -10,12 +10,12 @@ type Tone =
   | "accent";
 
 const tones: Record<Tone, string> = {
-  neutral: "bg-sand text-ink-soft",
-  success: "bg-sage-soft text-[#45523d]",
-  warning: "bg-[#f3e6cf] text-[#7b5a1f]",
-  danger: "bg-[#f4e0dc] text-[#8f3229]",
-  muted: "bg-[#eeeae4] text-muted",
-  accent: "bg-[#efe0d5] text-terracotta-dark",
+  neutral: "bg-warm-cream text-charcoal border border-warm-taupe/40",
+  success: "bg-[#e7ece4] text-[#3f523f] border border-[#c8d4c3]",
+  warning: "bg-[#f3e7d8] text-[#7a4d1f] border border-[#e4cdb0]",
+  danger: "bg-[#f6e3e1] text-[#8f241d] border border-[#e7c2be]",
+  muted: "bg-[#ece7de] text-muted-gray border border-warm-taupe/40",
+  accent: "bg-[#f5e7e5] text-deep-red border border-deep-red/20",
 };
 
 export function Badge({

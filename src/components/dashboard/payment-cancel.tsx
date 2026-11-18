@@ -23,7 +23,7 @@ function PaymentCancelContent() {
           <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#f3e6cf] text-[#7b5a1f]">
             <XCircle className="size-6" />
           </span>
-          <h2 className="mt-5 font-display text-3xl text-ink">
+          <h2 className="mt-5 font-display text-3xl text-charcoal">
             Nothing has been charged.
           </h2>
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">

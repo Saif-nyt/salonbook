@@ -47,7 +47,7 @@ export function AdminTransactions() {
             setPage(1);
           }}
           aria-label="Filter transactions by status"
-          className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-ink focus:border-terracotta focus:outline-none"
+          className="h-10 rounded-md border border-line bg-cream px-3 text-xs text-charcoal focus:border-deep-red focus:outline-none"
         >
           {statuses.map((option) => (
             <option key={option.value} value={option.value}>
@@ -61,7 +61,7 @@ export function AdminTransactions() {
           </p>
           <p className="text-xs text-muted">
             Paid on page:{" "}
-            <span className="font-semibold text-ink">{formatMoney(paidTotal)}</span>
+            <span className="font-semibold text-charcoal">{formatMoney(paidTotal)}</span>
           </p>
         </div>
       </div>
@@ -72,11 +72,11 @@ export function AdminTransactions() {
         </div>
       ) : isError ? (
         <div className="surface mt-5 rounded-lg p-10 text-center">
-          <p className="font-display text-2xl text-ink">Transactions didn&apos;t load.</p>
+          <p className="font-display text-2xl text-charcoal">Transactions didn&apos;t load.</p>
           <button
             type="button"
             onClick={() => void refetch()}
-            className="mt-4 text-xs font-semibold text-terracotta hover:underline"
+            className="mt-4 text-xs font-semibold text-deep-red hover:underline"
           >
             Try again
           </button>
@@ -116,7 +116,7 @@ export function AdminTransactions() {
                           className="size-8"
                         />
                         <div className="min-w-0">
-                          <p className="max-w-40 truncate font-medium text-ink">
+                          <p className="max-w-40 truncate font-medium text-charcoal">
                             {transaction.customer?.name ?? "Customer"}
                           </p>
                           <p className="max-w-40 truncate text-[11px] text-muted">
@@ -137,17 +137,17 @@ export function AdminTransactions() {
                             />
                           ) : null}
                         </span>
-                        <span className="max-w-44 truncate font-medium text-ink">
+                        <span className="max-w-44 truncate font-medium text-charcoal">
                           {transaction.appointment?.serviceName ?? "Appointment"}
                         </span>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-xs text-ink-soft">
+                    <td className="px-4 py-3 text-xs text-muted">
                       {transaction.appointment
                         ? `${formatDate(transaction.appointment.date)} · ${formatTimeSlot(transaction.appointment.timeSlot)}`
                         : "—"}
                     </td>
-                    <td className="px-4 py-3 font-display text-lg text-ink">
+                    <td className="px-4 py-3 font-display text-lg text-charcoal">
                       {formatMoney(transaction.amount, transaction.currency)}
                     </td>
                     <td className="px-4 py-3 text-xs uppercase text-muted">
@@ -185,8 +185,8 @@ export function AdminTransactions() {
       <div className="mt-6 flex items-start gap-3 rounded-lg border border-line bg-sage-soft/60 p-4">
         <ShieldCheck className="mt-0.5 size-4 shrink-0 text-sage" />
         <div>
-          <p className="text-sm font-semibold text-ink">Payment status is read-only</p>
-          <p className="mt-1 text-xs leading-relaxed text-ink-soft">
+          <p className="text-sm font-semibold text-charcoal">Payment status is read-only</p>
+          <p className="mt-1 text-xs leading-relaxed text-muted">
             There is intentionally no control here to mark a transaction paid. Only a
             signature-verified Stripe webhook can change payment state or create a paid
             transaction.

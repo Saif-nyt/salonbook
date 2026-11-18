@@ -24,18 +24,18 @@ export function Field({
     <div className={cn("space-y-1.5", className)}>
       <label
         htmlFor={htmlFor}
-        className="flex items-center gap-1 text-xs font-semibold tracking-wide text-ink-soft"
+        className="flex items-center gap-1 text-xs font-semibold tracking-wide text-charcoal"
       >
         {label}
-        {required ? <span className="text-terracotta">*</span> : null}
+        {required ? <span className="text-deep-red">*</span> : null}
       </label>
       {children}
       {error ? (
-        <p className="text-xs text-[#9c2f26]" role="alert">
+        <p className="text-xs text-[#9b241d]" role="alert">
           {error}
         </p>
       ) : hint ? (
-        <p className="text-xs text-muted">{hint}</p>
+        <p className="text-xs leading-relaxed text-muted">{hint}</p>
       ) : null}
     </div>
   );
@@ -53,8 +53,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     <input
       ref={ref}
       className={cn(
-        "h-11 w-full rounded-md border border-line bg-cream px-3.5 text-sm text-ink placeholder:text-muted/60 transition-colors focus:border-terracotta focus:outline-none focus:ring-2 focus:ring-terracotta/15 disabled:cursor-not-allowed disabled:opacity-60",
-        invalid && "border-[#b3453b] focus:border-[#b3453b]",
+        "h-11 w-full rounded-md border border-warm-taupe/70 bg-soft-ivory px-3.5 text-sm text-charcoal placeholder:text-muted/70 transition-colors focus:border-deep-red/60 focus:outline-none focus:ring-2 focus:ring-deep-red/15 disabled:cursor-not-allowed disabled:opacity-60",
+        invalid && "border-[#b3261e]/60 focus:border-[#b3261e] focus:ring-[#b3261e]/15",
         className,
       )}
       aria-invalid={invalid || undefined}
@@ -73,8 +73,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       <textarea
         ref={ref}
         className={cn(
-          "min-h-28 w-full resize-y rounded-md border border-line bg-cream px-3.5 py-3 text-sm text-ink placeholder:text-muted/60 transition-colors focus:border-terracotta focus:outline-none focus:ring-2 focus:ring-terracotta/15 disabled:cursor-not-allowed disabled:opacity-60",
-          invalid && "border-[#b3453b] focus:border-[#b3453b]",
+          "min-h-28 w-full resize-y rounded-md border border-warm-taupe/70 bg-soft-ivory px-3.5 py-3 text-sm leading-relaxed text-charcoal placeholder:text-muted/70 transition-colors focus:border-deep-red/60 focus:outline-none focus:ring-2 focus:ring-deep-red/15 disabled:cursor-not-allowed disabled:opacity-60",
+          invalid && "border-[#b3261e]/60 focus:border-[#b3261e] focus:ring-[#b3261e]/15",
           className,
         )}
         aria-invalid={invalid || undefined}
@@ -97,8 +97,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
       <select
         ref={ref}
         className={cn(
-          "h-11 w-full appearance-none rounded-md border border-line bg-cream pl-3.5 pr-9 text-sm text-ink transition-colors focus:border-terracotta focus:outline-none focus:ring-2 focus:ring-terracotta/15 disabled:cursor-not-allowed disabled:opacity-60",
-          invalid && "border-[#b3453b] focus:border-[#b3453b]",
+          "h-11 w-full appearance-none rounded-md border border-warm-taupe/70 bg-soft-ivory pl-3.5 pr-9 text-sm text-charcoal transition-colors focus:border-deep-red/60 focus:outline-none focus:ring-2 focus:ring-deep-red/15 disabled:cursor-not-allowed disabled:opacity-60",
+          invalid && "border-[#b3261e]/60 focus:border-[#b3261e] focus:ring-[#b3261e]/15",
           className,
         )}
         aria-invalid={invalid || undefined}

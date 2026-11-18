@@ -41,10 +41,10 @@ export function AppointmentCard({
               Requested {formatDate(appointment.createdAt)}
             </p>
           </div>
-          <h3 className="mt-1.5 truncate font-display text-2xl text-ink">
+          <h3 className="mt-1.5 truncate font-display text-2xl text-charcoal">
             {appointment.service.name}
           </h3>
-          <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-ink-soft">
+          <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-muted">
             <span className="flex items-center gap-1.5">
               <CalendarDays className="size-3.5 text-muted" />
               {formatDate(appointment.appointmentDate)}
@@ -53,7 +53,7 @@ export function AppointmentCard({
               <Clock3 className="size-3.5 text-muted" />
               {formatTimeSlot(appointment.timeSlot)} · {appointment.service.duration} min
             </span>
-            <span className="font-semibold text-ink">
+            <span className="font-semibold text-charcoal">
               {formatMoney(appointment.servicePrice)}
             </span>
           </div>
@@ -78,7 +78,7 @@ export function AppointmentCard({
                 ? "/admin/appointments"
                 : `/dashboard/appointments/${appointment.id}`
             }
-            className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-terracotta hover:underline"
+            className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-deep-red hover:underline"
           >
             View details
             <ArrowUpRight className="size-3" />

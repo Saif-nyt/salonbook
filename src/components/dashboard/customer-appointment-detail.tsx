@@ -49,7 +49,7 @@ export function CustomerAppointmentDetail() {
       ) : isError || !appointment ? (
         <div className="surface rounded-lg p-10 text-center">
           <p className="eyebrow">Not found</p>
-          <h2 className="mt-2 font-display text-3xl text-ink">
+          <h2 className="mt-2 font-display text-3xl text-charcoal">
             We can&apos;t open this appointment.
           </h2>
           <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted">
@@ -72,7 +72,7 @@ export function CustomerAppointmentDetail() {
                 className="size-full object-cover"
               />
               <div className="absolute left-4 top-4 flex gap-2">
-                <span className="rounded-full bg-cream/94 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-soft backdrop-blur-sm">
+                <span className="rounded-full bg-cream/94 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted backdrop-blur-sm">
                   {appointment.service.category}
                 </span>
               </div>
@@ -84,7 +84,7 @@ export function CustomerAppointmentDetail() {
                 <PaymentStatusBadge status={appointment.paymentStatus} />
               </div>
 
-              <h2 className="mt-4 font-display text-3xl text-ink">
+              <h2 className="mt-4 font-display text-3xl text-charcoal">
                 {appointment.service.name}
               </h2>
               <p className="mt-1 text-xs text-muted">
@@ -96,7 +96,7 @@ export function CustomerAppointmentDetail() {
                   <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">
                     Appointment date
                   </dt>
-                  <dd className="mt-1.5 flex items-center gap-2 font-display text-xl text-ink">
+                  <dd className="mt-1.5 flex items-center gap-2 font-display text-xl text-charcoal">
                     <CalendarDays className="size-4 text-muted" />
                     {formatDate(appointment.appointmentDate)}
                   </dd>
@@ -105,7 +105,7 @@ export function CustomerAppointmentDetail() {
                   <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">
                     Time
                   </dt>
-                  <dd className="mt-1.5 flex items-center gap-2 font-display text-xl text-ink">
+                  <dd className="mt-1.5 flex items-center gap-2 font-display text-xl text-charcoal">
                     <Clock3 className="size-4 text-muted" />
                     {formatTimeSlot(appointment.timeSlot)}
                   </dd>
@@ -114,7 +114,7 @@ export function CustomerAppointmentDetail() {
                   <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">
                     Service price
                   </dt>
-                  <dd className="mt-1.5 font-display text-xl text-terracotta">
+                  <dd className="mt-1.5 font-display text-xl text-deep-red">
                     {formatMoney(appointment.servicePrice)}
                   </dd>
                 </div>
@@ -122,7 +122,7 @@ export function CustomerAppointmentDetail() {
                   <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">
                     Duration
                   </dt>
-                  <dd className="mt-1.5 flex items-center gap-2 font-display text-xl text-ink">
+                  <dd className="mt-1.5 flex items-center gap-2 font-display text-xl text-charcoal">
                     <Clock3 className="size-4 text-muted" />
                     {appointment.service.duration} minutes
                   </dd>
@@ -135,7 +135,7 @@ export function CustomerAppointmentDetail() {
                     <MessageSquare className="size-3.5" />
                     Your note
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
                     {appointment.message}
                   </p>
                 </div>
@@ -181,11 +181,11 @@ export function CustomerAppointmentDetail() {
             </div>
 
             <div className="rounded-lg border border-line bg-sage-soft/70 p-5">
-              <p className="flex items-center gap-2 text-sm font-semibold text-ink">
+              <p className="flex items-center gap-2 text-sm font-semibold text-charcoal">
                 <ShieldCheck className="size-4 text-sage" />
                 Payment is secure
               </p>
-              <p className="mt-2 text-xs leading-relaxed text-ink-soft">
+              <p className="mt-2 text-xs leading-relaxed text-muted">
                 Checkout is handled by Stripe. SalonBook never sees or stores your card
                 details, and your appointment is marked paid only after Stripe confirms
                 the payment.
@@ -222,7 +222,7 @@ function TimelineStep({
       <span
         className={`mt-0.5 grid size-6 shrink-0 place-items-center rounded-full ${
           cancelled
-            ? "bg-[#f4e0dc] text-[#8f3229]"
+            ? "bg-[#f6e3e1] text-[#8f241d]"
             : done
               ? "bg-sage text-cream"
               : "border border-line bg-cream text-muted"
@@ -231,7 +231,7 @@ function TimelineStep({
         {cancelled ? <X className="size-3" /> : done ? <Check className="size-3" /> : null}
       </span>
       <div>
-        <p className="text-sm font-semibold text-ink">{title}</p>
+        <p className="text-sm font-semibold text-charcoal">{title}</p>
         <p className="mt-1 text-xs leading-relaxed text-muted">{description}</p>
       </div>
     </li>

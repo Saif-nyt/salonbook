@@ -1,27 +1,40 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-cormorant), "Iowan Old Style", Georgia, serif;
+  /* Typography */
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-serif), "Iowan Old Style", Georgia, serif;
 
-  --color-ivory: #f7f2ea;
-  --color-cream: #fffdf8;
-  --color-ink: #231f1a;
-  --color-ink-soft: #4d453b;
-  --color-muted: #776b5d;
-  --color-line: #e5dacb;
-  --color-sand: #eee2d3;
-  --color-terracotta: #9a5137;
-  --color-terracotta-dark: #7d3f29;
-  --color-sage: #6d7a65;
-  --color-sage-soft: #e8ece3;
+  /* Brand palette */
+  --color-charcoal: #1c1c1c;
+  --color-warm-cream: #ede6d8;
+  --color-deep-red: #b3261e;
+  --color-deep-red-dark: #8f1e17;
+  --color-soft-ivory: #f8f6f1;
+  --color-warm-taupe: #c9bdaa;
+  --color-muted-gray: #77716a;
+  --color-white: #ffffff;
 
-  --shadow-soft: 0 24px 70px -40px rgb(59 42 30 / 0.45);
+  /* Semantic aliases (mapped to preserve existing utility usage) */
+  --color-ink: #1c1c1c;
+  --color-ink-soft: #4b463f;
+  --color-ivory: #ede6d8;
+  --color-cream: #f8f6f1;
+  --color-muted: #77716a;
+  --color-line: #c9bdaa;
+  --color-sand: #e3dccf;
+  --color-terracotta: #b3261e;
+  --color-terracotta-dark: #8f1e17;
+  --color-sage: #5f7561;
+  --color-sage-soft: #e6ebe4;
+
+  --shadow-soft: 0 28px 80px -48px rgb(28 28 28 / 0.4);
+  --shadow-card: 0 18px 45px -36px rgb(28 28 28 / 0.35);
 }
 
 @layer base {
   * {
-    border-color: var(--color-line);
+    border-color: color-mix(in srgb, var(--color-line) 70%, transparent);
   }
 
   html {
@@ -32,6 +45,7 @@
     background-color: var(--color-ivory);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -41,16 +55,17 @@
   h4 {
     font-family: var(--font-display);
     font-weight: 500;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
+    color: var(--color-charcoal);
   }
 
   ::selection {
-    background-color: #e6cbb9;
-    color: var(--color-ink);
+    background-color: color-mix(in srgb, var(--color-deep-red) 18%, white);
+    color: var(--color-charcoal);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-terracotta);
+    outline: 2px solid var(--color-deep-red);
     outline-offset: 3px;
   }
 }
@@ -78,19 +93,19 @@
   .eyebrow {
     font-size: 0.6875rem;
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--color-terracotta);
+    color: var(--color-deep-red);
   }
 
   .surface {
-    background-color: var(--color-cream);
-    border: 1px solid var(--color-line);
+    background-color: var(--color-soft-ivory);
+    border: 1px solid color-mix(in srgb, var(--color-warm-taupe) 55%, transparent);
   }
 
   .prose-salon p {
     color: var(--color-ink-soft);
-    line-height: 1.75;
+    line-height: 1.85;
   }
 }
 

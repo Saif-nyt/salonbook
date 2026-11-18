@@ -4,9 +4,8 @@ import { Footer } from "@/components/layout/footer";
 
 function NavbarFallback() {
   return (
-    <div aria-hidden>
-      <div className="h-9 bg-ink" />
-      <div className="h-[74px] border-b border-line/80 bg-ivory" />
+    <div aria-hidden className="border-b border-warm-taupe/50 bg-warm-cream/90">
+      <div className="container-page h-[76px]" />
     </div>
   );
 }
