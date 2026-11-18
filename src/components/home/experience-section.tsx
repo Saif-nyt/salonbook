@@ -1,32 +1,32 @@
 import Image from "next/image";
-import { CalendarCheck, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { CalendarCheck, CreditCard, Search, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const reasons = [
   {
-    icon: Sparkles,
-    title: "Explore with ease",
-    description:
-      "Browse salon services, compare details and find the right treatment for your visit.",
-  },
-  {
     icon: CalendarCheck,
-    title: "Request online",
+    title: "Convenient online booking",
     description:
-      "View availability, choose a time and request appointments from anywhere in a few steps.",
+      "Request appointments at a time that suits you, without back-and-forth.",
   },
   {
-    icon: ShieldCheck,
-    title: "Secure when confirmed",
+    icon: Search,
+    title: "Easy service discovery",
     description:
-      "Manage your requests and pay for confirmed appointments securely through Stripe.",
+      "Browse categories, compare treatments, and find the right fit with clarity.",
   },
   {
-    icon: Users,
-    title: "Managed with care",
+    icon: Sparkles,
+    title: "Clear service pricing",
     description:
-      "Administrators review requests, manage services and keep bookings running smoothly.",
+      "See pricing and duration upfront so you can book with confidence.",
+  },
+  {
+    icon: CreditCard,
+    title: "Secure online payments",
+    description:
+      "Manage appointments and pay for confirmed visits securely through Stripe.",
   },
 ];
 
@@ -34,31 +34,34 @@ export function WhyChooseSection() {
   return (
     <section className="border-t border-warm-taupe/35 bg-soft-ivory">
       <div className="container-page py-20 lg:py-24">
-        <SectionHeading
-          eyebrow="Why choose SalonBook"
-          title="A premium salon experience, without the friction."
-          description="Every detail — from discovery to checkout — is designed to feel clear, calm and dependable."
-          align="center"
-        />
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <SectionHeading
+            eyebrow="Why SalonBook"
+            title="A calmer way to book beauty."
+            description="Genuine platform benefits designed around ease, clarity, and trust — from discovery to payment."
+          />
+          <p className="max-w-xl text-[15px] leading-relaxed text-muted lg:pb-1">
+            Appointment management stays simple: request a time, track confirmation, and pay
+            only after your visit is confirmed.
+          </p>
+        </div>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {reasons.map((item, index) => (
             <div
               key={item.title}
               className={cn(
-                "group rounded-[20px] border border-warm-taupe/40 bg-warm-cream/35 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card",
-                index === 1 ? "lg:translate-y-2" : "",
+                "group relative rounded-[20px] border border-warm-taupe/40 bg-warm-cream/35 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card",
+                index % 2 === 1 ? "lg:translate-y-3" : "",
               )}
             >
-              <span className="grid size-11 place-items-center rounded-[12px] bg-charcoal text-white shadow-[0_14px_30px_-20px_rgba(28,28,28,0.8)] transition-transform duration-300 group-hover:scale-[1.03]">
+              <span className="grid size-11 place-items-center rounded-[12px] border border-warm-taupe/35 bg-soft-ivory text-deep-red transition-transform duration-300 group-hover:scale-[1.03]">
                 <item.icon className="size-5" />
               </span>
-              <h3 className="mt-5 font-display text-[1.7rem] leading-tight text-charcoal">
+              <h3 className="mt-5 font-display text-[1.6rem] leading-tight text-charcoal">
                 {item.title}
               </h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted">
-                {item.description}
-              </p>
+              <p className="mt-2 text-[15px] leading-relaxed text-muted">{item.description}</p>
             </div>
           ))}
         </div>
@@ -82,9 +85,9 @@ export function StorySection() {
             />
           </div>
           <div className="absolute -bottom-6 -left-2 hidden max-w-[14.5rem] rounded-[18px] border border-white/10 bg-charcoal p-5 text-white shadow-soft sm:block lg:-left-6">
-            <p className="font-display text-2xl leading-tight">Our Story</p>
+            <p className="font-display text-2xl leading-tight">About SalonBook</p>
             <p className="mt-2 text-xs leading-relaxed text-white/70">
-              Skilled hands, honest service, and time that feels genuinely well spent.
+              A modern booking experience designed to make salon visits feel effortless.
             </p>
           </div>
           <div
@@ -94,27 +97,27 @@ export function StorySection() {
         </div>
 
         <div>
-          <p className="eyebrow">Our experience</p>
+          <p className="eyebrow">About</p>
           <h2 className="mt-3 max-w-xl font-display text-[clamp(2rem,4.5vw,3rem)] leading-[1.02] text-balance text-charcoal">
             Where craft meets <span className="italic">calm</span>.
           </h2>
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">
-            SalonBook brings together talented specialists and a welcoming space so every visit
-            feels unhurried and personal. From your first consultation to the final detail, we
-            focus on quality, comfort and results you can trust.
+            SalonBook brings together welcoming service and a simple digital experience. Explore
+            treatments, request an appointment, and manage your visits with clarity — so the
+            focus stays on how you want to look and feel.
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="rounded-[18px] border border-warm-taupe/40 bg-soft-ivory p-5 shadow-card">
-              <p className="font-display text-3xl text-charcoal">8+ years</p>
+              <p className="font-display text-3xl text-charcoal">6</p>
               <p className="mt-1 text-xs uppercase tracking-[0.14em] text-muted">
-                Serving our community
+                Service categories
               </p>
             </div>
             <div className="rounded-[18px] border border-warm-taupe/40 bg-soft-ivory p-5 shadow-card">
-              <p className="font-display text-3xl text-charcoal">1:1 care</p>
+              <p className="font-display text-3xl text-charcoal">1:1</p>
               <p className="mt-1 text-xs uppercase tracking-[0.14em] text-muted">
-                Personal, attentive service
+                Personal, attentive care
               </p>
             </div>
           </div>
@@ -122,8 +125,8 @@ export function StorySection() {
           <ul className="mt-8 space-y-3 text-sm text-charcoal">
             {[
               "Consultation-led appointments tailored to you",
-              "Professional products and considered techniques",
-              "A relaxed environment designed for comfort",
+              "Clear details, pricing, and booking flow",
+              "A relaxed, welcoming salon experience",
             ].map((item) => (
               <li key={item} className="flex items-start gap-3">
                 <span className="mt-2 size-1.5 shrink-0 rounded-full bg-deep-red" />

@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { SALON_DETAILS } from "@/lib/constants";
+import { BrandSeal } from "@/components/ui/brand-seal";
 import { Logo } from "@/components/ui/logo";
 
 const exploreLinks = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Browse Services" },
+  { href: "/services", label: "Services" },
+  { href: "/#story", label: "About" },
+  { href: "/#visit", label: "Contact" },
   { href: "/services?category=Hair", label: "Hair" },
   { href: "/services?category=Skin", label: "Skin" },
 ];
@@ -140,7 +142,12 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="relative border-t border-white/10">
+        <BrandSeal
+          phrase="YOUR MOMENT"
+          tone="dark"
+          className="pointer-events-none absolute right-6 top-1/2 hidden size-20 -translate-y-1/2 text-white/60 opacity-50 md:block"
+        />
         <div className="container-page flex flex-col gap-3 py-6 text-[11px] uppercase tracking-[0.16em] text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © <CopyrightYear /> SalonBook. All rights reserved.

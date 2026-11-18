@@ -15,7 +15,7 @@ export function Skeleton({ className }: { className?: string }) {
 export function CardSkeleton() {
   return (
     <div className="surface overflow-hidden rounded-[18px]">
-      <Skeleton className="aspect-[4/3] w-full rounded-none" />
+      <Skeleton className="aspect-[4/5] w-full rounded-none" />
       <div className="space-y-3 p-5">
         <Skeleton className="h-3 w-20" />
         <Skeleton className="h-6 w-3/4" />

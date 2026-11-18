@@ -16,7 +16,7 @@ export function ServiceCard({ service }: { service: Service }) {
     <article className="group flex h-full flex-col overflow-hidden rounded-[20px] border border-warm-taupe/40 bg-soft-ivory transition-all duration-300 hover:-translate-y-1 hover:border-charcoal/15 hover:shadow-elevated">
       <Link
         href={`/services/${service.id}`}
-        className="relative block aspect-[4/3] overflow-hidden bg-warm-cream"
+        className="relative block aspect-[4/5] overflow-hidden bg-warm-cream"
         aria-label={`View ${service.serviceName}`}
       >
         {/* Service images may be uploaded to any host, so native img keeps them flexible. */}

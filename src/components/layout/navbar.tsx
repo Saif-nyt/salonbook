@@ -37,16 +37,19 @@ export function Navbar() {
   const dashboardHref = isAdmin ? "/admin" : "/dashboard";
   const primaryLinks = user
     ? [
-        { href: "/", label: "Home" },
-        { href: "/services", label: "Browse Services" },
+        { href: "/services", label: "Services" },
+        { href: "/#story", label: "About" },
+        { href: "/#visit", label: "Contact" },
         { href: dashboardHref, label: "Dashboard" },
       ]
     : [
-        { href: "/", label: "Home" },
-        { href: "/services", label: "Browse Services" },
+        { href: "/services", label: "Services" },
+        { href: "/#story", label: "About" },
+        { href: "/#visit", label: "Contact" },
       ];
 
   const isActive = (href: string) => {
+    if (href.startsWith("/#")) return false;
     if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(`${href}/`);
   };
