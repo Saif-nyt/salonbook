@@ -40,14 +40,14 @@ export function Hero() {
               </p>
               <div className="flex flex-col items-start gap-3 sm:items-end">
                 <Link href="/services" className={buttonStyles({ size: "lg", className: "group" })}>
-                  Reserve an appointment
+                  Explore salon services
                   <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
                 <Link
                   href="/services"
                   className="text-[13px] font-semibold uppercase tracking-[0.16em] text-charcoal underline decoration-warm-taupe/70 decoration-1 underline-offset-4 transition-colors hover:text-deep-red hover:decoration-deep-red/40"
                 >
-                  Explore the menu
+                  Reserve an appointment
                 </Link>
               </div>
             </div>
