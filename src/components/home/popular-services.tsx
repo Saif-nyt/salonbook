@@ -114,7 +114,7 @@ function EditorialServiceTile({
             href={`/services/${service.id}`}
             className="inline-flex items-center gap-1 text-[12px] font-semibold uppercase tracking-[0.14em] text-charcoal transition-colors hover:text-deep-red"
           >
-            Book
+            View details
             <ArrowUpRight className="size-3.5" />
           </Link>
         </div>

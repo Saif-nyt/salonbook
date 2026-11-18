@@ -412,7 +412,7 @@ function ServiceFormModal({
       toast.error(
         error instanceof ApiError
           ? error.message
-          : "The image could not be uploaded. Paste an image URL instead.",
+          : "The image could not be uploaded. Please try again with a different file.",
       );
     } finally {
       setIsUploading(false);

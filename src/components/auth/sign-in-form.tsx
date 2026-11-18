@@ -71,7 +71,7 @@ export function SignInForm() {
 
   return (
     <div className="space-y-6">
-      <GoogleButton callbackPath={redirectTo} />
+      <GoogleButton callbackPath={requestedRedirect ? redirectTo : "/auth/redirect"} />
 
       <div className="flex items-center gap-3">
         <span className="h-px flex-1 bg-line" />

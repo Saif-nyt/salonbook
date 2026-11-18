@@ -97,7 +97,10 @@ export function SignUpForm() {
 
   return (
     <div className="space-y-6">
-      <GoogleButton callbackPath={redirectTo} label="Sign up with Google" />
+      <GoogleButton
+        callbackPath={searchParams.get("redirect") ? redirectTo : "/auth/redirect"}
+        label="Sign up with Google"
+      />
 
       <div className="flex items-center gap-3">
         <span className="h-px flex-1 bg-line" />
