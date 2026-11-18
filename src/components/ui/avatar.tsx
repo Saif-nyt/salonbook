@@ -9,7 +9,8 @@ export function Avatar({
   image?: string | null;
   className?: string;
 }) {
-  const initials = name
+  const safeName = name || "Guest";
+  const initials = safeName
     .split(" ")
     .filter(Boolean)
     .slice(0, 2)

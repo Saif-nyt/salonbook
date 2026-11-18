@@ -56,37 +56,37 @@ export function AdminOverview() {
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           <StatCard
             label="Registered customers"
-            value={stats.data?.data.totalCustomers ?? 0}
+            value={stats.data?.data?.totalCustomers ?? 0}
             icon={Users}
             hint="Customer accounts"
           />
           <StatCard
             label="Active services"
-            value={stats.data?.data.activeServices ?? 0}
+            value={stats.data?.data?.activeServices ?? 0}
             icon={Sparkles}
             hint="Visible on the public menu"
           />
           <StatCard
             label="Total requests"
-            value={stats.data?.data.totalAppointments ?? 0}
+            value={stats.data?.data?.totalAppointments ?? 0}
             icon={CalendarDays}
           />
           <StatCard
             label="Pending requests"
-            value={stats.data?.data.pending ?? 0}
+            value={stats.data?.data?.pending ?? 0}
             icon={CalendarDays}
             hint="Waiting for confirmation"
           />
           <StatCard
             label="Confirmed visits"
-            value={stats.data?.data.confirmed ?? 0}
+            value={stats.data?.data?.confirmed ?? 0}
             icon={CheckCircle2}
           />
           <StatCard
             label="Successful payments"
-            value={stats.data?.data.successfulPayments ?? 0}
+            value={stats.data?.data?.successfulPayments ?? 0}
             icon={CreditCard}
-            hint={formatMoney(stats.data?.data.totalRevenue ?? 0)}
+            hint={formatMoney(stats.data?.data?.totalRevenue ?? 0)}
           />
         </div>
       )}
@@ -126,14 +126,14 @@ export function AdminOverview() {
                   <div className="size-11 shrink-0 overflow-hidden rounded-md bg-sand">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={appointment.service.image}
+                      src={appointment.service?.image || ""}
                       alt=""
                       className="size-full object-cover"
                     />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-semibold text-charcoal">
-                      {appointment.service.name}
+                      {appointment.service?.name ?? "Service"}
                     </p>
                     <p className="mt-0.5 text-[11px] text-muted">
                       {appointment.customer?.name ?? "Customer"} ·{" "}
@@ -159,7 +159,7 @@ export function AdminOverview() {
               <div>
                 <p className="eyebrow">Revenue</p>
                 <p className="mt-2 font-display text-4xl text-charcoal">
-                  {formatMoney(stats.data?.data.totalRevenue ?? 0)}
+                  {formatMoney(stats.data?.data?.totalRevenue ?? 0)}
                 </p>
               </div>
               <span className="grid size-11 place-items-center rounded-full bg-sage-soft text-sage">
@@ -201,10 +201,10 @@ export function AdminOverview() {
               <ul className="mt-4 divide-y divide-line">
                 {recentCustomers.map((customer) => (
                   <li key={customer.id} className="flex items-center gap-3 py-3 first:pt-0">
-                    <Avatar name={customer.name} image={customer.image} className="size-8" />
+                    <Avatar name={customer.name ?? "Customer"} image={customer.image} className="size-8" />
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium text-charcoal">{customer.name}</p>
-                      <p className="truncate text-[11px] text-muted">{customer.email}</p>
+                      <p className="truncate text-sm font-medium text-charcoal">{customer.name ?? "Customer"}</p>
+                      <p className="truncate text-[11px] text-muted">{customer.email ?? ""}</p>
                     </div>
                     <UserRound className="size-3.5 text-muted" />
                   </li>

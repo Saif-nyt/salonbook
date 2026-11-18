@@ -63,24 +63,24 @@ export function CustomerOverview() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <StatCard
             label="Total requests"
-            value={stats.data?.data.totalAppointments ?? 0}
+            value={stats.data?.data?.totalAppointments ?? 0}
             icon={CalendarDays}
           />
           <StatCard
             label="Pending"
-            value={stats.data?.data.pending ?? 0}
+            value={stats.data?.data?.pending ?? 0}
             icon={Clock3}
             hint="Awaiting salon confirmation"
           />
           <StatCard
             label="Confirmed"
-            value={stats.data?.data.confirmed ?? 0}
+            value={stats.data?.data?.confirmed ?? 0}
             icon={CheckCircle2}
             hint="Ready for payment or visit"
           />
           <StatCard
             label="Cancelled"
-            value={stats.data?.data.cancelled ?? 0}
+            value={stats.data?.data?.cancelled ?? 0}
             icon={XCircle}
           />
         </div>
@@ -236,11 +236,11 @@ export function CustomerOverview() {
               <CreditCard className="size-4 text-deep-red/70" />
             </div>
             <p className="mt-3 font-display text-3xl text-charcoal">
-              {formatMoney(stats.data?.data.totalPaid ?? 0)}
+              {formatMoney(stats.data?.data?.totalPaid ?? 0)}
             </p>
             <p className="mt-1 text-xs text-muted">
-              {stats.data?.data.payments ?? 0} completed payment
-              {(stats.data?.data.payments ?? 0) === 1 ? "" : "s"}
+              {stats.data?.data?.payments ?? 0} completed payment
+              {(stats.data?.data?.payments ?? 0) === 1 ? "" : "s"}
             </p>
             <Link
               href="/dashboard/payments"

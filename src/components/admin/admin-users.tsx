@@ -198,8 +198,8 @@ export function AdminUsers() {
       <Modal
         open={Boolean(selectedId)}
         onClose={() => setSelectedId(null)}
-        title={details.data?.data.customer.name ?? "Customer details"}
-        description={details.data?.data.customer.email}
+        title={details.data?.data?.customer?.name ?? "Customer details"}
+        description={details.data?.data?.customer?.email}
         size="lg"
       >
         {details.isLoading ? (
@@ -207,7 +207,7 @@ export function AdminUsers() {
             <Skeleton className="h-20 w-full" />
             <Skeleton className="h-40 w-full" />
           </div>
-        ) : details.isError || !details.data ? (
+        ) : details.isError || !details.data?.data ? (
           <p className="text-sm text-muted">This customer could not be loaded.</p>
         ) : (
           <div className="space-y-6">

@@ -32,6 +32,9 @@ export default function GlobalError({
             An unexpected error interrupted this page. Your appointments and account are
             safe. Please try again, or return home.
           </p>
+          <p className="mt-4 rounded-md border border-warm-taupe/50 bg-warm-cream px-3 py-2 text-left text-xs text-charcoal">
+            {error.message || "Unknown error"}
+          </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button onClick={reset}>
               <RotateCcw className="size-4" />
@@ -45,6 +48,11 @@ export default function GlobalError({
             <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
               Reference {error.digest}
             </p>
+          ) : null}
+          {process.env.NODE_ENV === "development" && error.stack ? (
+            <pre className="mt-4 max-h-48 overflow-auto rounded-md border border-warm-taupe/50 bg-warm-cream p-3 text-left text-[10px] leading-relaxed text-muted">
+              {error.stack}
+            </pre>
           ) : null}
         </div>
       </main>

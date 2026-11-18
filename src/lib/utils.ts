@@ -6,15 +6,17 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatMoney(amount: number, currency = "USD") {
+  const value = Number.isFinite(amount) ? amount : 0;
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: currency.toUpperCase(),
-    maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
-  }).format(amount);
+    maximumFractionDigits: value % 1 === 0 ? 0 : 2,
+  }).format(value);
 }
 
 export function formatDate(value: string | Date) {
   const date = typeof value === "string" ? new Date(value) : value;
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "—";
   return new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "numeric",
@@ -25,6 +27,7 @@ export function formatDate(value: string | Date) {
 
 export function formatDateTime(value: string | Date) {
   const date = typeof value === "string" ? new Date(value) : value;
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "—";
   return new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "numeric",
@@ -35,9 +38,11 @@ export function formatDateTime(value: string | Date) {
 }
 
 export function formatTimeSlot(slot: string) {
+  if (!slot || typeof slot !== "string") return "—";
   const [hours = "0", minutes = "0"] = slot.split(":");
   const date = new Date();
   date.setHours(Number(hours), Number(minutes), 0, 0);
+  if (Number.isNaN(date.getTime())) return slot;
   return new Intl.DateTimeFormat("en-US", {
     hour: "numeric",
     minute: "2-digit",
