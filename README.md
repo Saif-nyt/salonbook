@@ -4,6 +4,13 @@ SalonBook is a salon appointment booking platform where customers can explore sa
 
 Salon administrators can create and manage salon services, review appointment requests, confirm or cancel appointments, and monitor customer payments. Customers can manage their own appointment requests and pay for confirmed appointments through Stripe.
 
+## Links
+
+- **Live website:** https://salonbook-three.vercel.app/
+- **Live API:** https://salonbook-server-nkgk.vercel.app/
+- **Client repository:** https://github.com/Saif-nyt/salonbook
+- **Server repository:** https://github.com/Saif-nyt/salonbook-server
+
 ## Core features
 
 ### For customers
@@ -24,9 +31,11 @@ Salon administrators can create and manage salon services, review appointment re
 ### Public
 - `/` — homepage communicating SalonBook’s purpose, featured services, categories, booking flow, and calls to action
 - `/services` — service discovery with category filters, search, sorting, pagination, loading/empty/error states
-- `/services/[id]` — service details and integrated appointment request flow
 - `/sign-in` — customer/admin sign-in
 - `/sign-up` — account creation
+
+### Authenticated
+- `/services/[id]` — salon details page with service information and the appointment request flow (redirects unauthenticated visitors to sign-in)
 
 ### Customer dashboard (`/dashboard`)
 - `/dashboard` — overview of appointments/payments and upcoming activity
@@ -109,7 +118,7 @@ npm run build
 ```text
 src/
   app/
-    (site)/        # Public pages (home, services, service details)
+    (site)/        # Public shell (home, browse services, protected service details)
     (auth)/        # Sign-in and sign-up
     (app)/         # Customer and admin dashboards
     api/auth/      # Better Auth proxy route

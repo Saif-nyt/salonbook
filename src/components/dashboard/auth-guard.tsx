@@ -13,7 +13,11 @@ export function AuthGuard({
   role,
   children,
 }: {
-  role: Role;
+  /**
+   * Required role for the protected area. Pass `"any"` to require a signed-in
+   * session without restricting the role (used by the salon details page).
+   */
+  role: Role | "any";
   children: React.ReactNode;
 }) {
   const { user, isLoading } = useAuth();
@@ -47,7 +51,7 @@ export function AuthGuard({
     );
   }
 
-  if (user.role !== role) {
+  if (role !== "any" && user.role !== role) {
     return (
       <div className="container-page py-20">
         <div className="mx-auto max-w-lg rounded-[22px] border border-warm-taupe/40 bg-soft-ivory p-8 text-center shadow-elevated sm:p-10">

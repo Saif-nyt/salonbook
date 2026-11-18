@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { AuthGuard } from "@/components/dashboard/auth-guard";
 import { ServiceDetail } from "@/components/services/service-detail";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -20,7 +21,9 @@ export default function ServiceDetailPage() {
         </div>
       }
     >
-      <ServiceDetail />
+      <AuthGuard role="any">
+        <ServiceDetail />
+      </AuthGuard>
     </Suspense>
   );
 }
